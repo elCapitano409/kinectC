@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace kinectProject.Properties
+namespace KinectGUI.Properties
 {
 
 
