@@ -16,6 +16,7 @@ namespace KinectGUI
         public static IList<Body> _bodies;
         public static bool first = true;
         public static Form1 form;
+        public static String name;
         
         [STAThread]
         static void Main(string[] args)
@@ -50,6 +51,7 @@ namespace KinectGUI
             PointHolder elbow = new PointHolder ("Elbow");
             PointHolder shoulder = new PointHolder ("Shoulder");
             TimeClass time = new TimeClass();
+            FileProcessing input = new FileProcessing(name);
 
             using (var frame = reference.BodyFrameReference.AcquireFrame())
             {
@@ -99,6 +101,12 @@ namespace KinectGUI
 
                             form.addChart2(angle2);*/
                             form.addChart1(angle);
+                            if (first)
+                            {
+                                input.writeTime();
+                                first = false;
+                            }
+                            input.write(angle);
 
                         }
                         else
@@ -112,17 +120,6 @@ namespace KinectGUI
         }
     }
 
-    public class Display
-    {
-        public static void coordinates(int time, PointHolder point)
-        {
-            Console.WriteLine("Joint: " + point.name);
-            Console.WriteLine("Time: " + time);
-            Console.WriteLine("X is: " + point.x);
-            Console.WriteLine("Y is: " + point.y);
-            Console.WriteLine("Z is: " + point.z);
-        }
-    }
 
     public class PointHolder
     {
@@ -216,6 +213,26 @@ namespace KinectGUI
             int timeNow = getValue();
             finalTime = timeNow - this.initial;
             return finalTime;
+        }
+    }
+
+    public class FileProcessing
+    {
+        public String name;
+        public StreamWriter fileIO;
+        public FileProcessing(String name)
+        {
+            this.name = name + ".txt";
+            fileIO = new StreamWriter(this.name);
+        }
+        public void write(double input)
+        {
+            fileIO.WriteLine(input);
+        }
+        public void writeTime()
+        {
+            fileIO.WriteLine(DateTime.Now.Hour + " " + 
+                DateTime.Now.Minute + " " + DateTime.Now.Second + " " + DateTime.Now.Millisecond);
         }
     }
 }
