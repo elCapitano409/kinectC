@@ -8,18 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace KinectGUI
 {
     public partial class Form1 : Form
     {
         public LinkedList<double> list;
-        public int counter = 0;
         public Form1()
         {
             InitializeComponent();
             list = new LinkedList<double>();
             button2.Enabled = false;
-            button1.Enabled = false;
+            button1.Enabled = true;
+
         }
 
         public void setLabel1(String input)
@@ -27,15 +28,46 @@ namespace KinectGUI
             label1.Text = input;
         }
 
-        public void addChart1(double a)
+        public void draw(int x1, int y1, int x2, int y2)
         {
-            counter++;
-            chart1.Series["Series1"].Points.AddXY(counter, a);
+            Graphics g = panel1.CreateGraphics();
+            var p = new Pen(Color.Black, 3);
+            var point1 = new Point(x1, y1);
+            var point2 = new Point(x2, y2);
+            g.DrawLine(p, point1, point2);
+            
         }
+
+        /*public void addChart1(double a)
+        {
+            //You must use Add() instead of AddXY() for the data window sliding to work
+            //Also, I set the scale of the X axis to static values of 0-300 instead of auto-scaling
+            if (chart1.Series["Series1"].Points.Count < 300)
+            {
+                chart1.Series["Series1"].Points.Add(a);
+            }
+            else
+            {
+                chart1.Series["Series1"].Points.Add(a);
+                chart1.Series["Series1"].Points.RemoveAt(0);
+            }
+        }*/
 
         public void addChart2(double a)
         {
-            chart2.Series["Series1"].Points.AddXY(counter, a);
+            //Need to take away the offset to have proper angle values
+            double angle_offset = Convert.ToDouble(textBox2.Text.ToString());
+            double angle = -(a - angle_offset);
+            label4.Text = "Angle: " + angle;
+            if (chart2.Series["Series1"].Points.Count < 300)
+            {
+                chart2.Series["Series1"].Points.Add(angle);
+            }
+            else
+            {
+                chart2.Series["Series1"].Points.Add(angle);
+                chart2.Series["Series1"].Points.RemoveAt(0);
+            }
         }
 
         public void setLabelFile(String input)
@@ -72,10 +104,6 @@ namespace KinectGUI
         {
         }
 
-        private void clearChart1()
-        {
-            chart1.Series["PositionTime"].Points.Clear();
-        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -92,6 +120,11 @@ namespace KinectGUI
         {
             KinectSensorClass.name = DateTime.Now + "";
             labelFile.Text = "The file name is " + KinectSensorClass.name + ".txt";
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

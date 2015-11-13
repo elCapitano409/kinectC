@@ -12,3 +12,11 @@ C:\Users\Kyle\uwoKinect\KinectGUI\obj\Debug\KinectGUI.Form1.resources
 C:\Users\Kyle\Documents\kinectc\KinectGUI\bin\Debug\KinectGUI.exe.config
 C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\KinectGUI.exe
 C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\KinectGUI.pdb
+C:\Users\Kyle\Documents\kinectc\KinectGUI\bin\Debug\KinectGUI.exe
+C:\Users\Kyle\Documents\kinectc\KinectGUI\bin\Debug\KinectGUI.pdb
+C:\Users\Kyle\Documents\kinectc\KinectGUI\bin\Debug\Microsoft.Kinect.dll
+C:\Users\Kyle\Documents\kinectc\KinectGUI\bin\Debug\Microsoft.Kinect.xml
+C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\KinectGUI.csprojResolveAssemblyReference.cache
+C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\KinectGUI.Form1.resources
+C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\KinectGUI.Properties.Resources.resources
+C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\KinectGUI.csproj.GenerateResource.Cache

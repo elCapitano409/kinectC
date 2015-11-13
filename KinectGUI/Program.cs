@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Kinect;
+using System.Windows;
 
 namespace KinectGUI
 {
@@ -51,7 +52,15 @@ namespace KinectGUI
             PointHolder elbow = new PointHolder ("Elbow");
             PointHolder shoulder = new PointHolder ("Shoulder");
             TimeClass time = new TimeClass();
-            FileProcessing input = new FileProcessing(name);
+            //FileProcessing input = new FileProcessing(name);
+
+            using (var frame = reference.ColorFrameReference.AcquireFrame())
+            {
+                if (frame != null)
+                {
+                    
+                }
+            }
 
             using (var frame = reference.BodyFrameReference.AcquireFrame())
             {
@@ -68,17 +77,9 @@ namespace KinectGUI
                             Joint shoulderJoint = body.Joints[JointType.ShoulderRight];
                             Joint elbowJoint = body.Joints[JointType.ElbowRight];
                             Joint wristJoint = body.Joints[JointType.WristRight];
-                            double forearmLength, bicepLength, hypoteneuseLength;
-                            double forearmLength2, bicepLength2;
-                            double angle, angle2;
+                            double angle2;
                             form.setLabel1("Now tracking body");
-                            /*time stamp shinanegans
-                            if (first)
-                            {
-                                time.getInitial();
-                                first = false;
-                            }*/
-
+                            
                             wrist.x = wristJoint.Position.X;
                             wrist.y = wristJoint.Position.Y;
                             wrist.z = wristJoint.Position.Z;
@@ -89,24 +90,29 @@ namespace KinectGUI
                             shoulder.y = shoulderJoint.Position.Y;
                             shoulder.z = shoulderJoint.Position.Z;
 
-                            forearmLength = Calculate.length(wrist, elbow);
+                            //Calculate angle with Trig method
+                            /*forearmLength = Calculate.length(wrist, elbow);
                             bicepLength = Calculate.length(elbow, shoulder);
                             hypoteneuseLength = Calculate.length(wrist, shoulder);
-                            angle = Calculate.angle(forearmLength, bicepLength, hypoteneuseLength);
+                            angle = Calculate.angle(forearmLength, bicepLength, hypoteneuseLength);*/
 
-                            /*
-                            forearmLength2 = Calculate.length2(wrist, elbow);
-                            bicepLength2 = Calculate.length2(elbow, shoulder);
-                            angle2 = Calculate.angle2(forearmLength2, bicepLength2
 
-                            form.addChart2(angle2);*/
-                            form.addChart1(angle);
-                            if (first)
-                            {
-                                input.writeTime();
-                                first = false;
-                            }
-                            input.write(angle);
+                            //Calculate angle with vector method
+                            PointHolder vector1 = Calculate.CreateVector(wrist,elbow);
+                            PointHolder vector2 = Calculate.CreateVector(shoulder, elbow);
+                            double dot_product = Calculate.DotProduct(vector1, vector2);
+                            double length_vector1 = Calculate.VectorLength(vector1);
+                            double length_vector2 = Calculate.VectorLength(vector2);
+                            angle2 = Calculate.ToDegree(Math.Acos(dot_product / (length_vector1 * length_vector2)));
+
+                            form.addChart2(angle2);
+                            
+                            //if (first)
+                            //{
+                            //    input.writeTime();
+                            //    first = false;
+                            //}
+                            //input.write(angle);
 
                         }
                         else
@@ -117,6 +123,27 @@ namespace KinectGUI
                     }
                 }
             }
+        }
+
+        private ImageSource ToBitmap(ColorFrame frame)
+        {
+            int width = frame.FrameDescription.Width;
+            int height = frame.FrameDescription.Height;
+
+            byte[] pixels = new byte[width * height * ((PixelFormats.Bgr32.BitsPerPixel + 7) / 8)];
+
+            if (frame.RawColorImageFormat == ColorImageFormat.Bgra)
+            {
+                frame.CopyRawFrameDataToArray(pixels);
+            }
+            else
+            {
+                frame.CopyConvertedFrameDataToArray(pixels, ColorImageFormat.Bgra);
+            }
+
+            int stride = width * format.BitsPerPixel / 8;
+
+            return BitmapSource.Create(width, height, 96, 96, format, null, pixels, stride);
         }
     }
 
@@ -165,23 +192,44 @@ namespace KinectGUI
             finalAngle = ToDegree (Math.Acos(intermediary));
             return finalAngle;
         }
-        /*
-        public static double length2(PointHolder point1, PointHolder point)
+
+        //The CreateVector method will take two points and generate the vector between them in 3 dimensions
+        public static PointHolder CreateVector (PointHolder point1, PointHolder point2)
         {
-            double lengthValue;
-            return lengthValue;
+            PointHolder vector = new PointHolder("Vector");
+
+            vector.x = point1.x - point2.x;
+            vector.y = point1.y - point2.y;
+            vector.z = point1.z - point2.z;
+
+            return vector;
         }
 
-        public static double angle2(double lengthA, double lengthB)
+        //The VectorLength method will calculate the length of a vector
+        public static double VectorLength(PointHolder vector)
         {
-            double angle;
-            return angle;
-        }*/
+            double vector_length = 0;
+
+            vector_length = Math.Sqrt(Math.Pow(vector.x, 2) + Math.Pow(vector.y, 2) + Math.Pow(vector.z, 2));
+
+            return vector_length;
+        }
+
+        //The DotProduct method will calculate the dot product of two three dimensional vectors
+        public static double DotProduct(PointHolder vector1, PointHolder vector2)
+        {
+            double dot_product = 0;
+
+            dot_product = vector1.x * vector2.x + vector1.y * vector2.y + vector1.z * vector2.z;
+
+            return dot_product;
+        }
 
         public static double ToDegree(double value)
         {
             return value * (180.0 / Math.PI);
         }
+
     }
 
     public class TimeClass//does not work properly
