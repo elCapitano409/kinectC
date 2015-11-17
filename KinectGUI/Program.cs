@@ -5,7 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Kinect;
-using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Drawing;
 
 namespace KinectGUI
 {
@@ -58,7 +60,9 @@ namespace KinectGUI
             {
                 if (frame != null)
                 {
-                    
+                    ImageSource tempSource = ToBitmap(frame);
+                    System.Drawing.Image temp = BitmapSourceToBitmap((BitmapSource)tempSource);
+                    form.setPictureBox(temp);
                 }
             }
 
@@ -106,14 +110,6 @@ namespace KinectGUI
                             angle2 = Calculate.ToDegree(Math.Acos(dot_product / (length_vector1 * length_vector2)));
 
                             form.addChart2(angle2);
-                            
-                            //if (first)
-                            //{
-                            //    input.writeTime();
-                            //    first = false;
-                            //}
-                            //input.write(angle);
-
                         }
                         else
                         {
@@ -125,7 +121,7 @@ namespace KinectGUI
             }
         }
 
-        private ImageSource ToBitmap(ColorFrame frame)
+        private static ImageSource ToBitmap(ColorFrame frame)
         {
             int width = frame.FrameDescription.Width;
             int height = frame.FrameDescription.Height;
@@ -141,9 +137,20 @@ namespace KinectGUI
                 frame.CopyConvertedFrameDataToArray(pixels, ColorImageFormat.Bgra);
             }
 
-            int stride = width * format.BitsPerPixel / 8;
+            int stride = width * PixelFormats.Bgr32.BitsPerPixel / 8;
 
-            return BitmapSource.Create(width, height, 96, 96, format, null, pixels, stride);
+            return BitmapSource.Create(width, height, 96, 96, PixelFormats.Bgr32, null, pixels, stride);
+        }
+
+        public static System.Drawing.Bitmap BitmapSourceToBitmap(BitmapSource srs)
+        {
+            System.Drawing.Bitmap btm = null;
+            int width = srs.PixelWidth;
+            int height = srs.PixelHeight;
+            int stride = width * ((srs.Format.BitsPerPixel + 7) / 8);
+            byte[] bits = new byte[height * stride];
+            srs.CopyPixels(bits, stride, 0);
+            return btm;
         }
     }
 

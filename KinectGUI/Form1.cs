@@ -7,18 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Controls;
 
 
 namespace KinectGUI
 {
     public partial class Form1 : Form
     {
-        public LinkedList<double> list;
         public Form1()
         {
             InitializeComponent();
-            list = new LinkedList<double>();
-            button2.Enabled = false;
+            //button2.Enabled = false;
             button1.Enabled = true;
 
         }
@@ -31,7 +32,7 @@ namespace KinectGUI
         public void draw(int x1, int y1, int x2, int y2)
         {
             Graphics g = panel1.CreateGraphics();
-            var p = new Pen(Color.Black, 3);
+            var p = new System.Drawing.Pen(System.Drawing.Color.Black, 3);
             var point1 = new Point(x1, y1);
             var point2 = new Point(x2, y2);
             g.DrawLine(p, point1, point2);
@@ -52,6 +53,10 @@ namespace KinectGUI
                 chart1.Series["Series1"].Points.RemoveAt(0);
             }
         }*/
+        public void setPictureBox(System.Drawing.Image a)
+        {
+            pictureBox1.Image = a;
+        }
 
         public void addChart2(double a)
         {
@@ -86,10 +91,13 @@ namespace KinectGUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            KinectSensorClass.sensor.Close();
-            button1.Enabled = true;
-            button2.Enabled = false;
-            label1.Text = "Sensor is off";
+            //KinectSensorClass.sensor.Close();
+            //button1.Enabled = true;
+            //button2.Enabled = false;
+            //label1.Text = "Sensor is off";
+
+            System.Drawing.Image defaultImage = System.Drawing.Image.FromFile(@"This PC/Documents/kinectc/KinectGUI/default.png");
+            pictureBox1.Image = defaultImage;
         }
 
         private void chart1_Click(object sender, EventArgs e)
