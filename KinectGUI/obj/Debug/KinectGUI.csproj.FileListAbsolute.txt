@@ -20,3 +20,5 @@ C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\KinectGUI.csprojResolveAssem
 C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\KinectGUI.Form1.resources
 C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\KinectGUI.Properties.Resources.resources
 C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\KinectGUI.csproj.GenerateResource.Cache
+C:\Users\Kyle\Documents\kinectc\KinectGUI\bin\Debug\Microsoft.Kinect.Fusion.dll
+C:\Users\Kyle\Documents\kinectc\KinectGUI\bin\Debug\Microsoft.Kinect.Fusion.xml

@@ -19,7 +19,7 @@ namespace KinectGUI
         public Form1()
         {
             InitializeComponent();
-            //button2.Enabled = false;
+            button2.Enabled = false;
             button1.Enabled = true;
 
         }
@@ -29,7 +29,7 @@ namespace KinectGUI
             label1.Text = input;
         }
 
-        public void draw(int x1, int y1, int x2, int y2)
+       /* public void draw(int x1, int y1, int x2, int y2)
         {
             Graphics g = panel1.CreateGraphics();
             var p = new System.Drawing.Pen(System.Drawing.Color.Black, 3);
@@ -37,7 +37,7 @@ namespace KinectGUI
             var point2 = new Point(x2, y2);
             g.DrawLine(p, point1, point2);
             
-        }
+        }*/
 
         /*public void addChart1(double a)
         {
@@ -91,13 +91,10 @@ namespace KinectGUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //KinectSensorClass.sensor.Close();
-            //button1.Enabled = true;
-            //button2.Enabled = false;
-            //label1.Text = "Sensor is off";
-
-            System.Drawing.Image defaultImage = System.Drawing.Image.FromFile(@"This PC/Documents/kinectc/KinectGUI/default.png");
-            pictureBox1.Image = defaultImage;
+            KinectSensorClass.sensor.Close();
+            button1.Enabled = true;
+            button2.Enabled = false;
+            label1.Text = "Sensor is off";
         }
 
         private void chart1_Click(object sender, EventArgs e)

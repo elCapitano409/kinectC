@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Kinect;
+using Microsoft.Kinect.Fusion;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Drawing;
@@ -20,6 +21,9 @@ namespace KinectGUI
         public static bool first = true;
         public static Form1 form;
         public static String name;
+        public static WriteableBitmap colorBitmap;
+        public static byte[] colorPixels;
+        
         
         [STAThread]
         static void Main(string[] args)
@@ -49,20 +53,27 @@ namespace KinectGUI
         {
             var reference = e.FrameReference.AcquireFrame();
 
-            
-            PointHolder wrist = new PointHolder ("Wrist");
-            PointHolder elbow = new PointHolder ("Elbow");
-            PointHolder shoulder = new PointHolder ("Shoulder");
+
+            PointHolder wrist = new PointHolder("Wrist");
+            PointHolder elbow = new PointHolder("Elbow");
+            PointHolder shoulder = new PointHolder("Shoulder");
             TimeClass time = new TimeClass();
             //FileProcessing input = new FileProcessing(name);
-
-            using (var frame = reference.ColorFrameReference.AcquireFrame())
+            System.Drawing.Image image;
+            colorPixels = new byte[sensor.ColorStream.FramePixelDataLength];
+            using (ColorFrame frame = reference.ColorFrameReference.AcquireFrame())
             {
+
                 if (frame != null)
                 {
-                    ImageSource tempSource = ToBitmap(frame);
-                    System.Drawing.Image temp = BitmapSourceToBitmap((BitmapSource)tempSource);
-                    form.setPictureBox(temp);
+
+                    //ImageSource tempSource = ToBitmap(frame);
+                    //System.Drawing.Image temp = BitmapSourceToBitmap((BitmapSource)tempSource);
+                    //form.setPictureBox(temp);
+                    frame.CopyConvertedFrameDataToArray(colorPixels, ColorImageFormat.Bgra);
+                    colorBitmap = new WriteableBitmap(frame.FrameDescription.Width, frame.FrameDescription.Height, 96.0, 96.0, PixelFormats.Bgr32, null);
+                    image = BitmapFromWriteableBitmap(colorBitmap);
+                    form.setPictureBox(image);
                 }
             }
 
@@ -83,7 +94,7 @@ namespace KinectGUI
                             Joint wristJoint = body.Joints[JointType.WristRight];
                             double angle2;
                             form.setLabel1("Now tracking body");
-                            
+
                             wrist.x = wristJoint.Position.X;
                             wrist.y = wristJoint.Position.Y;
                             wrist.z = wristJoint.Position.Z;
@@ -102,7 +113,7 @@ namespace KinectGUI
 
 
                             //Calculate angle with vector method
-                            PointHolder vector1 = Calculate.CreateVector(wrist,elbow);
+                            PointHolder vector1 = Calculate.CreateVector(wrist, elbow);
                             PointHolder vector2 = Calculate.CreateVector(shoulder, elbow);
                             double dot_product = Calculate.DotProduct(vector1, vector2);
                             double length_vector1 = Calculate.VectorLength(vector1);
@@ -140,6 +151,19 @@ namespace KinectGUI
             int stride = width * PixelFormats.Bgr32.BitsPerPixel / 8;
 
             return BitmapSource.Create(width, height, 96, 96, PixelFormats.Bgr32, null, pixels, stride);
+        }
+
+        public static System.Drawing.Bitmap BitmapFromWriteableBitmap(WriteableBitmap writeBmp)
+        {
+            System.Drawing.Bitmap bmp;
+            using (MemoryStream outStream = new MemoryStream())
+            {
+                BitmapEncoder enc = new BmpBitmapEncoder();
+                enc.Frames.Add(BitmapFrame.Create((BitmapSource)writeBmp));
+                enc.Save(outStream);
+                bmp = new System.Drawing.Bitmap(outStream);
+            }
+            return bmp;
         }
 
         public static System.Drawing.Bitmap BitmapSourceToBitmap(BitmapSource srs)
