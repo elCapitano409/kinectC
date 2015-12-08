@@ -12,7 +12,7 @@ using System.Drawing;
 
 namespace KinectGUI
 {
-    
+
     class KinectSensorClass
     {
 
@@ -23,8 +23,8 @@ namespace KinectGUI
         public static String name;
         public static WriteableBitmap colorBitmap;
         public static byte[] colorPixels;
-        
-        
+
+
         [STAThread]
         static void Main(string[] args)
         {
@@ -33,9 +33,9 @@ namespace KinectGUI
             form = new Form1();
             Application.Run(form);
         }
-        
+
         public static void runSensor()
-        {   
+        {
             MultiSourceFrameReader reader;
             sensor = KinectSensor.GetDefault();
 
@@ -59,24 +59,6 @@ namespace KinectGUI
             PointHolder shoulder = new PointHolder("Shoulder");
             TimeClass time = new TimeClass();
             //FileProcessing input = new FileProcessing(name);
-            System.Drawing.Image image;
-            colorPixels = new byte[sensor.ColorStream.FramePixelDataLength];
-            using (ColorFrame frame = reference.ColorFrameReference.AcquireFrame())
-            {
-
-                if (frame != null)
-                {
-
-                    //ImageSource tempSource = ToBitmap(frame);
-                    //System.Drawing.Image temp = BitmapSourceToBitmap((BitmapSource)tempSource);
-                    //form.setPictureBox(temp);
-                    frame.CopyConvertedFrameDataToArray(colorPixels, ColorImageFormat.Bgra);
-                    colorBitmap = new WriteableBitmap(frame.FrameDescription.Width, frame.FrameDescription.Height, 96.0, 96.0, PixelFormats.Bgr32, null);
-                    image = BitmapFromWriteableBitmap(colorBitmap);
-                    form.setPictureBox(image);
-                }
-            }
-
             using (var frame = reference.BodyFrameReference.AcquireFrame())
             {
                 if (frame != null)
@@ -131,53 +113,7 @@ namespace KinectGUI
                 }
             }
         }
-
-        private static ImageSource ToBitmap(ColorFrame frame)
-        {
-            int width = frame.FrameDescription.Width;
-            int height = frame.FrameDescription.Height;
-
-            byte[] pixels = new byte[width * height * ((PixelFormats.Bgr32.BitsPerPixel + 7) / 8)];
-
-            if (frame.RawColorImageFormat == ColorImageFormat.Bgra)
-            {
-                frame.CopyRawFrameDataToArray(pixels);
-            }
-            else
-            {
-                frame.CopyConvertedFrameDataToArray(pixels, ColorImageFormat.Bgra);
-            }
-
-            int stride = width * PixelFormats.Bgr32.BitsPerPixel / 8;
-
-            return BitmapSource.Create(width, height, 96, 96, PixelFormats.Bgr32, null, pixels, stride);
-        }
-
-        public static System.Drawing.Bitmap BitmapFromWriteableBitmap(WriteableBitmap writeBmp)
-        {
-            System.Drawing.Bitmap bmp;
-            using (MemoryStream outStream = new MemoryStream())
-            {
-                BitmapEncoder enc = new BmpBitmapEncoder();
-                enc.Frames.Add(BitmapFrame.Create((BitmapSource)writeBmp));
-                enc.Save(outStream);
-                bmp = new System.Drawing.Bitmap(outStream);
-            }
-            return bmp;
-        }
-
-        public static System.Drawing.Bitmap BitmapSourceToBitmap(BitmapSource srs)
-        {
-            System.Drawing.Bitmap btm = null;
-            int width = srs.PixelWidth;
-            int height = srs.PixelHeight;
-            int stride = width * ((srs.Format.BitsPerPixel + 7) / 8);
-            byte[] bits = new byte[height * stride];
-            srs.CopyPixels(bits, stride, 0);
-            return btm;
-        }
     }
-
 
     public class PointHolder
     {

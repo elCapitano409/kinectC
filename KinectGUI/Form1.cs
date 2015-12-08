@@ -29,16 +29,6 @@ namespace KinectGUI
             label1.Text = input;
         }
 
-       /* public void draw(int x1, int y1, int x2, int y2)
-        {
-            Graphics g = panel1.CreateGraphics();
-            var p = new System.Drawing.Pen(System.Drawing.Color.Black, 3);
-            var point1 = new Point(x1, y1);
-            var point2 = new Point(x2, y2);
-            g.DrawLine(p, point1, point2);
-            
-        }*/
-
         /*public void addChart1(double a)
         {
             //You must use Add() instead of AddXY() for the data window sliding to work
@@ -53,10 +43,6 @@ namespace KinectGUI
                 chart1.Series["Series1"].Points.RemoveAt(0);
             }
         }*/
-        public void setPictureBox(System.Drawing.Image a)
-        {
-            pictureBox1.Image = a;
-        }
 
         public void addChart2(double a)
         {
@@ -128,6 +114,11 @@ namespace KinectGUI
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void elementHost1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
         {
 
         }
