@@ -44,14 +44,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.kinectSensorClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.recordBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.recordBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.kinectSensorClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kinectSensorClassBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recordBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recordBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kinectSensorClassBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -83,7 +84,6 @@
             this.label1.Size = new System.Drawing.Size(112, 24);
             this.label1.TabIndex = 5;
             this.label1.Text = "Sensor is off";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // chart2
             // 
@@ -110,7 +110,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(220, 20);
             this.textBox1.TabIndex = 10;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button3
             // 
@@ -126,7 +125,7 @@
             // 
             this.labelFile.AutoSize = true;
             this.labelFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFile.Location = new System.Drawing.Point(12, 256);
+            this.labelFile.Location = new System.Drawing.Point(13, 287);
             this.labelFile.Name = "labelFile";
             this.labelFile.Size = new System.Drawing.Size(136, 18);
             this.labelFile.TabIndex = 12;
@@ -164,7 +163,6 @@
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 15;
             this.textBox2.Text = "155";
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label5
             // 
@@ -179,13 +177,10 @@
             // 
             this.kinectSensorClassBindingSource.DataSource = typeof(KinectGUI.KinectSensorClass);
             // 
-            // recordBindingSource
+            // timer1
             // 
-            this.recordBindingSource.DataSource = typeof(KinectGUI.Record);
-            // 
-            // recordBindingSource1
-            // 
-            this.recordBindingSource1.DataSource = typeof(KinectGUI.Record);
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Interval = 1000;
             // 
             // Form1
             // 
@@ -206,9 +201,9 @@
             this.Name = "Form1";
             this.Text = "Elbow Angle";
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kinectSensorClassBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recordBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recordBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kinectSensorClassBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,6 +228,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label5;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,10 +20,12 @@ namespace KinectGUI
         public static KinectSensor sensor;
         public static IList<Body> _bodies;
         public static bool first = true;
+        public static List<List<double>> lists = new List<List<double>>();
+        public static int addCounter = 0;
+        public static int listCounter = 0;
         public static Form1 form;
         public static String name;
-        public static WriteableBitmap colorBitmap;
-        public static byte[] colorPixels;
+        public static FileProcessing input;
 
 
         [STAThread]
@@ -49,16 +52,16 @@ namespace KinectGUI
                                              FrameSourceTypes.Body);
             reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
         }
+        
         static void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
             var reference = e.FrameReference.AcquireFrame();
 
 
-            PointHolder wrist = new PointHolder("Wrist");
-            PointHolder elbow = new PointHolder("Elbow");
-            PointHolder shoulder = new PointHolder("Shoulder");
-            TimeClass time = new TimeClass();
-            //FileProcessing input = new FileProcessing(name);
+            PointHolder wrist = new PointHolder();
+            PointHolder elbow = new PointHolder();
+            PointHolder shoulder = new PointHolder();
+            input = new FileProcessing(name);
             using (var frame = reference.BodyFrameReference.AcquireFrame())
             {
                 if (frame != null)
@@ -71,10 +74,15 @@ namespace KinectGUI
                     {
                         if (body.IsTracked)
                         {
+                            if (first)
+                            {
+                                first = false;
+                                form.startTimer();
+                            }
                             Joint shoulderJoint = body.Joints[JointType.ShoulderRight];
                             Joint elbowJoint = body.Joints[JointType.ElbowRight];
                             Joint wristJoint = body.Joints[JointType.WristRight];
-                            double angle2;
+                            double angle;
                             form.setLabel1("Now tracking body");
 
                             wrist.x = wristJoint.Position.X;
@@ -87,22 +95,30 @@ namespace KinectGUI
                             shoulder.y = shoulderJoint.Position.Y;
                             shoulder.z = shoulderJoint.Position.Z;
 
-                            //Calculate angle with Trig method
-                            /*forearmLength = Calculate.length(wrist, elbow);
-                            bicepLength = Calculate.length(elbow, shoulder);
-                            hypoteneuseLength = Calculate.length(wrist, shoulder);
-                            angle = Calculate.angle(forearmLength, bicepLength, hypoteneuseLength);*/
-
-
                             //Calculate angle with vector method
                             PointHolder vector1 = Calculate.CreateVector(wrist, elbow);
                             PointHolder vector2 = Calculate.CreateVector(shoulder, elbow);
                             double dot_product = Calculate.DotProduct(vector1, vector2);
                             double length_vector1 = Calculate.VectorLength(vector1);
                             double length_vector2 = Calculate.VectorLength(vector2);
-                            angle2 = Calculate.ToDegree(Math.Acos(dot_product / (length_vector1 * length_vector2)));
+                            angle = Calculate.ToDegree(Math.Acos(dot_product / (length_vector1 * length_vector2)));
 
-                            form.addChart2(angle2);
+                            form.addChart(angle);
+                            
+
+                            if (addCounter != 128)
+                            {
+                                lists[listCounter].Add(angle);
+                                addCounter++;
+                            }
+                            else
+                            {
+                                addCounter = 0;
+                                listCounter++;
+                                lists.Add(new List<double>());
+                                lists[0].Add(angle);
+                            }
+
                         }
                         else
                         {
@@ -119,11 +135,7 @@ namespace KinectGUI
     {
         public float x = 0, y = 0, z = 0;
         public String name;
-        public PointHolder(String nameInput)
-        {
-            name = nameInput;
-        }
-
+        
         public void setValue(float valueX, float valueY, float valueZ)
         {
             x = valueX;
@@ -134,36 +146,11 @@ namespace KinectGUI
 
     public class Calculate
     {
-        public static double length(PointHolder point1, PointHolder point2)
-        {
-            double lengthValue;
-            double sqX = Math.Pow(point2.x - point1.x, 2);
-            double sqY = Math.Pow(point2.y - point1.y, 2);
-            double sqZ = Math.Pow(point2.z - point1.z, 2);
-            lengthValue = Math.Sqrt(sqX + sqY + sqZ);
-            return lengthValue;
-        }
-        /*a -> length of forearm
-         *b -> length of bicep
-         *c -> length of hypoteneuse*/
-        public static double angle(double forearmLength, double bicepLength, double hypoteneuseLength)
-        {
-            double finalAngle, intermediary, intermediary2;
-            double a = forearmLength, b = bicepLength, c = hypoteneuseLength;
-            double sqA, sqB, sqC;
-            sqA = Math.Pow(a, 2);
-            sqB = Math.Pow(b, 2);
-            sqC = Math.Pow(c, 2);
-            intermediary = sqA + sqB - sqC;
-            intermediary2 = intermediary / 2 * a * b;
-            finalAngle = ToDegree (Math.Acos(intermediary));
-            return finalAngle;
-        }
 
         //The CreateVector method will take two points and generate the vector between them in 3 dimensions
         public static PointHolder CreateVector (PointHolder point1, PointHolder point2)
         {
-            PointHolder vector = new PointHolder("Vector");
+            PointHolder vector = new PointHolder();
 
             vector.x = point1.x - point2.x;
             vector.y = point1.y - point2.y;
@@ -199,55 +186,26 @@ namespace KinectGUI
 
     }
 
-    public class TimeClass//does not work properly
-    {
-        public int initial;
-        
-        public void getInitial()
-        {
-            initial = getValue();
-        }
-
-        public int getValue()
-        {
-            int hour, minute, second;
-            int hValue, mValue;
-            int value;
-            hour = DateTime.Now.Hour;
-            minute = DateTime.Now.Minute;
-            second = DateTime.Now.Second;
-            hValue = hour * 60 * 60;
-            mValue = minute * 60;
-            value = hValue + mValue + second;
-            return value;
-        }
-        
-        public int getTime()
-        {
-            int finalTime;
-            int timeNow = getValue();
-            finalTime = timeNow - this.initial;
-            return finalTime;
-        }
-    }
-
     public class FileProcessing
     {
-        public String name;
-        public StreamWriter fileIO;
+        private String path;
+        
         public FileProcessing(String name)
         {
-            this.name = name + ".txt";
-            fileIO = new StreamWriter(this.name);
+            path = @"C:\\Users\Kyle\Results\" + name + ".txt";
         }
-        public void write(double input)
+        
+        public void write(List<List<double>> values)
         {
-            fileIO.WriteLine(input);
-        }
-        public void writeTime()
-        {
-            fileIO.WriteLine(DateTime.Now.Hour + " " + 
-                DateTime.Now.Minute + " " + DateTime.Now.Second + " " + DateTime.Now.Millisecond);
+            using(StreamWriter io = new StreamWriter(path)){
+                io.WriteLine(DateTime.Now.Hour + " " + DateTime.Now.Minute + " " + DateTime.Now.Second + " " + DateTime.Now.Millisecond);
+                foreach (List<double> index in values)
+                {
+                    foreach(double a in index){
+                        io.WriteLine(a);
+                    }
+                }
+            }
         }
     }
 }
