@@ -18,11 +18,10 @@ namespace KinectGUI
     {
 
         public static KinectSensor sensor;
-        public static IList<Body> _bodies;
+        public static IList<Body> bodies;
         public static bool first = true;
         public static List<List<double>> lists = new List<List<double>>();
-        public static int addCounter = 0;
-        public static int listCounter = 0;
+        public static int addCounter = 0, listCounter = 0;
         public static Form1 form;
         public static String name;
         public static FileProcessing input;
@@ -37,7 +36,8 @@ namespace KinectGUI
             Application.Run(form);
         }
 
-        public static void runSensor()
+        //The RunSensor method will open and run the methods for using the Kinect Sensor
+        public static void RunSensor()
         {
             MultiSourceFrameReader reader;
             sensor = KinectSensor.GetDefault();
@@ -66,14 +66,15 @@ namespace KinectGUI
             {
                 if (frame != null)
                 {
-                    _bodies = new Body[frame.BodyFrameSource.BodyCount];
+                    bodies = new Body[frame.BodyFrameSource.BodyCount];
 
-                    frame.GetAndRefreshBodyData(_bodies);
+                    frame.GetAndRefreshBodyData(bodies);
 
-                    foreach (var body in _bodies)
+                    foreach (var body in bodies)
                     {
                         if (body.IsTracked)
                         {
+                            //If this is the first time running the sensor, the timer is started
                             if (first)
                             {
                                 first = false;
@@ -85,6 +86,7 @@ namespace KinectGUI
                             double angle;
                             form.setLabel1("Now tracking body");
 
+                            //Set the x,y, and z positions for each joint relative to sensor
                             wrist.x = wristJoint.Position.X;
                             wrist.y = wristJoint.Position.Y;
                             wrist.z = wristJoint.Position.Z;
@@ -105,7 +107,7 @@ namespace KinectGUI
 
                             form.addChart(angle);
                             
-
+                            //If the List is at capacity the values are added to the next List
                             if (addCounter != 128)
                             {
                                 lists[listCounter].Add(angle);
@@ -134,9 +136,9 @@ namespace KinectGUI
     public class PointHolder
     {
         public float x = 0, y = 0, z = 0;
-        public String name;
         
-        public void setValue(float valueX, float valueY, float valueZ)
+        //The SetValue method will set the x,y, and z values of the point 
+        public void SetValue(float valueX, float valueY, float valueZ)
         {
             x = valueX;
             y = valueY;
@@ -190,12 +192,14 @@ namespace KinectGUI
     {
         private String path;
         
+        //The constructor sets the path for the StreamWriter
         public FileProcessing(String name)
         {
             path = @"C:\\Users\Kyle\Results\" + name + ".txt";
         }
         
-        public void write(List<List<double>> values)
+        //The Write method will write all the values in the List to the file
+        public void Write(List<List<double>> values)
         {
             using(StreamWriter io = new StreamWriter(path)){
                 io.WriteLine(DateTime.Now.Hour + " " + DateTime.Now.Minute + " " + DateTime.Now.Second + " " + DateTime.Now.Millisecond);

@@ -19,89 +19,64 @@ namespace KinectGUI
         public Form1()
         {
             InitializeComponent();
-            button2.Enabled = false;
-            button1.Enabled = false;
+            btnStop.Enabled = false;
+            btnStart.Enabled = false;
         }
 
         public void addChart(double a)
         {
             //Need to take away the offset to have proper angle values
-            double angle_offset = Convert.ToDouble(textBox2.Text.ToString());
+            double angle_offset = Convert.ToDouble(txtOffset.Text.ToString());
             double angle = -(a - angle_offset);
-            label4.Text = "Angle: " + angle;
-            if (chart2.Series["Series1"].Points.Count < 300)
+            lblAngleTitle.Text = "Angle: " + angle;
+            if (chart.Series["Series1"].Points.Count < 300)
             {
-                chart2.Series["Series1"].Points.Add(angle);
+                chart.Series["Series1"].Points.Add(angle);
             }
             else
             {
-                chart2.Series["Series1"].Points.Add(angle);
-                chart2.Series["Series1"].Points.RemoveAt(0);
+                chart.Series["Series1"].Points.Add(angle);
+                chart.Series["Series1"].Points.RemoveAt(0);
             }
         }
 
-        public void setLabelFile(String input)
+        //Starts the sensor
+        private void btnStart_Click(object sender, EventArgs e)
         {
-            labelFile.Text = input;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            KinectSensorClass.runSensor();
+            KinectSensorClass.RunSensor();
             KinectSensorClass.lists.Add(new List<double>());
-            button1.Enabled = false;
-            button2.Enabled = true;
-            button3.Enabled = false;
+            btnStart.Enabled = false;
+            btnStop.Enabled = true;
+            btnFileName.Enabled = false;
             
         }
 
-        public void startTimer()
-        {
-            timer1.Start();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        //Stops the sensor
+        private void btnStop_Click(object sender, EventArgs e)
         {
             KinectSensorClass.sensor.Close();
-            KinectSensorClass.input.write(KinectSensorClass.lists);
-            button1.Enabled = true;
-            button2.Enabled = false;
-            label1.Text = "Sensor is off";
+            KinectSensorClass.input.Write(KinectSensorClass.lists);
+            KinectSensorClass.first = true;
+            btnStart.Enabled = true;
+            btnStop.Enabled = false;
+            lblStatus.Text = "Sensor is off";
             timer1.Stop();
         }
-
-        private void button3_Click(object sender, EventArgs e)
+        
+        //Sets the file name to the input from txtFile textbox
+        private void btnFileName_Click(object sender, EventArgs e)
         {
-            KinectSensorClass.name = textBox1.Text;
-            button1.Enabled = true;
-            labelFile.Text = "The file name is " + KinectSensorClass.name + ".txt";
+            KinectSensorClass.name = txtFile.Text;
+            btnStart.Enabled = true;
+            lblFileName.Text = "The file name is " + KinectSensorClass.name + ".txt";
         }
 
-        private void button4_Click(object sender, EventArgs e)
+
+        private void btnFile_Click(object sender, EventArgs e)
         {
             KinectSensorClass.name = DateTime.Now + "";
-            labelFile.Text = "The file name is " + KinectSensorClass.name + ".txt";
-            button1.Enabled = true;
-        }
-
-        public void setButtonEnabled2(bool value)
-        {
-           button2.Enabled = value;
-        }
-
-        public void setLabel1(String input)
-        {
-            label1.Text = input;
-        }
-
-        private void elementHost1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
-        {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            button1.Enabled = true;
+            lblFileName.Text = "The file name is " + KinectSensorClass.name + ".txt";
+            btnStart.Enabled = true;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -109,5 +84,24 @@ namespace KinectGUI
             KinectSensorClass.lists[KinectSensorClass.listCounter].Add(DateTime.Now.Second);
         }
 
+        public void setButtonEnabled2(bool value)
+        {
+           btnStop.Enabled = value;
+        }
+
+        public void setLabel1(String input)
+        {
+            lblStatus.Text = input;
+        }
+
+        public void startTimer()
+        {
+            timer1.Start();
+        }
+
+        public void setLabelFile(String input)
+        {
+            lblFileName.Text = input;
+        }
     }
 }

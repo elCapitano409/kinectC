@@ -29,107 +29,107 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.labelFile = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.txtFile = new System.Windows.Forms.TextBox();
+            this.btnFileName = new System.Windows.Forms.Button();
+            this.lblFileName = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.btnFileTime = new System.Windows.Forms.Button();
+            this.lblAngleTitle = new System.Windows.Forms.Label();
+            this.txtOffset = new System.Windows.Forms.TextBox();
+            this.lblAngleTitle2 = new System.Windows.Forms.Label();
             this.recordBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.recordBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.kinectSensorClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            this.kinectSensorClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recordBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recordBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kinectSensorClassBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // btnStart
             // 
-            this.button1.Location = new System.Drawing.Point(9, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(223, 29);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Start Sensor";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnStart.Location = new System.Drawing.Point(9, 12);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(223, 29);
+            this.btnStart.TabIndex = 3;
+            this.btnStart.Text = "Start Sensor";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // button2
+            // btnStop
             // 
-            this.button2.Location = new System.Drawing.Point(9, 47);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(223, 29);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Stop Sensor";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnStop.Location = new System.Drawing.Point(9, 47);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(223, 29);
+            this.btnStop.TabIndex = 4;
+            this.btnStop.Text = "Stop Sensor";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
-            // label1
+            // lblStatus
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 79);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 24);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Sensor is off";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(12, 79);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(112, 24);
+            this.lblStatus.TabIndex = 5;
+            this.lblStatus.Text = "Sensor is off";
             // 
-            // chart2
+            // chart
             // 
-            chartArea1.AxisX.Maximum = 300D;
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.AxisY.Interval = 20D;
-            chartArea1.AxisY.Maximum = 160D;
-            chartArea1.AxisY.Minimum = -20D;
-            chartArea1.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea1);
-            this.chart2.Location = new System.Drawing.Point(256, 12);
-            this.chart2.Name = "chart2";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Name = "Series1";
-            this.chart2.Series.Add(series1);
-            this.chart2.Size = new System.Drawing.Size(504, 468);
-            this.chart2.TabIndex = 6;
-            this.chart2.Text = "chart2";
+            chartArea2.AxisX.Maximum = 300D;
+            chartArea2.AxisX.Minimum = 0D;
+            chartArea2.AxisY.Interval = 20D;
+            chartArea2.AxisY.Maximum = 160D;
+            chartArea2.AxisY.Minimum = -20D;
+            chartArea2.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea2);
+            this.chart.Location = new System.Drawing.Point(256, 12);
+            this.chart.Name = "chart";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Name = "Series1";
+            this.chart.Series.Add(series2);
+            this.chart.Size = new System.Drawing.Size(504, 468);
+            this.chart.TabIndex = 6;
+            this.chart.Text = "chart2";
             // 
-            // textBox1
+            // txtFile
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 169);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(220, 20);
-            this.textBox1.TabIndex = 10;
+            this.txtFile.Location = new System.Drawing.Point(12, 169);
+            this.txtFile.Name = "txtFile";
+            this.txtFile.Size = new System.Drawing.Size(220, 20);
+            this.txtFile.TabIndex = 10;
             // 
-            // button3
+            // btnFileName
             // 
-            this.button3.Location = new System.Drawing.Point(12, 195);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(220, 26);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Set File Name";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnFileName.Location = new System.Drawing.Point(12, 195);
+            this.btnFileName.Name = "btnFileName";
+            this.btnFileName.Size = new System.Drawing.Size(220, 26);
+            this.btnFileName.TabIndex = 11;
+            this.btnFileName.Text = "Set File Name";
+            this.btnFileName.UseVisualStyleBackColor = true;
+            this.btnFileName.Click += new System.EventHandler(this.btnFileName_Click);
             // 
-            // labelFile
+            // lblFileName
             // 
-            this.labelFile.AutoSize = true;
-            this.labelFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFile.Location = new System.Drawing.Point(13, 287);
-            this.labelFile.Name = "labelFile";
-            this.labelFile.Size = new System.Drawing.Size(136, 18);
-            this.labelFile.TabIndex = 12;
-            this.labelFile.Text = "File name is not set";
+            this.lblFileName.AutoSize = true;
+            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileName.Location = new System.Drawing.Point(13, 287);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.Size = new System.Drawing.Size(136, 18);
+            this.lblFileName.TabIndex = 12;
+            this.lblFileName.Text = "File name is not set";
             // 
             // imageList1
             // 
@@ -137,70 +137,70 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // button4
+            // btnFileTime
             // 
-            this.button4.Location = new System.Drawing.Point(12, 227);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(220, 26);
-            this.button4.TabIndex = 13;
-            this.button4.Text = "Set File Name as Time";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnFileTime.Location = new System.Drawing.Point(12, 227);
+            this.btnFileTime.Name = "btnFileTime";
+            this.btnFileTime.Size = new System.Drawing.Size(220, 26);
+            this.btnFileTime.TabIndex = 13;
+            this.btnFileTime.Text = "Set File Name as Time";
+            this.btnFileTime.UseVisualStyleBackColor = true;
+            this.btnFileTime.Click += new System.EventHandler(this.btnFile_Click);
             // 
-            // label4
+            // lblAngleTitle
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 361);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Angle: ";
+            this.lblAngleTitle.AutoSize = true;
+            this.lblAngleTitle.Location = new System.Drawing.Point(13, 361);
+            this.lblAngleTitle.Name = "lblAngleTitle";
+            this.lblAngleTitle.Size = new System.Drawing.Size(40, 13);
+            this.lblAngleTitle.TabIndex = 14;
+            this.lblAngleTitle.Text = "Angle: ";
             // 
-            // textBox2
+            // txtOffset
             // 
-            this.textBox2.Location = new System.Drawing.Point(16, 400);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 15;
-            this.textBox2.Text = "155";
+            this.txtOffset.Location = new System.Drawing.Point(16, 400);
+            this.txtOffset.Name = "txtOffset";
+            this.txtOffset.Size = new System.Drawing.Size(100, 20);
+            this.txtOffset.TabIndex = 15;
+            this.txtOffset.Text = "155";
             // 
-            // label5
+            // lblAngleTitle2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 384);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 13);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Starting Angle:";
+            this.lblAngleTitle2.AutoSize = true;
+            this.lblAngleTitle2.Location = new System.Drawing.Point(12, 384);
+            this.lblAngleTitle2.Name = "lblAngleTitle2";
+            this.lblAngleTitle2.Size = new System.Drawing.Size(76, 13);
+            this.lblAngleTitle2.TabIndex = 16;
+            this.lblAngleTitle2.Text = "Starting Angle:";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // kinectSensorClassBindingSource
             // 
             this.kinectSensorClassBindingSource.DataSource = typeof(KinectGUI.KinectSensorClass);
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            this.timer1.Interval = 1000;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(797, 575);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.labelFile);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.chart2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lblAngleTitle2);
+            this.Controls.Add(this.txtOffset);
+            this.Controls.Add(this.lblAngleTitle);
+            this.Controls.Add(this.btnFileTime);
+            this.Controls.Add(this.lblFileName);
+            this.Controls.Add(this.btnFileName);
+            this.Controls.Add(this.txtFile);
+            this.Controls.Add(this.chart);
+            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.btnStop);
+            this.Controls.Add(this.btnStart);
             this.Name = "Form1";
             this.Text = "Elbow Angle";
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recordBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recordBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kinectSensorClassBindingSource)).EndInit();
@@ -212,21 +212,21 @@
         #endregion
 
         private System.Windows.Forms.BindingSource kinectSensorClassBindingSource;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart;
         private System.Windows.Forms.BindingSource recordBindingSource;
         private System.Windows.Forms.BindingSource recordBindingSource1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label labelFile;
+        private System.Windows.Forms.TextBox txtFile;
+        private System.Windows.Forms.Button btnFileName;
+        private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.HelpProvider helpProvider1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnFileTime;
+        private System.Windows.Forms.Label lblAngleTitle;
+        private System.Windows.Forms.TextBox txtOffset;
+        private System.Windows.Forms.Label lblAngleTitle2;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Timer timer1;
     }
