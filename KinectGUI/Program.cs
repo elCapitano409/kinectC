@@ -19,9 +19,10 @@ namespace KinectGUI
 
         public static KinectSensor sensor;
         public static IList<Body> bodies;
-        public static bool first = true;
+        public static bool first = true, checkVelocity = false;
         public static List<List<double>> lists = new List<List<double>>();
-        public static int addCounter = 0, listCounter = 0;
+        public static List<double> velocityAngle = new List<double>();
+        public static int addCounter = 0, listCounter = 0, velocityCounter = 0;
         public static Form1 form;
         public static String name;
         public static FileProcessing input;
@@ -62,6 +63,7 @@ namespace KinectGUI
             PointHolder elbow = new PointHolder();
             PointHolder shoulder = new PointHolder();
             input = new FileProcessing(name);
+            double tempVelocity;
             using (var frame = reference.BodyFrameReference.AcquireFrame())
             {
                 if (frame != null)
@@ -106,7 +108,22 @@ namespace KinectGUI
                             angle = Calculate.ToDegree(Math.Acos(dot_product / (length_vector1 * length_vector2)));
 
                             form.addChart(angle);
-                            
+
+                            /*if (checkVelocity)
+                            {
+                                velocityAngle.Insert(9, angle);
+                                tempVelocity = Calculate.FindVelocity(velocityAngle[0], velocityAngle[9]);
+                            }
+                            else if (velocityCounter >= 9 && checkVelocity == false)
+                            {
+                                checkVelocity = true;
+                            }
+                            else
+                            {
+                                velocityCounter++;
+                                velocityAngle.Add(angle);
+                            }
+                            */
                             //If the List is at capacity the values are added to the next List
                             if (addCounter != 128)
                             {
@@ -181,9 +198,24 @@ namespace KinectGUI
             return dot_product;
         }
 
+        //The ToDegree method will calculate the value in degrees from a value in radians 
         public static double ToDegree(double value)
         {
             return value * (180.0 / Math.PI);
+        }
+
+        public static double FindVelocity(double inital_angle, double final_angle, int sample)
+        {
+            double value;
+            value = (final_angle - inital_angle) / sample;
+            return value;
+        }
+
+        public static double FindVelocity(double inital_angle, double final_angle)
+        {
+            double value;
+            value = (final_angle - inital_angle) / 10;
+            return value;
         }
 
     }

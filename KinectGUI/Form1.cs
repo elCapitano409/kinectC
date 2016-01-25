@@ -81,7 +81,7 @@ namespace KinectGUI
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            KinectSensorClass.lists[KinectSensorClass.listCounter].Add(DateTime.Now.Second);
+            //KinectSensorClass.lists[KinectSensorClass.listCounter].Add(DateTime.Now.Second);
         }
 
         public void setButtonEnabled2(bool value)
