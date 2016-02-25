@@ -17,8 +17,8 @@ C:\Users\Kyle\Documents\kinectc\KinectGUI\bin\Debug\KinectGUI.pdb
 C:\Users\Kyle\Documents\kinectc\KinectGUI\bin\Debug\Microsoft.Kinect.dll
 C:\Users\Kyle\Documents\kinectc\KinectGUI\bin\Debug\Microsoft.Kinect.xml
 C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\KinectGUI.csprojResolveAssemblyReference.cache
-C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\KinectGUI.Form1.resources
 C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\KinectGUI.Properties.Resources.resources
 C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\KinectGUI.csproj.GenerateResource.Cache
 C:\Users\Kyle\Documents\kinectc\KinectGUI\bin\Debug\Microsoft.Kinect.Fusion.dll
 C:\Users\Kyle\Documents\kinectc\KinectGUI\bin\Debug\Microsoft.Kinect.Fusion.xml
+C:\Users\Kyle\Documents\kinectc\KinectGUI\obj\Debug\kinectExpirement.Form1.resources

@@ -17,7 +17,11 @@ namespace kinectExpirement
         private Graphics grahics;
         private static float penWidth = 4;
         private Pen penBlack = new Pen(Color.Black, penWidth);
-        private System.Drawing.Pen[] penColor;
+        private Color red = ColorTranslator.FromHtml("#ED1C24");
+        private Color yellow = ColorTranslator.FromHtml("#FFF200");
+        private Color green = ColorTranslator.FromHtml("#20B14C");
+        public float kinect_offset = EncoderSensorClass.kinect_offset;
+        public int velocity_goal;
 
         public Form1()
         {
@@ -25,14 +29,14 @@ namespace kinectExpirement
             btnStop.Enabled = false;
             btnStart.Enabled = false;
             grahics = velocityScale.CreateGraphics();
+            rdioVelocity1.Checked = true;
         }
 
         public void addChart(double a)
         {
             //Need to take away the offset to have proper angle values
-            double angle_offset = Convert.ToDouble(txtOffset.Text.ToString());
+            double angle_offset = kinect_offset;
             double angle = -(a - angle_offset);
-            lblAngleTitle.Text = "Angle: " + angle;
             if (chart.Series["Series1"].Points.Count < 300)
             {
                 chart.Series["Series1"].Points.Add(angle);
@@ -52,6 +56,13 @@ namespace kinectExpirement
             btnStart.Enabled = false;
             btnStop.Enabled = true;
             btnFileName.Enabled = false;
+
+            if (rdioVelocity1.Checked)
+                velocity_goal = 5;
+            else if (rdioVelocity2.Checked)
+                velocity_goal = 10;
+            else
+                velocity_goal = 15;
 
         }
 
@@ -73,24 +84,30 @@ namespace kinectExpirement
             KinectSensorClass.name = txtFile.Text;
             btnStart.Enabled = true;
             lblFileName.Text = "The file name is " + KinectSensorClass.name + ".txt";
-            draw(60);
         }
 
 
         private void btnFile_Click(object sender, EventArgs e)
         {
-            KinectSensorClass.name = DateTime.Now + "";
+            KinectSensorClass.name = DateTime.Now.Month + "_" + DateTime.Now.Day + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute;
             lblFileName.Text = "The file name is " + KinectSensorClass.name + ".txt";
             btnStart.Enabled = true;
-            erase(60);//doesn't work
+            erase(60);
         }
 
-        public void draw(int placement)
+        private void btnOffset_Click(object sender, EventArgs e)
+        {
+            kinect_offset = EncoderSensorClass.kinect_offset;
+            lblOffset.Text = "Current Offset: " + kinect_offset;
+            draw(60, penBlack);
+        }
+
+        public void draw(int placement, Pen pen)
         {
             Point top, bottom;
             top = new Point(placement, 0);
             bottom = new Point(placement, 75);
-            this.grahics.DrawLine(penBlack, top, bottom);
+            this.grahics.DrawLine(pen, top, bottom);
         }
 
         public void erase(int placement)
@@ -98,22 +115,18 @@ namespace kinectExpirement
             Color color;
             Pen penTemp;
             if (placement <= 75 || placement >= 325)
-                color = Color.Red;
+                color = red;
             else if ((placement >= 75 && placement < 160) || (placement >= 240 && placement <= 325))
-                color = Color.Yellow;
+                color = yellow;
             else
-                color = Color.Green;
+                color = green;
             penTemp = new Pen(color, penWidth);
+            draw(placement, penTemp);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //KinectSensorClass.lists[KinectSensorClass.listCounter].Add(DateTime.Now.Second);
-        }
-
-        public void setArduinoLabel(string text)
-        {
-            lblArduinoStatus.Text = text;
+            EncoderSensorClass.add(EncoderSensorClass.arduino.readSerial());
         }
 
         public void setButtonEnabled2(bool value)
@@ -136,5 +149,16 @@ namespace kinectExpirement
             lblFileName.Text = input;
         }
 
+        private void btnZero_Click(object sender, EventArgs e)
+        {
+            EncoderSensorClass.zero();
+        }
+
+        public void setArduinoLabel(string input)
+        {
+            lblArduinoStatus.Text = input;
+        }
+
+        
     }
 }

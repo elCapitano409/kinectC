@@ -36,6 +36,7 @@ namespace kinectExpirement
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             form = new Form1();
+            form.startTimer();
             Application.Run(form);
         }
 
@@ -82,7 +83,7 @@ namespace kinectExpirement
                             if (first)
                             {
                                 first = false;
-                                form.startTimer();
+                                //form.startTimer
                             }
                             Joint shoulderJoint = body.Joints[JointType.ShoulderRight];
                             Joint elbowJoint = body.Joints[JointType.ElbowRight];
@@ -153,17 +154,75 @@ namespace kinectExpirement
 
     public class ArduinoControl
     {
-        private string port;
-        public bool correct_port = false;
-        public ArduinoControl(string port)
+        //can run for max 2 minutes
+        private static string port = "COM3";
+        private SerialPort serial = new SerialPort(port);
+        public ArduinoControl()
         {
-            string[] temp_ports = SerialPort.GetPortNames();
-            List<String> port_names = new List<String>();
+            serial.Open();
         }
+        
+        public float readSerial(){
+            float value;
+            string input;
+            input = serial.ReadLine();
+            try
+            {
+                value = Convert.ToSingle(input);
+            }
+            catch (System.FormatException e)
+            {
+                value = 0;
+                Console.WriteLine("NOT STRING");
+                Console.WriteLine(input);
+            }
+            
+            return value;
+        }
+
+        
     }
 
     public class EncoderSensorClass
     {
+        private static float offset, temp_value;
+        public static float kinect_offset = 0;
+        private static int counter = 0;
+        private static int list_counter = 0;
+        private static bool first = true;
+        public static List<List<float>> input_values = new List<List<float>>();
+        public static ArduinoControl arduino = new ArduinoControl();
+
+        public static void add(float input)
+        {
+            if (first)
+            {
+                input_values.Add(new List<float>());
+                first = false;
+            }
+            temp_value = input;
+            float value = input - offset;
+            kinect_offset = value;
+            
+            if (counter <= 127)
+            {
+                input_values[list_counter].Add(value);
+                counter++;
+            }
+            else
+            {
+                counter = 0;
+                list_counter++;
+                input_values.Add(new List<float>());
+                input_values[list_counter].Add(value);
+            }
+            KinectSensorClass.form.setArduinoLabel(value + "");
+        }
+
+        public static void zero()
+        {
+            offset = temp_value;
+        }
 
     }
 
