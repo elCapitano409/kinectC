@@ -1,6 +1,6 @@
 ﻿namespace kinectExpirement
 {
-    partial class Form1
+    partial class KinectForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KinectForm));
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -56,6 +56,7 @@
             this.rdioVelocity2 = new System.Windows.Forms.RadioButton();
             this.rdioVelocity3 = new System.Windows.Forms.RadioButton();
             this.lblVelocityTitle = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.velocityScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recordBindingSource)).BeginInit();
@@ -95,33 +96,33 @@
             // 
             // chart
             // 
-            chartArea2.AxisX.Maximum = 300D;
-            chartArea2.AxisX.Minimum = 0D;
-            chartArea2.AxisY.Interval = 20D;
-            chartArea2.AxisY.Maximum = 160D;
-            chartArea2.AxisY.Minimum = -20D;
-            chartArea2.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea2);
+            chartArea3.AxisX.Maximum = 300D;
+            chartArea3.AxisX.Minimum = 0D;
+            chartArea3.AxisY.Interval = 20D;
+            chartArea3.AxisY.Maximum = 160D;
+            chartArea3.AxisY.Minimum = -20D;
+            chartArea3.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea3);
             this.chart.Location = new System.Drawing.Point(256, 12);
             this.chart.Name = "chart";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Name = "Series1";
-            this.chart.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Name = "Series1";
+            this.chart.Series.Add(series3);
             this.chart.Size = new System.Drawing.Size(504, 468);
             this.chart.TabIndex = 6;
             this.chart.Text = "chart2";
             // 
             // txtFile
             // 
-            this.txtFile.Location = new System.Drawing.Point(12, 229);
+            this.txtFile.Location = new System.Drawing.Point(10, 249);
             this.txtFile.Name = "txtFile";
             this.txtFile.Size = new System.Drawing.Size(220, 20);
             this.txtFile.TabIndex = 10;
             // 
             // btnFileName
             // 
-            this.btnFileName.Location = new System.Drawing.Point(12, 255);
+            this.btnFileName.Location = new System.Drawing.Point(10, 275);
             this.btnFileName.Name = "btnFileName";
             this.btnFileName.Size = new System.Drawing.Size(220, 26);
             this.btnFileName.TabIndex = 11;
@@ -133,7 +134,7 @@
             // 
             this.lblFileName.AutoSize = true;
             this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFileName.Location = new System.Drawing.Point(6, 316);
+            this.lblFileName.Location = new System.Drawing.Point(4, 336);
             this.lblFileName.Name = "lblFileName";
             this.lblFileName.Size = new System.Drawing.Size(136, 18);
             this.lblFileName.TabIndex = 12;
@@ -147,7 +148,7 @@
             // 
             // btnFileTime
             // 
-            this.btnFileTime.Location = new System.Drawing.Point(12, 287);
+            this.btnFileTime.Location = new System.Drawing.Point(10, 307);
             this.btnFileTime.Name = "btnFileTime";
             this.btnFileTime.Size = new System.Drawing.Size(220, 26);
             this.btnFileTime.TabIndex = 13;
@@ -157,7 +158,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 10;
+            this.timer1.Interval = 8;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // velocityScale
@@ -173,7 +174,7 @@
             // lblArduinoStatus
             // 
             this.lblArduinoStatus.AutoSize = true;
-            this.lblArduinoStatus.Location = new System.Drawing.Point(13, 117);
+            this.lblArduinoStatus.Location = new System.Drawing.Point(97, 121);
             this.lblArduinoStatus.Name = "lblArduinoStatus";
             this.lblArduinoStatus.Size = new System.Drawing.Size(106, 13);
             this.lblArduinoStatus.TabIndex = 18;
@@ -181,7 +182,7 @@
             // 
             // btnZero
             // 
-            this.btnZero.Location = new System.Drawing.Point(11, 165);
+            this.btnZero.Location = new System.Drawing.Point(9, 185);
             this.btnZero.Name = "btnZero";
             this.btnZero.Size = new System.Drawing.Size(220, 26);
             this.btnZero.TabIndex = 19;
@@ -191,7 +192,7 @@
             // 
             // btnOffset
             // 
-            this.btnOffset.Location = new System.Drawing.Point(12, 197);
+            this.btnOffset.Location = new System.Drawing.Point(10, 217);
             this.btnOffset.Name = "btnOffset";
             this.btnOffset.Size = new System.Drawing.Size(219, 26);
             this.btnOffset.TabIndex = 20;
@@ -202,7 +203,7 @@
             // lblOffset
             // 
             this.lblOffset.AutoSize = true;
-            this.lblOffset.Location = new System.Drawing.Point(13, 140);
+            this.lblOffset.Location = new System.Drawing.Point(11, 160);
             this.lblOffset.Name = "lblOffset";
             this.lblOffset.Size = new System.Drawing.Size(84, 13);
             this.lblOffset.TabIndex = 21;
@@ -251,11 +252,22 @@
             this.lblVelocityTitle.TabIndex = 25;
             this.lblVelocityTitle.Text = "Velocity Wanted:";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 121);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Encoder Value:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(797, 575);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblVelocityTitle);
             this.Controls.Add(this.rdioVelocity3);
             this.Controls.Add(this.rdioVelocity2);
@@ -311,5 +323,6 @@
         private System.Windows.Forms.RadioButton rdioVelocity2;
         private System.Windows.Forms.RadioButton rdioVelocity3;
         private System.Windows.Forms.Label lblVelocityTitle;
+        private System.Windows.Forms.Label label1;
     }
 }

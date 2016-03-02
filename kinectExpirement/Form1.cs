@@ -12,18 +12,21 @@ using System.Windows.Controls;
 
 namespace kinectExpirement
 {
-    public partial class Form1 : Form
+    public partial class KinectForm : Form
     {
         private Graphics grahics;
-        private static float penWidth = 4;
-        private Pen penBlack = new Pen(Color.Black, penWidth);
+        private Pen pen_black = new Pen(Color.Black, pen_width);
         private Color red = ColorTranslator.FromHtml("#ED1C24");
         private Color yellow = ColorTranslator.FromHtml("#FFF200");
         private Color green = ColorTranslator.FromHtml("#20B14C");
-        public float kinect_offset = EncoderSensorClass.kinect_offset;
-        public int velocity_goal;
+        private List<double> velocity = new List<double>();
+        private const float pen_width = 4;
+        public float kinect_offset = 0;
+        private bool first = true;
+        public int velocity_goal, velocity_counter;
+        private double prev_angle;
 
-        public Form1()
+        public KinectForm()
         {
             InitializeComponent();
             btnStop.Enabled = false;
@@ -71,6 +74,7 @@ namespace kinectExpirement
         {
             KinectSensorClass.sensor.Close();
             KinectSensorClass.input.Write(KinectSensorClass.lists);
+            EncoderSensorClass.input.Write(EncoderSensorClass.input_values);
             KinectSensorClass.first = true;
             btnStart.Enabled = true;
             btnStop.Enabled = false;
@@ -99,7 +103,38 @@ namespace kinectExpirement
         {
             kinect_offset = EncoderSensorClass.kinect_offset;
             lblOffset.Text = "Current Offset: " + kinect_offset;
-            draw(60, penBlack);
+            draw(60, pen_black);
+        }
+
+        public int placement(double velocity)
+        {
+            int value = 0;
+            double temp, distance, max_distance;
+            if(velocity == velocity_goal){
+                value = 200;
+            }
+            else if (velocity > velocity_goal)
+            { 
+                if (velocity < velocity_goal + 1)
+                {
+                    distance = velocity - velocity_goal;
+                    max_distance = 40;
+                    temp = distance * max_distance;
+                    value = Convert.ToInt32(temp) + 200;
+                }
+                else if(velocity < velocity_goal + 10)
+                {
+                    distance = velocity - (velocity_goal + 1);
+                    max_distance = 85;
+                    temp = distance/9;
+                    value = Convert.ToInt32(temp) * 85 + 240;
+                }
+                else if (velocity < velocity_goal + 20)
+                {
+
+                }
+            }
+            return value;
         }
 
         public void draw(int placement, Pen pen)
@@ -120,13 +155,58 @@ namespace kinectExpirement
                 color = yellow;
             else
                 color = green;
-            penTemp = new Pen(color, penWidth);
+            penTemp = new Pen(color, pen_width);
             draw(placement, penTemp);
+        }
+
+        public void addPosition(double input)
+        {
+            double current_velocity;
+            double average_velocity, doub_temp = 0;
+            
+            if(first){
+                first = false;
+                prev_angle = input;
+            }
+            else
+            {
+                current_velocity = Calculate.FindVelocity(prev_angle, input);
+                velocity.Add(current_velocity);
+                if(velocity_counter >= 60)
+                {
+                    if (velocity_counter % 60 == 0)
+                    {
+                        foreach (double a in velocity)
+                        {
+                            doub_temp += a;
+                        }
+                        average_velocity = doub_temp / 60;
+                        SetVelocity(average_velocity);
+                        Console.WriteLine("is running");
+
+                    }
+                    velocity.RemoveAt(0);
+                }
+                
+            }
+            
+        }
+
+        private void SetVelocity(double velocity)
+        {
+            lblStatus.Text = "" + velocity;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            EncoderSensorClass.add(EncoderSensorClass.arduino.readSerial());
+            try
+            {
+                EncoderSensorClass.add(EncoderSensorClass.arduino.readSerial());
+            }
+            catch
+            {
+                Console.WriteLine("ARDUINO NOT CONNECTED");
+            }
         }
 
         public void setButtonEnabled2(bool value)
@@ -157,6 +237,16 @@ namespace kinectExpirement
         public void setArduinoLabel(string input)
         {
             lblArduinoStatus.Text = input;
+        }
+
+        public void setVelocityTitleLabel(string input)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
 
         

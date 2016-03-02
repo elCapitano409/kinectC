@@ -25,9 +25,10 @@ namespace kinectExpirement
         public static List<List<double>> lists = new List<List<double>>();
         public static List<double> velocityAngle = new List<double>();
         public static int addCounter = 0, listCounter = 0, velocityCounter = 0;
-        public static Form1 form;
+        public static KinectForm form;
         public static String name;
         public static FileProcessing input;
+        private static float currentPosition;
 
 
         [STAThread]
@@ -35,7 +36,7 @@ namespace kinectExpirement
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            form = new Form1();
+            form = new KinectForm();
             form.startTimer();
             Application.Run(form);
         }
@@ -57,6 +58,7 @@ namespace kinectExpirement
             reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
         }
 
+
         static void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
             var reference = e.FrameReference.AcquireFrame();
@@ -65,7 +67,8 @@ namespace kinectExpirement
             PointHolder wrist = new PointHolder();
             PointHolder elbow = new PointHolder();
             PointHolder shoulder = new PointHolder();
-            input = new FileProcessing(name);
+            input = new FileProcessing(name, "KINECT");
+            EncoderSensorClass.input = new FileProcessing(name, "ENCODER");
             double tempVelocity;
             using (var frame = reference.BodyFrameReference.AcquireFrame())
             {
@@ -111,15 +114,18 @@ namespace kinectExpirement
                             angle = Calculate.ToDegree(Math.Acos(dot_product / (length_vector1 * length_vector2)));
 
                             form.addChart(angle);
+                            form.addPosition(angle);
 
                             if (checkVelocity)
                             {
                                 velocityAngle.Insert(9, angle);
-                                tempVelocity = Calculate.FindVelocity(velocityAngle[0], velocityAngle[9]);
+                                tempVelocity = Calculate.FindVelocity(velocityAngle[0], velocityAngle[59]);
+                                form.setVelocityTitleLabel("" + tempVelocity);
                             }
-                            else if (velocityCounter >= 9 && checkVelocity == false)
+                            else if (velocityCounter >= 60)
                             {
                                 checkVelocity = true;
+                                continue;
                             }
                             else
                             {
@@ -192,7 +198,8 @@ namespace kinectExpirement
         private static bool first = true;
         public static List<List<float>> input_values = new List<List<float>>();
         public static ArduinoControl arduino = new ArduinoControl();
-
+        public static FileProcessing input;
+        
         public static void add(float input)
         {
             if (first)
@@ -279,18 +286,14 @@ namespace kinectExpirement
         {
             return value * (180.0 / Math.PI);
         }
-
-        public static double FindVelocity(double inital_angle, double final_angle, int sample)
-        {
-            double value;
-            value = (final_angle - inital_angle) / sample;
-            return value;
-        }
-
+        
+        //The FindVelocity method will calculate the value of the velocity 
         public static double FindVelocity(double inital_angle, double final_angle)
         {
             double value;
-            value = (final_angle - inital_angle) / 10;
+            int frequency = 30; //in Hz
+            int period = 1 / frequency; //in seconds
+            value = (final_angle - inital_angle) / period;
             return value;
         }
 
@@ -301,9 +304,9 @@ namespace kinectExpirement
         private String path;
 
         //The constructor sets the path for the StreamWriter
-        public FileProcessing(String name)
+        public FileProcessing(String name, String type)
         {
-            path = @"C:\\Users\Kyle\Results\" + name + ".txt";
+            path = @"C:\\Users\Kyle\Results\" + name + "-" + type + ".txt";
         }
 
         //The Write method will write all the values in the List to the file
@@ -311,10 +314,25 @@ namespace kinectExpirement
         {
             using (StreamWriter io = new StreamWriter(path))
             {
-                io.WriteLine(DateTime.Now.Hour + " " + DateTime.Now.Minute + " " + DateTime.Now.Second + " " + DateTime.Now.Millisecond);
+                io.WriteLine(DateTime.Now.Hour + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Second + "-" + DateTime.Now.Millisecond);
                 foreach (List<double> index in values)
                 {
                     foreach (double a in index)
+                    {
+                        io.WriteLine(a);
+                    }
+                }
+            }
+        }
+
+        public void Write(List<List<float>> values)
+        {
+            using (StreamWriter io = new StreamWriter(path))
+            {
+                io.WriteLine(DateTime.Now.Hour + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Second + "-" + DateTime.Now.Millisecond);
+                foreach (List<float> index in values)
+                {
+                    foreach (float a in index)
                     {
                         io.WriteLine(a);
                     }
