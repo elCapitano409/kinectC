@@ -113,8 +113,9 @@ namespace kinectExpirement
                             double length_vector2 = Calculate.VectorLength(vector2);
                             angle = Calculate.ToDegree(Math.Acos(dot_product / (length_vector1 * length_vector2)));
 
-                            form.addChart(angle);
+                            //form.addChart(angle);
                             form.addPosition(angle);
+                            
 
                             if (checkVelocity)
                             {
@@ -248,7 +249,6 @@ namespace kinectExpirement
 
     public class Calculate
     {
-
         //The CreateVector method will take two points and generate the vector between them in 3 dimensions
         public static PointHolder CreateVector(PointHolder point1, PointHolder point2)
         {
@@ -290,11 +290,17 @@ namespace kinectExpirement
         //The FindVelocity method will calculate the value of the velocity 
         public static double FindVelocity(double inital_angle, double final_angle)
         {
-            double value;
-            int frequency = 30; //in Hz
-            int period = 1 / frequency; //in seconds
+            double value = 0;
+            double frequency = 30; //in Hz
+            double period = 1 / frequency; //in seconds
             value = (final_angle - inital_angle) / period;
             return value;
+        }
+
+        public static double[] Filter(double temp1, double temp2, double temp3)
+        {
+            double[] input = { temp1, temp2, temp3 };
+            return input;
         }
 
     }

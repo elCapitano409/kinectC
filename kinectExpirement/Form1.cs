@@ -39,7 +39,8 @@ namespace kinectExpirement
         {
             //Need to take away the offset to have proper angle values
             double angle_offset = kinect_offset;
-            double angle = -(a - angle_offset);
+            double angle = a;
+            //double angle = -(a - angle_offset);
             if (chart.Series["Series1"].Points.Count < 300)
             {
                 chart.Series["Series1"].Points.Add(angle);
@@ -161,8 +162,8 @@ namespace kinectExpirement
 
         public void addPosition(double input)
         {
-            double current_velocity;
-            double average_velocity, doub_temp = 0;
+            double current_velocity = 0;
+            double average_velocity = 0, doub_temp = 0;
             
             if(first){
                 first = false;
@@ -172,9 +173,9 @@ namespace kinectExpirement
             {
                 current_velocity = Calculate.FindVelocity(prev_angle, input);
                 velocity.Add(current_velocity);
-                if(velocity_counter >= 60)
+                if(velocity.Count >= 60)
                 {
-                    if (velocity_counter % 60 == 0)
+                    if (velocity.Count % 60 == 0)
                     {
                         foreach (double a in velocity)
                         {
@@ -182,7 +183,7 @@ namespace kinectExpirement
                         }
                         average_velocity = doub_temp / 60;
                         SetVelocity(average_velocity);
-                        Console.WriteLine("is running");
+                        addChart(average_velocity);
 
                     }
                     velocity.RemoveAt(0);
@@ -194,7 +195,7 @@ namespace kinectExpirement
 
         private void SetVelocity(double velocity)
         {
-            lblStatus.Text = "" + velocity;
+            velocity_label.Text = "" + velocity;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
