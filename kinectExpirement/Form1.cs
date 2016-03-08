@@ -19,7 +19,14 @@ namespace kinectExpirement
         private Color red = ColorTranslator.FromHtml("#ED1C24");
         private Color yellow = ColorTranslator.FromHtml("#FFF200");
         private Color green = ColorTranslator.FromHtml("#20B14C");
+        public Butterworth angle_butterworth = new Butterworth(Butterworth.ANGLE);
+        public Butterworth velocity_butterworth = new Butterworth(Butterworth.VELOCITY);
+        private List<double> prev = new List<double>(2);
         private List<double> velocity = new List<double>();
+        private List<List<double>> collection = new List<List<double>>();
+        private List<List<double>> unfiltered = new List<List<double>>();
+        private List<double> encoder_filtered = new List<double>();
+        private int listDoubleCounter = 0, listListCounter = 0;
         private const float pen_width = 4;
         public float kinect_offset = 0;
         private bool first = true;
@@ -33,14 +40,15 @@ namespace kinectExpirement
             btnStart.Enabled = false;
             grahics = velocityScale.CreateGraphics();
             rdioVelocity1.Checked = true;
+            prev[0] = 0;
+            prev[1] = 0;
         }
 
         public void addChart(double a)
         {
             //Need to take away the offset to have proper angle values
             double angle_offset = kinect_offset;
-            double angle = a;
-            //double angle = -(a - angle_offset);
+            double angle = -(a - angle_offset);
             if (chart.Series["Series1"].Points.Count < 300)
             {
                 chart.Series["Series1"].Points.Add(angle);
@@ -75,6 +83,7 @@ namespace kinectExpirement
         {
             KinectSensorClass.sensor.Close();
             KinectSensorClass.input.Write(KinectSensorClass.lists);
+            angle_butterworth.Filter((List<float>)EncoderSensorClass.input_filtered_values, prev);
             EncoderSensorClass.input.Write(EncoderSensorClass.input_values);
             KinectSensorClass.first = true;
             btnStart.Enabled = true;
@@ -183,7 +192,6 @@ namespace kinectExpirement
                         }
                         average_velocity = doub_temp / 60;
                         SetVelocity(average_velocity);
-                        addChart(average_velocity);
 
                     }
                     velocity.RemoveAt(0);
