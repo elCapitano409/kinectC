@@ -15,7 +15,7 @@ using System.Drawing;
 
 namespace kinectExpirement
 {
-
+	///<summary>Holds all the functions for reading in and storeing values from the Kinect, also constrols the state of the sensor.</summary>
     class KinectSensorClass
     {
 
@@ -40,8 +40,7 @@ namespace kinectExpirement
             form.startTimer();
             Application.Run(form);
         }
-
-        //The RunSensor method will open and run the methods for using the Kinect Sensor
+		///<summary>Opens and runs the methods for using the Kinect Sensor.</summary>
         public static void RunSensor()
         {
             MultiSourceFrameReader reader;
@@ -57,8 +56,8 @@ namespace kinectExpirement
                                              FrameSourceTypes.Body);
             reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
         }
-
-
+		
+		///<summary>Reads in the input from the Kinect sensor and adds it to the GUI
         static void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
             var reference = e.FrameReference.AcquireFrame();
@@ -161,16 +160,21 @@ namespace kinectExpirement
         }
     }
 
+	///<summary>Contains functions for reading in values from the Arduino.</summary>
     public class ArduinoControl
     {
         //can run for max 2 minutes
         private static string port = "COM3";
         private SerialPort serial = new SerialPort(port);
+		
+		///<summary>Opens the serial</summary>
         public ArduinoControl()
         {
             serial.Open();
         }
         
+		///<summary>Reads in a float from the serial that was sent by the Arduino.</summary>
+		///<returns>A float value for the output of the Arduino.</returns>
         public float readSerial(){
             float value;
             string input;
@@ -192,18 +196,28 @@ namespace kinectExpirement
         
     }
 
+	///<summary>Handles all of the functions for dealing with values from the encoder.</summary>
     public class EncoderSensorClass
     {
         private static float offset, temp_value;
+		///<summary>The offset that will be subtracted from the kinect values.</summary>
         public static float kinect_offset = 0;
         private static int counter = 0;
         private static int list_counter = 0;
         private static bool first = true;
+		///<summary>The list of lists of doubles that will hold all the unfiltered values read in by the encoder.</summary>
         public static List<List<double>> input_values = new List<List<double>>();
+		///<summary>The list of doubles that will hold all of the filtered values read in by the encoder.</summary>
         public static List<double> input_filtered_values = new List<double>();
+		///<summary>An instance of the <c>ArduinoControl</c> class that represents the Arduino that is reading in values from the encoder.</summary>
         public static ArduinoControl arduino = new ArduinoControl();
-        public static FileProcessing input, input_no_filter;
+		///<summary>An instance of the <c>FileProcessing</c> class to write all the filtered encoder values to a text file.</summary>
+        public static FileProcessing input;
+		///<summary>An instance of the <c>FileProcessing</c> class to write all the unfiltered encoder values to a text file.</summary> 
+		public static FileProcessing input_no_filter;
         
+		///<summary>Adds the parameter to the unfiltered list.</summary>
+		///<params name = "input">The floating point value that will be added to the list.</params>
         public static void add(float input)
         {
             if (first)
@@ -230,7 +244,8 @@ namespace kinectExpirement
             KinectSensorClass.form.setArduinoLabel(value + "");
             input_filtered_values.Add(value);
         }
-
+		
+		///<summary>Sets the offset at the current value that the encoder is at, causing it to zero.</summary>
         public static void zero()
         {
             offset = temp_value;
@@ -238,11 +253,20 @@ namespace kinectExpirement
 
     }
 
+	///<summary>Holds the x,y and z positions of a point.</summary>
     public class PointHolder
     {
-        public float x = 0, y = 0, z = 0;
+		///<summary>The x positon of the point</summary>
+        public float x = 0;
+		///<summary>The y position of the point</summary>
+		public float y = 0;
+		///<summary>The z position of the point</summary>
+		public float z = 0;
 
-        //The SetValue method will set the x,y, and z values of the point 
+        ///<summary>Sets the x,y, and z values of the point.</summary>
+		///<params name = "valueX">The x position of the point.</params>
+		///<params name = "valueY">The y position of the point.</params>
+		///<params name = "valueZ">The z position of the point.</params>
         public void SetValue(float valueX, float valueY, float valueZ)
         {
             x = valueX;
@@ -251,9 +275,13 @@ namespace kinectExpirement
         }
     }
 
+	///<summary>Holds all the calculation functions.</summary>
     public class Calculate
     {
-        //The CreateVector method will take two points and generate the vector between them in 3 dimensions
+        /// <summary> Takes two points and generate a vector between them in 3 dimensions. </summary>
+		/// <param name = "point1"> The first point in three dimensional space. </param>
+		/// <param name = "point2"> The second point in three dimensional space. </param>
+		/// <returns> The vector that was generated. </returns>
         public static PointHolder CreateVector(PointHolder point1, PointHolder point2)
         {
             PointHolder vector = new PointHolder();
@@ -265,7 +293,9 @@ namespace kinectExpirement
             return vector;
         }
 
-        //The VectorLength method will calculate the length of a vector
+        ///<summary>Calculates the length of the vector.</summary>
+		///<params name = "vector">The vector that the magitudes will be taken from.</params>
+		///<returns>The length of the vector.</returns>
         public static double VectorLength(PointHolder vector)
         {
             double vector_length = 0;
@@ -275,7 +305,10 @@ namespace kinectExpirement
             return vector_length;
         }
 
-        //The DotProduct method will calculate the dot product of two three dimensional vectors
+        ///<summary>Calculates the dot product of two vectors.</summary>
+		///<params name = "vector1">The first three dimensional vector.</params>
+		///<params name = "vector2">The second three dimensional vector</params>
+		///<returns>The dot product of the two vectors</returns>
         public static double DotProduct(PointHolder vector1, PointHolder vector2)
         {
             double dot_product = 0;
@@ -285,13 +318,18 @@ namespace kinectExpirement
             return dot_product;
         }
 
-        //The ToDegree method will calculate the value in degrees from a value in radians 
+        ///<summary>Converts a value from radians to degrees.</summary>
+		///<params name = "value">The value in radians</params>
+		///<returns>The value in degrees</returns>
         public static double ToDegree(double value)
         {
             return value * (180.0 / Math.PI);
         }
         
-        //The FindVelocity method will calculate the value of the velocity 
+        ///<summary>Calculates the velocity of angle movement, assuming that the frequency is 30Hz.</summary>
+		///<params name = "inital_angle">The intial angle of the elbow.</params>
+		///<params name = "final_angle">The final angle of the elbow.</params>
+		///<returns>The instantanous velcity of the elbow</returns>
         public static double FindVelocity(double inital_angle, double final_angle)
         {
             double value = 0;
@@ -302,13 +340,17 @@ namespace kinectExpirement
         }
     }
 
+	///<summary>A butterworth filter for the values taken from the Kinect and encoder.</summary>
     public class Butterworth
     {
+		///<summary>Constant boolean for the constructor to set the list to values for filtering velcity.</summary>
         public static const bool VELOCITY = true;
+		///<summary>Constant boolean for the constructor to set the list to values for filtering velcity.</summary>
         public static const bool ANGLE = false;
         private List<double> A, B;
         private int order = 0;
 
+		///<summary>Constructor for the butterworth class</summary>
         public Butterworth(bool input)
         {
             const int coeffiecients = 3;
@@ -334,7 +376,11 @@ namespace kinectExpirement
             }
             order = coeffiecients - 1;
         }
-
+		
+		///<summary>Filters the list of values.</summary>
+		///<params name = "x">The list of values to be filtered.</params>
+		///<params name = "prev">The list of previous values before <c>x</c> was being recorded.</params>
+		///<returns>A list of filtered values.</returns>
         public List<double> Filter(List<double> x, List<double> prev)
         {
             int sample_length = x.Count;
@@ -367,17 +413,21 @@ namespace kinectExpirement
         }
     }
 
+	///<summary>Controls all the file processing.</summary>
     public class FileProcessing
     {
         private String path;
 
-        //The constructor sets the path for the StreamWriter
+        ///<summary>Constructor for the <c>FileProcessing</c> class. Sets the path for the <c>StreamWriter</c>.</summary>
+		///<params name = "name">The name of the file.</params>
+		///<params name = "type">The type of values being written to the file.</params>
         public FileProcessing(String name, String type)
         {
             path = @"C:\\Users\Kyle\Results\" + name + "-" + type + ".txt";
         }
 
-        //The Write method will write all the values in the List to the file
+        ///<summary>Writes all the values to a text file.</summary>
+		///<params name = "values">The values that will be written to the file.</params>
         public void Write(List<List<double>> values)
         {
             using (StreamWriter io = new StreamWriter(path))
@@ -393,6 +443,8 @@ namespace kinectExpirement
             }
         }
 
+		///<summary>Writes all the values to a text file.</summary>
+		///<params name = "values">The values that will be written to the file.</params>
         public void Write(List<List<float>> values)
         {
             using (StreamWriter io = new StreamWriter(path))
@@ -408,6 +460,8 @@ namespace kinectExpirement
             }
         }
 
+		///<summary>Writes all the values to a text file.</summary>
+		///<params name = "values">The values that will be written to the file.</params>
         public void Write(List<double> values)
         {
             using(StreamWriter io = new StreamWriter(path)){

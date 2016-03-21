@@ -12,6 +12,7 @@ using System.Windows.Controls;
 
 namespace kinectExpirement
 {
+	///<summary >
     public partial class KinectForm : Form
     {
         private Graphics grahics;
