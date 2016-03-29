@@ -15,7 +15,7 @@ using System.Drawing;
 
 namespace kinectExpirement
 {
-	///<summary>Holds all the functions for reading in and storeing values from the Kinect, also constrols the state of the sensor.</summary>
+	/// <summary> Holds all the functions for reading in and storeing values from the Kinect, also constrols the state of the sensor. </summary>
     class KinectSensorClass
     {
 
@@ -40,7 +40,7 @@ namespace kinectExpirement
             form.startTimer();
             Application.Run(form);
         }
-		///<summary>Opens and runs the methods for using the Kinect Sensor.</summary>
+		/// <summary> Opens and runs the methods for using the Kinect Sensor. </summary>
         public static void RunSensor()
         {
             MultiSourceFrameReader reader;
@@ -57,7 +57,7 @@ namespace kinectExpirement
             reader.MultiSourceFrameArrived += Reader_MultiSourceFrameArrived;
         }
 		
-		///<summary>Reads in the input from the Kinect sensor and adds it to the GUI
+		/// <summary> Reads in the input from the Kinect sensor and adds it to the GUI </summary>
         static void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
             var reference = e.FrameReference.AcquireFrame();
@@ -160,21 +160,21 @@ namespace kinectExpirement
         }
     }
 
-	///<summary>Contains functions for reading in values from the Arduino.</summary>
+	/// <summary> Contains functions for reading in values from the Arduino. </summary>
     public class ArduinoControl
     {
         //can run for max 2 minutes
         private static string port = "COM3";
         private SerialPort serial = new SerialPort(port);
 		
-		///<summary>Opens the serial</summary>
+		/// <summary>Opens the serial </summary>
         public ArduinoControl()
         {
             serial.Open();
         }
         
-		///<summary>Reads in a float from the serial that was sent by the Arduino.</summary>
-		///<returns>A float value for the output of the Arduino.</returns>
+		/// <summary> Reads in a float from the serial that was sent by the Arduino. </summary>
+		/// <returns> A float value for the output of the Arduino. </returns>
         public float readSerial(){
             float value;
             string input;
@@ -196,28 +196,28 @@ namespace kinectExpirement
         
     }
 
-	///<summary>Handles all of the functions for dealing with values from the encoder.</summary>
+	///<summary> Handles all of the functions for dealing with values from the encoder. </summary>
     public class EncoderSensorClass
     {
         private static float offset, temp_value;
-		///<summary>The offset that will be subtracted from the kinect values.</summary>
+		/// <summary> The offset that will be subtracted from the kinect values. </summary>
         public static float kinect_offset = 0;
         private static int counter = 0;
         private static int list_counter = 0;
         private static bool first = true;
-		///<summary>The list of lists of doubles that will hold all the unfiltered values read in by the encoder.</summary>
+		/// <summary>The list of lists of doubles that will hold all the unfiltered values read in by the encoder. </summary>
         public static List<List<double>> input_values = new List<List<double>>();
-		///<summary>The list of doubles that will hold all of the filtered values read in by the encoder.</summary>
+		/// <summary> The list of doubles that will hold all of the filtered values read in by the encoder. </summary>
         public static List<double> input_filtered_values = new List<double>();
-		///<summary>An instance of the <c>ArduinoControl</c> class that represents the Arduino that is reading in values from the encoder.</summary>
+		/// <summary> An instance of the <c>ArduinoControl</c> class that represents the Arduino that is reading in values from the encoder. </summary>
         public static ArduinoControl arduino = new ArduinoControl();
-		///<summary>An instance of the <c>FileProcessing</c> class to write all the filtered encoder values to a text file.</summary>
+		/// <summary> An instance of the <c>FileProcessing</c> class to write all the filtered encoder values to a text file. </summary>
         public static FileProcessing input;
-		///<summary>An instance of the <c>FileProcessing</c> class to write all the unfiltered encoder values to a text file.</summary> 
+		/// <summary> An instance of the <c>FileProcessing</c> class to write all the unfiltered encoder values to a text file. </summary> 
 		public static FileProcessing input_no_filter;
         
-		///<summary>Adds the parameter to the unfiltered list.</summary>
-		///<params name = "input">The floating point value that will be added to the list.</params>
+		///<summary> Adds the parameter to the unfiltered list. </summary>
+		/// <param name = "input"> The floating point value that will be added to the list. </params>
         public static void add(float input)
         {
             if (first)
@@ -245,7 +245,7 @@ namespace kinectExpirement
             input_filtered_values.Add(value);
         }
 		
-		///<summary>Sets the offset at the current value that the encoder is at, causing it to zero.</summary>
+		/// <summary> Sets the offset at the current value that the encoder is at, causing it to zero. </summary>
         public static void zero()
         {
             offset = temp_value;
@@ -253,20 +253,20 @@ namespace kinectExpirement
 
     }
 
-	///<summary>Holds the x,y and z positions of a point.</summary>
+	/// <summary> Holds the x,y and z positions of a point. </summary>
     public class PointHolder
     {
-		///<summary>The x positon of the point</summary>
+		/// <summary> The x positon of the point. </summary>
         public float x = 0;
-		///<summary>The y position of the point</summary>
+		/// <summary>The y position of the point. </summary>
 		public float y = 0;
-		///<summary>The z position of the point</summary>
+		/// <summary> The z position of the point. </summary>
 		public float z = 0;
 
-        ///<summary>Sets the x,y, and z values of the point.</summary>
-		///<params name = "valueX">The x position of the point.</params>
-		///<params name = "valueY">The y position of the point.</params>
-		///<params name = "valueZ">The z position of the point.</params>
+        /// <summary> Sets the x, y, and z values of the point. </summary>
+		/// <param name = "valueX"> The x position of the point. </params>
+		/// <param name = "valueY"> The y position of the point. </params>
+		/// <param name = "valueZ"> The z position of the point. </params>
         public void SetValue(float valueX, float valueY, float valueZ)
         {
             x = valueX;
@@ -293,9 +293,9 @@ namespace kinectExpirement
             return vector;
         }
 
-        ///<summary>Calculates the length of the vector.</summary>
-		///<params name = "vector">The vector that the magitudes will be taken from.</params>
-		///<returns>The length of the vector.</returns>
+        /// <summary> Calculates the length of the vector. </summary>
+		/// <param name = "vector"> The vector that the magitudes will be taken from. </params>
+		/// <returns> The length of the vector. </returns>
         public static double VectorLength(PointHolder vector)
         {
             double vector_length = 0;
@@ -305,10 +305,10 @@ namespace kinectExpirement
             return vector_length;
         }
 
-        ///<summary>Calculates the dot product of two vectors.</summary>
-		///<params name = "vector1">The first three dimensional vector.</params>
-		///<params name = "vector2">The second three dimensional vector</params>
-		///<returns>The dot product of the two vectors</returns>
+        /// <summary> Calculates the dot product of two vectors. </summary>
+		/// <params name = "vector1"> The first three dimensional vector. </params>
+		/// <params name = "vector2"> The second three dimensional vector </params>
+		/// <returns> The dot product of the two vectors. </returns>
         public static double DotProduct(PointHolder vector1, PointHolder vector2)
         {
             double dot_product = 0;

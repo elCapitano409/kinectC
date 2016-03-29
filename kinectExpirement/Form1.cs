@@ -12,7 +12,7 @@ using System.Windows.Controls;
 
 namespace kinectExpirement
 {
-	///<summary >
+	/// <summary> Inheriated from Form class, GUI for incoder and Kinect handling. </summary>
     public partial class KinectForm : Form
     {
         private Graphics grahics;
@@ -20,7 +20,9 @@ namespace kinectExpirement
         private Color red = ColorTranslator.FromHtml("#ED1C24");
         private Color yellow = ColorTranslator.FromHtml("#FFF200");
         private Color green = ColorTranslator.FromHtml("#20B14C");
+		/// <summary> Butterworth filter for filtering angle values. </summary>
         public Butterworth angle_butterworth = new Butterworth(Butterworth.ANGLE);
+		/// <summary> Butterworth filter for filtering velocity values. </summary>
         public Butterworth velocity_butterworth = new Butterworth(Butterworth.VELOCITY);
         private List<double> prev = new List<double>(2);
         private List<double> velocity = new List<double>();
@@ -29,11 +31,16 @@ namespace kinectExpirement
         private List<double> encoder_filtered = new List<double>();
         private int listDoubleCounter = 0, listListCounter = 0;
         private const float pen_width = 4;
+		/// <summary> Floating point value for the offset to take of of value from the Kinect. </summary>
         public float kinect_offset = 0;
         private bool first = true;
-        public int velocity_goal, velocity_counter;
+		/// <summary> The desired velocity of the session. </summary>
+        public int velocity_goal;
+		/// <summary> Counter of how many velocity values have been calculated </summary>
+		public int velocity_counter;
         private double prev_angle;
 
+		/// <summary> Constructor for the KinectForm class. </summary>
         public KinectForm()
         {
             InitializeComponent();
@@ -44,7 +51,9 @@ namespace kinectExpirement
             prev[0] = 0;
             prev[1] = 0;
         }
-
+		
+		/// <summary> Applies an offset to the value and adds it to the graph. </summary>
+		/// <param name = "a"> The orignial input value to add to the chart. </param>
         public void addChart(double a)
         {
             //Need to take away the offset to have proper angle values
@@ -61,7 +70,7 @@ namespace kinectExpirement
             }
         }
 
-        //Starts the sensor
+        /// <summary> An event handler that checks if the <c>btnStart</c> button had been clicked. Starts recording from the kinect sensor. </summary>
         private void btnStart_Click(object sender, EventArgs e)
         {
             KinectSensorClass.RunSensor();
@@ -79,7 +88,7 @@ namespace kinectExpirement
 
         }
 
-        //Stops the sensor
+        /// <summary> An even handler that checks if the <c>btnStop</c> button had been clicked. Stops the Kinect sensor. </summary>
         private void btnStop_Click(object sender, EventArgs e)
         {
             KinectSensorClass.sensor.Close();
@@ -93,7 +102,7 @@ namespace kinectExpirement
             timer1.Stop();
         }
 
-        //Sets the file name to the input from txtFile textbox
+        /// <summary> An event handler that checks if <c>btnFileName</c> has been clicked. Sets the file name to the user input. </summary>
         private void btnFileName_Click(object sender, EventArgs e)
         {
             KinectSensorClass.name = txtFile.Text;
@@ -101,7 +110,7 @@ namespace kinectExpirement
             lblFileName.Text = "The file name is " + KinectSensorClass.name + ".txt";
         }
 
-
+		/// <summary> An event handler that checks if <c>btnFile</c> has been clicked. Sets the file name to the date and time. </summary>
         private void btnFile_Click(object sender, EventArgs e)
         {
             KinectSensorClass.name = DateTime.Now.Month + "_" + DateTime.Now.Day + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute;
@@ -109,14 +118,18 @@ namespace kinectExpirement
             btnStart.Enabled = true;
             erase(60);
         }
-
+		
+		/// <summary> An event handler that checks if <c>btnOffset</c> has been clicked. Sets the Kinect sensor offset from the encoder value. </summary>
         private void btnOffset_Click(object sender, EventArgs e)
         {
             kinect_offset = EncoderSensorClass.kinect_offset;
             lblOffset.Text = "Current Offset: " + kinect_offset;
             draw(60, pen_black);
         }
-
+		
+		/// <summary> Calculates the position of the marker on the gradient. </summary>
+		/// <param name = "velocity"> The velocity of the elbow movement. </param>
+		/// <returns> The pixel position of the line. </returns>
         public int placement(double velocity)
         {
             int value = 0;
@@ -147,7 +160,10 @@ namespace kinectExpirement
             }
             return value;
         }
-
+		
+		/// <summary> Draws black line on the gradient. </summary>
+		/// <param name = "placement"> The pixel postion of the line. </param>
+		/// <param name = "pen"> The pen object that will be used to draw the line. <param>
         public void draw(int placement, Pen pen)
         {
             Point top, bottom;
@@ -156,6 +172,8 @@ namespace kinectExpirement
             this.grahics.DrawLine(pen, top, bottom);
         }
 
+		/// <summary> Erases the black line one the gradient. </summary>
+		/// <param name = "placement"> The pixel position of the black line. </param>
         public void erase(int placement)
         {
             Color color;
@@ -170,6 +188,8 @@ namespace kinectExpirement
             draw(placement, penTemp);
         }
 
+		/// <summary> Adds the postion to an array and calculates the velocity. </summary>
+		/// <param name = "input"> Value of elbow position. </param>
         public void addPosition(double input)
         {
             double current_velocity = 0;
@@ -202,11 +222,14 @@ namespace kinectExpirement
             
         }
 
+		/// <summary> Sets the text of the <c>velocity_label</c> label. </summary>
+		/// <param name = "velocity"> The intantanous velcity of the elbow.</param>
         private void SetVelocity(double velocity)
         {
             velocity_label.Text = "" + velocity;
         }
 
+		/// <summary> Reads in a value from the serial every 8 miliseconds. </summary>
         private void timer1_Tick(object sender, EventArgs e)
         {
             try
@@ -219,39 +242,40 @@ namespace kinectExpirement
             }
         }
 
+		/// <summary> Sets the status of the <c>btnStop</c> button. </summary>
         public void setButtonEnabled2(bool value)
         {
             btnStop.Enabled = value;
         }
 
+		/// <summary> Sets the text of the <c>setLabel1</c> label. </summary>
         public void setLabel1(String input)
         {
             lblStatus.Text = input;
         }
 
+		/// <summary> Starts the timer for the arduino. </summary>
         public void startTimer()
         {
             timer1.Start();
         }
 
+		/// <summary> Sets the text of the <c>lblFileName</c> label. </summary>
         public void setLabelFile(string input)
         {
             lblFileName.Text = input;
         }
 
+		/// <summary> Event handler that checks if <c>btnZero</c> has been clicked, zeros the encoder. </summary>
         private void btnZero_Click(object sender, EventArgs e)
         {
             EncoderSensorClass.zero();
         }
 
+		/// <summary> Sets the text of the <c>lblArduinoStatus</c> label. </c>
         public void setArduinoLabel(string input)
         {
             lblArduinoStatus.Text = input;
-        }
-
-        public void setVelocityTitleLabel(string input)
-        {
-
         }
 
         private void label1_Click(object sender, EventArgs e)
