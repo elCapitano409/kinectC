@@ -22,13 +22,12 @@ namespace kinectExpirement
         public static KinectSensor sensor;
         public static IList<Body> bodies;
         public static bool first = true, checkVelocity = false;
-        public static List<List<double>> lists = new List<List<double>>();
+        public static List<double> lists = new List<double>();
         public static List<double> velocityAngle = new List<double>();
         public static int addCounter = 0, listCounter = 0, velocityCounter = 0;
         public static KinectForm form;
         public static String name;
         public static FileProcessing input, kinect_no_filter;
-        private static float currentPosition;
 
 
         [STAThread]
@@ -122,7 +121,6 @@ namespace kinectExpirement
                             {
                                 velocityAngle.Insert(9, angle);
                                 tempVelocity = Calculate.FindVelocity(velocityAngle[0], velocityAngle[59]);
-                                form.setVelocityTitleLabel("" + tempVelocity);
                             }
                             else if (velocityCounter >= 60)
                             {
@@ -134,19 +132,7 @@ namespace kinectExpirement
                                 velocityCounter++;
                                 velocityAngle.Add(angle);
                             }
-                            //If the List is at capacity the values are added to the next List
-                            if (addCounter != 128)
-                            {
-                                lists[listCounter].Add(angle);
-                                addCounter++;
-                            }
-                            else
-                            {
-                                addCounter = 0;
-                                listCounter++;
-                                lists.Add(new List<double>());
-                                lists[0].Add(angle);
-                            }
+                            lists.Add(angle);
 
                         }
                         else
@@ -186,7 +172,7 @@ namespace kinectExpirement
             catch (System.FormatException e)
             {
                 value = 0;
-                Console.WriteLine("NOT STRING");
+                Console.WriteLine(e.Message);
                 Console.WriteLine(input);
             }
             
@@ -217,7 +203,7 @@ namespace kinectExpirement
 		public static FileProcessing input_no_filter;
         
 		///<summary> Adds the parameter to the unfiltered list. </summary>
-		/// <param name = "input"> The floating point value that will be added to the list. </params>
+		/// <param name = "input"> The floating point value that will be added to the list. </param>
         public static void add(float input)
         {
             if (first)
@@ -264,9 +250,9 @@ namespace kinectExpirement
 		public float z = 0;
 
         /// <summary> Sets the x, y, and z values of the point. </summary>
-		/// <param name = "valueX"> The x position of the point. </params>
-		/// <param name = "valueY"> The y position of the point. </params>
-		/// <param name = "valueZ"> The z position of the point. </params>
+		/// <param name = "valueX"> The x position of the point. </param>
+		/// <param name = "valueY"> The y position of the point. </param>
+		/// <param name = "valueZ"> The z position of the point. </param>
         public void SetValue(float valueX, float valueY, float valueZ)
         {
             x = valueX;
@@ -294,7 +280,7 @@ namespace kinectExpirement
         }
 
         /// <summary> Calculates the length of the vector. </summary>
-		/// <param name = "vector"> The vector that the magitudes will be taken from. </params>
+		/// <param name = "vector"> The vector that the magitudes will be taken from. </param>
 		/// <returns> The length of the vector. </returns>
         public static double VectorLength(PointHolder vector)
         {
@@ -306,8 +292,8 @@ namespace kinectExpirement
         }
 
         /// <summary> Calculates the dot product of two vectors. </summary>
-		/// <params name = "vector1"> The first three dimensional vector. </params>
-		/// <params name = "vector2"> The second three dimensional vector </params>
+		/// <param name = "vector1"> The first three dimensional vector. </param>
+		/// <param name = "vector2"> The second three dimensional vector </param>
 		/// <returns> The dot product of the two vectors. </returns>
         public static double DotProduct(PointHolder vector1, PointHolder vector2)
         {
@@ -318,18 +304,18 @@ namespace kinectExpirement
             return dot_product;
         }
 
-        ///<summary>Converts a value from radians to degrees.</summary>
-		///<params name = "value">The value in radians</params>
-		///<returns>The value in degrees</returns>
+        /// <summary> Converts a value from radians to degrees. </summary>
+		/// <param name = "value"> The value in radians </param>
+		/// <returns> The value in degrees </returns>
         public static double ToDegree(double value)
         {
             return value * (180.0 / Math.PI);
         }
         
-        ///<summary>Calculates the velocity of angle movement, assuming that the frequency is 30Hz.</summary>
-		///<params name = "inital_angle">The intial angle of the elbow.</params>
-		///<params name = "final_angle">The final angle of the elbow.</params>
-		///<returns>The instantanous velcity of the elbow</returns>
+        /// <summary>Calculates the velocity of angle movement, assuming that the frequency is 30Hz. </summary>
+		/// <param name = "inital_angle"> The intial angle of the elbow. </param>
+		/// <param name = "final_angle"> The final angle of the elbow. </param>
+		/// <returns> The instantanous velcity of the elbow. </returns>
         public static double FindVelocity(double inital_angle, double final_angle)
         {
             double value = 0;
@@ -340,24 +326,30 @@ namespace kinectExpirement
         }
     }
 
-	///<summary>A butterworth filter for the values taken from the Kinect and encoder.</summary>
+	/// <summary> A butterworth filter for the values taken from the Kinect and encoder. </summary>
     public class Butterworth
     {
-		///<summary>Constant boolean for the constructor to set the list to values for filtering velcity.</summary>
-        public static const bool VELOCITY = true;
-		///<summary>Constant boolean for the constructor to set the list to values for filtering velcity.</summary>
-        public static const bool ANGLE = false;
+		/// <summary> Constant boolean for the constructor to set the list to values for filtering velcity. </summary>
+        public const bool VELOCITY = true;
+		/// <summary> Constant boolean for the constructor to set the list to values for filtering velcity. </summary>
+        public const bool ANGLE = false;
         private List<double> A, B;
         private int order = 0;
 
-		///<summary>Constructor for the butterworth class</summary>
+		/// <summary> Constructor for the butterworth class </summary>
         public Butterworth(bool input)
         {
             const int coeffiecients = 3;
-            A = new List<double>(coeffiecients);
-            B = new List<double>(coeffiecients);
-            
-            if(VELOCITY){
+            A = new List<double>();
+            B = new List<double>();
+            for (int a = 0; a < 3; a++)
+            {
+                A.Add(0);
+                B.Add(0);
+            }
+
+            if (input == VELOCITY)
+            {
                 B[0] = 0.000944691843840;
                 B[1] = 0.001889383687680;
                 B[2] = 0.000944691843840;
@@ -365,7 +357,7 @@ namespace kinectExpirement
                 A[1] = -1.911197067426073;
                 A[2] = 0.914975834801434;
             }
-            else
+            else if (input == ANGLE)
             {
                 B[0] = 0.000039130205399;
                 B[1] = 0.000078260410798;
@@ -377,37 +369,71 @@ namespace kinectExpirement
             order = coeffiecients - 1;
         }
 		
-		///<summary>Filters the list of values.</summary>
-		///<params name = "x">The list of values to be filtered.</params>
-		///<params name = "prev">The list of previous values before <c>x</c> was being recorded.</params>
-		///<returns>A list of filtered values.</returns>
+		/// <summary> Filters the list of values. </summary>
+		/// <param name = "x"> The list of values to be filtered. </param>
+		/// <param name = "prev"> The list of previous values before <c>x</c> was being recorded. </param>
+		/// <returns> A list of filtered values. </returns>
         public List<double> Filter(List<double> x, List<double> prev)
         {
             int sample_length = x.Count;
             List<double> y = new List<double>(sample_length + order);
             List<double> final_values = new List<double>(sample_length);
-
             for (int c = 0; c < sample_length + order; c++)
             {
                 if (c < order)
                 {
-                    y[c] = prev[c];
+                    try
+                    {
+                        y[c] = prev[c];
+                    }
+                    catch (ArgumentOutOfRangeException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                 }
-                else if(c >= order){
-                    y[c] = 0;
+                else if (c >= order)
+                {
+                    try
+                    {
+                        y[c] = 0;
+                    }
+                    catch(ArgumentOutOfRangeException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                     for (int d = 0; d <= order; d++)
                     {
-                        if (d == 0)
-                            y[c] += B[d] * x[c];
-                        else
-                            y[c] += (B[d] * x[c - d]) + (-A[d] * y[c - d]);
+                        try
+                        {
+                            if (d == 0)
+                                y[c] += B[d] * x[c];
+                            else
+                                y[c] += (B[d] * x[c - d]) + (-A[d] * y[c - d]);
+                        }
+                        catch (ArgumentOutOfRangeException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                     }
                 }
             }
-
-            for (int i = 0; i < sample_length; i++)
+            try
             {
-                final_values[i] = y[i + order];
+                for (int i = 0; i < sample_length; i++)
+                {
+                    try
+                    {
+                        final_values[i] = y[i + order];
+                    }
+                    catch (ArgumentOutOfRangeException e) 
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
             }
                 return final_values;
         }
@@ -418,16 +444,16 @@ namespace kinectExpirement
     {
         private String path;
 
-        ///<summary>Constructor for the <c>FileProcessing</c> class. Sets the path for the <c>StreamWriter</c>.</summary>
-		///<params name = "name">The name of the file.</params>
-		///<params name = "type">The type of values being written to the file.</params>
+        /// <summary>Constructor for the <c>FileProcessing</c> class. Sets the path for the <c>StreamWriter</c>. </summary>
+		/// <param name = "name">The name of the file. </param>
+		/// <param name = "type">The type of values being written to the file. </param>
         public FileProcessing(String name, String type)
         {
             path = @"C:\\Users\Kyle\Results\" + name + "-" + type + ".txt";
         }
 
-        ///<summary>Writes all the values to a text file.</summary>
-		///<params name = "values">The values that will be written to the file.</params>
+        /// <summary> Writes all the values to a text file. </summary>
+		/// <param name = "values"> The values that will be written to the file. </param>
         public void Write(List<List<double>> values)
         {
             using (StreamWriter io = new StreamWriter(path))
@@ -443,8 +469,8 @@ namespace kinectExpirement
             }
         }
 
-		///<summary>Writes all the values to a text file.</summary>
-		///<params name = "values">The values that will be written to the file.</params>
+		/// <summary> Writes all the values to a text file. </summary>
+		/// <param name = "values"> The values that will be written to the file. </param>
         public void Write(List<List<float>> values)
         {
             using (StreamWriter io = new StreamWriter(path))
@@ -460,8 +486,8 @@ namespace kinectExpirement
             }
         }
 
-		///<summary>Writes all the values to a text file.</summary>
-		///<params name = "values">The values that will be written to the file.</params>
+		///<summary> Writes all the values to a text file. </summary>
+		///<param name = "values"> The values that will be written to the file. </param>
         public void Write(List<double> values)
         {
             using(StreamWriter io = new StreamWriter(path)){

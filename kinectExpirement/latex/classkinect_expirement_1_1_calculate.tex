@@ -1,0 +1,101 @@
+\hypertarget{classkinect_expirement_1_1_calculate}{}\section{kinect\+Expirement.\+Calculate Class Reference}
+\label{classkinect_expirement_1_1_calculate}\index{kinect\+Expirement.\+Calculate@{kinect\+Expirement.\+Calculate}}
+
+
+Holds all the calculation functions. 
+
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classkinect_expirement_1_1_point_holder}{Point\+Holder} \hyperlink{classkinect_expirement_1_1_calculate_a8fdf801a3bdee7bd1a327cc42e86aed9}{Create\+Vector} (\hyperlink{classkinect_expirement_1_1_point_holder}{Point\+Holder} point1, \hyperlink{classkinect_expirement_1_1_point_holder}{Point\+Holder} point2)
+\begin{DoxyCompactList}\small\item\em Takes two points and generate a vector between them in 3 dimensions. \end{DoxyCompactList}\item 
+static double \hyperlink{classkinect_expirement_1_1_calculate_a9c9d55d2e89605013fd5280deb572468}{Vector\+Length} (\hyperlink{classkinect_expirement_1_1_point_holder}{Point\+Holder} vector)
+\begin{DoxyCompactList}\small\item\em Calculates the length of the vector. \end{DoxyCompactList}\item 
+static double \hyperlink{classkinect_expirement_1_1_calculate_a5e407f5e00cb311cea31f7172fa4a5d0}{Dot\+Product} (\hyperlink{classkinect_expirement_1_1_point_holder}{Point\+Holder} vector1, \hyperlink{classkinect_expirement_1_1_point_holder}{Point\+Holder} vector2)
+\begin{DoxyCompactList}\small\item\em Calculates the dot product of two vectors. \end{DoxyCompactList}\item 
+static double \hyperlink{classkinect_expirement_1_1_calculate_a02fbfb617abfb0e06c8e92cb25f9f9e8}{To\+Degree} (double value)
+\item 
+static double {\bfseries Find\+Velocity} (double inital\+\_\+angle, double final\+\_\+angle)\hypertarget{classkinect_expirement_1_1_calculate_a91876175c733dc14e51ac1eb5c255142}{}\label{classkinect_expirement_1_1_calculate_a91876175c733dc14e51ac1eb5c255142}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Holds all the calculation functions.
+
+
+
+\subsection{Member Function Documentation}
+\index{kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}!Create\+Vector@{Create\+Vector}}
+\index{Create\+Vector@{Create\+Vector}!kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}}
+\subsubsection[{\texorpdfstring{Create\+Vector(\+Point\+Holder point1, Point\+Holder point2)}{CreateVector(PointHolder point1, PointHolder point2)}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Point\+Holder} kinect\+Expirement.\+Calculate.\+Create\+Vector (
+\begin{DoxyParamCaption}
+\item[{{\bf Point\+Holder}}]{point1, }
+\item[{{\bf Point\+Holder}}]{point2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classkinect_expirement_1_1_calculate_a8fdf801a3bdee7bd1a327cc42e86aed9}{}\label{classkinect_expirement_1_1_calculate_a8fdf801a3bdee7bd1a327cc42e86aed9}
+
+
+Takes two points and generate a vector between them in 3 dimensions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em point1} & The first point in three dimensional space. \\
+\hline
+{\em point2} & The second point in three dimensional space. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The vector that was generated. 
+\end{DoxyReturn}
+\index{kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}!Dot\+Product@{Dot\+Product}}
+\index{Dot\+Product@{Dot\+Product}!kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}}
+\subsubsection[{\texorpdfstring{Dot\+Product(\+Point\+Holder vector1, Point\+Holder vector2)}{DotProduct(PointHolder vector1, PointHolder vector2)}}]{\setlength{\rightskip}{0pt plus 5cm}static double kinect\+Expirement.\+Calculate.\+Dot\+Product (
+\begin{DoxyParamCaption}
+\item[{{\bf Point\+Holder}}]{vector1, }
+\item[{{\bf Point\+Holder}}]{vector2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classkinect_expirement_1_1_calculate_a5e407f5e00cb311cea31f7172fa4a5d0}{}\label{classkinect_expirement_1_1_calculate_a5e407f5e00cb311cea31f7172fa4a5d0}
+
+
+Calculates the dot product of two vectors. 
+
+$<$params name=\char`\"{}vector1\char`\"{}$>$ The first three dimensional vector. $<$/params$>$ $<$params name=\char`\"{}vector2\char`\"{}$>$ The second three dimensional vector $<$/params$>$ \begin{DoxyReturn}{Returns}
+The dot product of the two vectors. 
+\end{DoxyReturn}
+summary$>$Converts a value from radians to degrees.
+
+params name = \char`\"{}value\char`\"{}$>$The value in radians$<$/params$>$ returns$>$The value in degrees\index{kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}!To\+Degree@{To\+Degree}}
+\index{To\+Degree@{To\+Degree}!kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}}
+\subsubsection[{\texorpdfstring{To\+Degree(double value)}{ToDegree(double value)}}]{\setlength{\rightskip}{0pt plus 5cm}static double kinect\+Expirement.\+Calculate.\+To\+Degree (
+\begin{DoxyParamCaption}
+\item[{double}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classkinect_expirement_1_1_calculate_a02fbfb617abfb0e06c8e92cb25f9f9e8}{}\label{classkinect_expirement_1_1_calculate_a02fbfb617abfb0e06c8e92cb25f9f9e8}
+summary$>$Calculates the velocity of angle movement, assuming that the frequency is 30\+Hz.
+
+params name = \char`\"{}inital\+\_\+angle\char`\"{}$>$The intial angle of the elbow.$<$/params$>$ params name = \char`\"{}final\+\_\+angle\char`\"{}$>$The final angle of the elbow.$<$/params$>$ returns$>$The instantanous velcity of the elbow\index{kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}!Vector\+Length@{Vector\+Length}}
+\index{Vector\+Length@{Vector\+Length}!kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}}
+\subsubsection[{\texorpdfstring{Vector\+Length(\+Point\+Holder vector)}{VectorLength(PointHolder vector)}}]{\setlength{\rightskip}{0pt plus 5cm}static double kinect\+Expirement.\+Calculate.\+Vector\+Length (
+\begin{DoxyParamCaption}
+\item[{{\bf Point\+Holder}}]{vector}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classkinect_expirement_1_1_calculate_a9c9d55d2e89605013fd5280deb572468}{}\label{classkinect_expirement_1_1_calculate_a9c9d55d2e89605013fd5280deb572468}
+
+
+Calculates the length of the vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & The vector that the magitudes will be taken from. $<$/params$>$ \begin{DoxyReturn}{Returns}
+The length of the vector. 
+\end{DoxyReturn}
+\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Program.\+cs\end{DoxyCompactItemize}

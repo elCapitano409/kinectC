@@ -1,0 +1,106 @@
+\hypertarget{classkinect_expirement_1_1_encoder_sensor_class}{}\section{kinect\+Expirement.\+Encoder\+Sensor\+Class Class Reference}
+\label{classkinect_expirement_1_1_encoder_sensor_class}\index{kinect\+Expirement.\+Encoder\+Sensor\+Class@{kinect\+Expirement.\+Encoder\+Sensor\+Class}}
+
+
+Handles all of the functions for dealing with values from the encoder.  
+
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bfseries add} (float \hyperlink{classkinect_expirement_1_1_encoder_sensor_class_aece38a4f443111c5f0b415463d751fe4}{input})\hypertarget{classkinect_expirement_1_1_encoder_sensor_class_a2c4b657a7796f3cee5fecd017a1f7a87}{}\label{classkinect_expirement_1_1_encoder_sensor_class_a2c4b657a7796f3cee5fecd017a1f7a87}
+
+\item 
+static void \hyperlink{classkinect_expirement_1_1_encoder_sensor_class_a37c1e134098db6ce4a196a91ff4b735e}{zero} ()
+\begin{DoxyCompactList}\small\item\em Sets the offset at the current value that the encoder is at, causing it to zero. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static float \hyperlink{classkinect_expirement_1_1_encoder_sensor_class_a70bb049741404bcfcce7e78a43739e33}{kinect\+\_\+offset} = 0
+\begin{DoxyCompactList}\small\item\em The offset that will be subtracted from the kinect values. \end{DoxyCompactList}\item 
+static List$<$ List$<$ double $>$ $>$ \hyperlink{classkinect_expirement_1_1_encoder_sensor_class_a8f77045a1820ffa39d9d162a404938ff}{input\+\_\+values} = new List$<$List$<$double$>$$>$()
+\begin{DoxyCompactList}\small\item\em The list of lists of doubles that will hold all the unfiltered values read in by the encoder. \end{DoxyCompactList}\item 
+static List$<$ double $>$ \hyperlink{classkinect_expirement_1_1_encoder_sensor_class_a19b9e4e6fe72872dcab2c82a91470c3a}{input\+\_\+filtered\+\_\+values} = new List$<$double$>$()
+\begin{DoxyCompactList}\small\item\em The list of doubles that will hold all of the filtered values read in by the encoder. \end{DoxyCompactList}\item 
+static \hyperlink{classkinect_expirement_1_1_arduino_control}{Arduino\+Control} \hyperlink{classkinect_expirement_1_1_encoder_sensor_class_a5581b60b2dc6c9311ae5318772aa92f1}{arduino} = new \hyperlink{classkinect_expirement_1_1_arduino_control}{Arduino\+Control}()
+\begin{DoxyCompactList}\small\item\em An instance of the {\ttfamily \hyperlink{classkinect_expirement_1_1_arduino_control}{Arduino\+Control}} class that represents the Arduino that is reading in values from the encoder. \end{DoxyCompactList}\item 
+static \hyperlink{classkinect_expirement_1_1_file_processing}{File\+Processing} \hyperlink{classkinect_expirement_1_1_encoder_sensor_class_aece38a4f443111c5f0b415463d751fe4}{input}
+\begin{DoxyCompactList}\small\item\em An instance of the {\ttfamily \hyperlink{classkinect_expirement_1_1_file_processing}{File\+Processing}} class to write all the filtered encoder values to a text file. \end{DoxyCompactList}\item 
+static \hyperlink{classkinect_expirement_1_1_file_processing}{File\+Processing} \hyperlink{classkinect_expirement_1_1_encoder_sensor_class_a37bd8f02067e70fcb1ae1c2a97e86aed}{input\+\_\+no\+\_\+filter}
+\begin{DoxyCompactList}\small\item\em An instance of the {\ttfamily \hyperlink{classkinect_expirement_1_1_file_processing}{File\+Processing}} class to write all the unfiltered encoder values to a text file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Handles all of the functions for dealing with values from the encoder. 
+
+
+
+\subsection{Member Function Documentation}
+\index{kinect\+Expirement\+::\+Encoder\+Sensor\+Class@{kinect\+Expirement\+::\+Encoder\+Sensor\+Class}!zero@{zero}}
+\index{zero@{zero}!kinect\+Expirement\+::\+Encoder\+Sensor\+Class@{kinect\+Expirement\+::\+Encoder\+Sensor\+Class}}
+\subsubsection[{\texorpdfstring{zero()}{zero()}}]{\setlength{\rightskip}{0pt plus 5cm}static void kinect\+Expirement.\+Encoder\+Sensor\+Class.\+zero (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classkinect_expirement_1_1_encoder_sensor_class_a37c1e134098db6ce4a196a91ff4b735e}{}\label{classkinect_expirement_1_1_encoder_sensor_class_a37c1e134098db6ce4a196a91ff4b735e}
+
+
+Sets the offset at the current value that the encoder is at, causing it to zero. 
+
+
+
+\subsection{Member Data Documentation}
+\index{kinect\+Expirement\+::\+Encoder\+Sensor\+Class@{kinect\+Expirement\+::\+Encoder\+Sensor\+Class}!arduino@{arduino}}
+\index{arduino@{arduino}!kinect\+Expirement\+::\+Encoder\+Sensor\+Class@{kinect\+Expirement\+::\+Encoder\+Sensor\+Class}}
+\subsubsection[{\texorpdfstring{arduino}{arduino}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Arduino\+Control} kinect\+Expirement.\+Encoder\+Sensor\+Class.\+arduino = new {\bf Arduino\+Control}()\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classkinect_expirement_1_1_encoder_sensor_class_a5581b60b2dc6c9311ae5318772aa92f1}{}\label{classkinect_expirement_1_1_encoder_sensor_class_a5581b60b2dc6c9311ae5318772aa92f1}
+
+
+An instance of the {\ttfamily \hyperlink{classkinect_expirement_1_1_arduino_control}{Arduino\+Control}} class that represents the Arduino that is reading in values from the encoder. 
+
+\index{kinect\+Expirement\+::\+Encoder\+Sensor\+Class@{kinect\+Expirement\+::\+Encoder\+Sensor\+Class}!input@{input}}
+\index{input@{input}!kinect\+Expirement\+::\+Encoder\+Sensor\+Class@{kinect\+Expirement\+::\+Encoder\+Sensor\+Class}}
+\subsubsection[{\texorpdfstring{input}{input}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf File\+Processing} kinect\+Expirement.\+Encoder\+Sensor\+Class.\+input\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classkinect_expirement_1_1_encoder_sensor_class_aece38a4f443111c5f0b415463d751fe4}{}\label{classkinect_expirement_1_1_encoder_sensor_class_aece38a4f443111c5f0b415463d751fe4}
+
+
+An instance of the {\ttfamily \hyperlink{classkinect_expirement_1_1_file_processing}{File\+Processing}} class to write all the filtered encoder values to a text file. 
+
+\index{kinect\+Expirement\+::\+Encoder\+Sensor\+Class@{kinect\+Expirement\+::\+Encoder\+Sensor\+Class}!input\+\_\+filtered\+\_\+values@{input\+\_\+filtered\+\_\+values}}
+\index{input\+\_\+filtered\+\_\+values@{input\+\_\+filtered\+\_\+values}!kinect\+Expirement\+::\+Encoder\+Sensor\+Class@{kinect\+Expirement\+::\+Encoder\+Sensor\+Class}}
+\subsubsection[{\texorpdfstring{input\+\_\+filtered\+\_\+values}{input_filtered_values}}]{\setlength{\rightskip}{0pt plus 5cm}List$<$double$>$ kinect\+Expirement.\+Encoder\+Sensor\+Class.\+input\+\_\+filtered\+\_\+values = new List$<$double$>$()\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classkinect_expirement_1_1_encoder_sensor_class_a19b9e4e6fe72872dcab2c82a91470c3a}{}\label{classkinect_expirement_1_1_encoder_sensor_class_a19b9e4e6fe72872dcab2c82a91470c3a}
+
+
+The list of doubles that will hold all of the filtered values read in by the encoder. 
+
+\index{kinect\+Expirement\+::\+Encoder\+Sensor\+Class@{kinect\+Expirement\+::\+Encoder\+Sensor\+Class}!input\+\_\+no\+\_\+filter@{input\+\_\+no\+\_\+filter}}
+\index{input\+\_\+no\+\_\+filter@{input\+\_\+no\+\_\+filter}!kinect\+Expirement\+::\+Encoder\+Sensor\+Class@{kinect\+Expirement\+::\+Encoder\+Sensor\+Class}}
+\subsubsection[{\texorpdfstring{input\+\_\+no\+\_\+filter}{input_no_filter}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf File\+Processing} kinect\+Expirement.\+Encoder\+Sensor\+Class.\+input\+\_\+no\+\_\+filter\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classkinect_expirement_1_1_encoder_sensor_class_a37bd8f02067e70fcb1ae1c2a97e86aed}{}\label{classkinect_expirement_1_1_encoder_sensor_class_a37bd8f02067e70fcb1ae1c2a97e86aed}
+
+
+An instance of the {\ttfamily \hyperlink{classkinect_expirement_1_1_file_processing}{File\+Processing}} class to write all the unfiltered encoder values to a text file. 
+
+summary$>$ Adds the parameter to the unfiltered list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The floating point value that will be added to the list. $<$/params$>$ \\
+\hline
+\end{DoxyParams}
+\index{kinect\+Expirement\+::\+Encoder\+Sensor\+Class@{kinect\+Expirement\+::\+Encoder\+Sensor\+Class}!input\+\_\+values@{input\+\_\+values}}
+\index{input\+\_\+values@{input\+\_\+values}!kinect\+Expirement\+::\+Encoder\+Sensor\+Class@{kinect\+Expirement\+::\+Encoder\+Sensor\+Class}}
+\subsubsection[{\texorpdfstring{input\+\_\+values}{input_values}}]{\setlength{\rightskip}{0pt plus 5cm}List$<$List$<$double$>$ $>$ kinect\+Expirement.\+Encoder\+Sensor\+Class.\+input\+\_\+values = new List$<$List$<$double$>$$>$()\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classkinect_expirement_1_1_encoder_sensor_class_a8f77045a1820ffa39d9d162a404938ff}{}\label{classkinect_expirement_1_1_encoder_sensor_class_a8f77045a1820ffa39d9d162a404938ff}
+
+
+The list of lists of doubles that will hold all the unfiltered values read in by the encoder. 
+
+\index{kinect\+Expirement\+::\+Encoder\+Sensor\+Class@{kinect\+Expirement\+::\+Encoder\+Sensor\+Class}!kinect\+\_\+offset@{kinect\+\_\+offset}}
+\index{kinect\+\_\+offset@{kinect\+\_\+offset}!kinect\+Expirement\+::\+Encoder\+Sensor\+Class@{kinect\+Expirement\+::\+Encoder\+Sensor\+Class}}
+\subsubsection[{\texorpdfstring{kinect\+\_\+offset}{kinect_offset}}]{\setlength{\rightskip}{0pt plus 5cm}float kinect\+Expirement.\+Encoder\+Sensor\+Class.\+kinect\+\_\+offset = 0\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classkinect_expirement_1_1_encoder_sensor_class_a70bb049741404bcfcce7e78a43739e33}{}\label{classkinect_expirement_1_1_encoder_sensor_class_a70bb049741404bcfcce7e78a43739e33}
+
+
+The offset that will be subtracted from the kinect values. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Program.\+cs\end{DoxyCompactItemize}

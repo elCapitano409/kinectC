@@ -1,0 +1,269 @@
+\hypertarget{classkinect_expirement_1_1_kinect_form}{}\section{kinect\+Expirement.\+Kinect\+Form Class Reference}
+\label{classkinect_expirement_1_1_kinect_form}\index{kinect\+Expirement.\+Kinect\+Form@{kinect\+Expirement.\+Kinect\+Form}}
+
+
+Inheriated from Form class, G\+UI for incoder and Kinect handling.  
+
+
+Inheritance diagram for kinect\+Expirement.\+Kinect\+Form\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classkinect_expirement_1_1_kinect_form}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classkinect_expirement_1_1_kinect_form_abbdd0294ee8b3f1bf396ee29c5b6243a}{Kinect\+Form} ()
+\begin{DoxyCompactList}\small\item\em Constructor for the \hyperlink{classkinect_expirement_1_1_kinect_form}{Kinect\+Form} class. \end{DoxyCompactList}\item 
+void \hyperlink{classkinect_expirement_1_1_kinect_form_aebdf926f8e92178f1ee0c6568fb51821}{add\+Chart} (double a)
+\begin{DoxyCompactList}\small\item\em Applies an offset to the value and adds it to the graph. \end{DoxyCompactList}\item 
+int \hyperlink{classkinect_expirement_1_1_kinect_form_aca91adeeaacdde85a2cb3369626744cf}{placement} (double velocity)
+\begin{DoxyCompactList}\small\item\em Calculates the position of the marker on the gradient. \end{DoxyCompactList}\item 
+void \hyperlink{classkinect_expirement_1_1_kinect_form_a76ca898e9b3e124df1276576fbb22227}{draw} (int \hyperlink{classkinect_expirement_1_1_kinect_form_aca91adeeaacdde85a2cb3369626744cf}{placement}, Pen pen)
+\begin{DoxyCompactList}\small\item\em Draws black line on the gradient. \end{DoxyCompactList}\item 
+void \hyperlink{classkinect_expirement_1_1_kinect_form_aa3555a49133e17a9019c174ce96ae4c3}{erase} (int \hyperlink{classkinect_expirement_1_1_kinect_form_aca91adeeaacdde85a2cb3369626744cf}{placement})
+\begin{DoxyCompactList}\small\item\em Erases the black line one the gradient. \end{DoxyCompactList}\item 
+void \hyperlink{classkinect_expirement_1_1_kinect_form_a272a8bf1c0f2ec1d7e9f3260d0e351c8}{add\+Position} (double input)
+\begin{DoxyCompactList}\small\item\em Adds the postion to an array and calculates the velocity. \end{DoxyCompactList}\item 
+void \hyperlink{classkinect_expirement_1_1_kinect_form_a791ef370e5ae37fb90c71341cd4928ba}{set\+Button\+Enabled2} (bool value)
+\begin{DoxyCompactList}\small\item\em Sets the status of the {\ttfamily btn\+Stop} button. \end{DoxyCompactList}\item 
+void \hyperlink{classkinect_expirement_1_1_kinect_form_abfd5c8462b00f745fa77c19fa61d2eed}{set\+Label1} (String input)
+\begin{DoxyCompactList}\small\item\em Sets the text of the {\ttfamily set\+Label1} label. \end{DoxyCompactList}\item 
+void \hyperlink{classkinect_expirement_1_1_kinect_form_ac513e5db69e81ee263a5e6ad4d7029d0}{start\+Timer} ()
+\begin{DoxyCompactList}\small\item\em Starts the timer for the arduino. \end{DoxyCompactList}\item 
+void \hyperlink{classkinect_expirement_1_1_kinect_form_a13a559fc738ff51f58d79991b7de6146}{set\+Label\+File} (string input)
+\begin{DoxyCompactList}\small\item\em Sets the text of the {\ttfamily lbl\+File\+Name} label. \end{DoxyCompactList}\item 
+void \hyperlink{classkinect_expirement_1_1_kinect_form_a58486dea191eaf6b1110e655699a5ccc}{set\+Arduino\+Label} (string input)\hypertarget{classkinect_expirement_1_1_kinect_form_a58486dea191eaf6b1110e655699a5ccc}{}\label{classkinect_expirement_1_1_kinect_form_a58486dea191eaf6b1110e655699a5ccc}
+
+\begin{DoxyCompactList}\small\item\em Sets the text of the {\ttfamily lbl\+Arduino\+Status} label.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classkinect_expirement_1_1_butterworth}{Butterworth} \hyperlink{classkinect_expirement_1_1_kinect_form_abec90e6db4a70d6cccc38f90f800e3ab}{angle\+\_\+butterworth} = new \hyperlink{classkinect_expirement_1_1_butterworth}{Butterworth}(Butterworth.\+A\+N\+G\+LE)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classkinect_expirement_1_1_butterworth}{Butterworth} filter for filtering angle values. \end{DoxyCompactList}\item 
+\hyperlink{classkinect_expirement_1_1_butterworth}{Butterworth} \hyperlink{classkinect_expirement_1_1_kinect_form_a7f1502bd90febb3137d8e4fdf71d52ec}{velocity\+\_\+butterworth} = new \hyperlink{classkinect_expirement_1_1_butterworth}{Butterworth}(\hyperlink{classkinect_expirement_1_1_butterworth_afc717929ffc8d554b7e0263e2b06806a}{Butterworth.\+V\+E\+L\+O\+C\+I\+TY})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classkinect_expirement_1_1_butterworth}{Butterworth} filter for filtering velocity values. \end{DoxyCompactList}\item 
+float \hyperlink{classkinect_expirement_1_1_kinect_form_a97a0dd9256e1093328fafccaca672398}{kinect\+\_\+offset} = 0
+\begin{DoxyCompactList}\small\item\em Floating point value for the offset to take of of value from the Kinect. \end{DoxyCompactList}\item 
+int \hyperlink{classkinect_expirement_1_1_kinect_form_a6334825924ef2914544c0c96c0ad0572}{velocity\+\_\+goal}
+\begin{DoxyCompactList}\small\item\em The desired velocity of the session. \end{DoxyCompactList}\item 
+int \hyperlink{classkinect_expirement_1_1_kinect_form_aedd93118198e798ee966ff768038bac1}{velocity\+\_\+counter}
+\begin{DoxyCompactList}\small\item\em Counter of how many velocity values have been calculated \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{classkinect_expirement_1_1_kinect_form_a906a228a66990023618b6cf919fcee44}{Dispose} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Clean up any resources being used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Inheriated from Form class, G\+UI for incoder and Kinect handling. 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!Kinect\+Form@{Kinect\+Form}}
+\index{Kinect\+Form@{Kinect\+Form}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{Kinect\+Form()}{KinectForm()}}]{\setlength{\rightskip}{0pt plus 5cm}kinect\+Expirement.\+Kinect\+Form.\+Kinect\+Form (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classkinect_expirement_1_1_kinect_form_abbdd0294ee8b3f1bf396ee29c5b6243a}{}\label{classkinect_expirement_1_1_kinect_form_abbdd0294ee8b3f1bf396ee29c5b6243a}
+
+
+Constructor for the \hyperlink{classkinect_expirement_1_1_kinect_form}{Kinect\+Form} class. 
+
+
+
+\subsection{Member Function Documentation}
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!add\+Chart@{add\+Chart}}
+\index{add\+Chart@{add\+Chart}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{add\+Chart(double a)}{addChart(double a)}}]{\setlength{\rightskip}{0pt plus 5cm}void kinect\+Expirement.\+Kinect\+Form.\+add\+Chart (
+\begin{DoxyParamCaption}
+\item[{double}]{a}
+\end{DoxyParamCaption}
+)}\hypertarget{classkinect_expirement_1_1_kinect_form_aebdf926f8e92178f1ee0c6568fb51821}{}\label{classkinect_expirement_1_1_kinect_form_aebdf926f8e92178f1ee0c6568fb51821}
+
+
+Applies an offset to the value and adds it to the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The orignial input value to add to the chart. \\
+\hline
+\end{DoxyParams}
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!add\+Position@{add\+Position}}
+\index{add\+Position@{add\+Position}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{add\+Position(double input)}{addPosition(double input)}}]{\setlength{\rightskip}{0pt plus 5cm}void kinect\+Expirement.\+Kinect\+Form.\+add\+Position (
+\begin{DoxyParamCaption}
+\item[{double}]{input}
+\end{DoxyParamCaption}
+)}\hypertarget{classkinect_expirement_1_1_kinect_form_a272a8bf1c0f2ec1d7e9f3260d0e351c8}{}\label{classkinect_expirement_1_1_kinect_form_a272a8bf1c0f2ec1d7e9f3260d0e351c8}
+
+
+Adds the postion to an array and calculates the velocity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & Value of elbow position. \\
+\hline
+\end{DoxyParams}
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{Dispose(bool disposing)}{Dispose(bool disposing)}}]{\setlength{\rightskip}{0pt plus 5cm}override void kinect\+Expirement.\+Kinect\+Form.\+Dispose (
+\begin{DoxyParamCaption}
+\item[{bool}]{disposing}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classkinect_expirement_1_1_kinect_form_a906a228a66990023618b6cf919fcee44}{}\label{classkinect_expirement_1_1_kinect_form_a906a228a66990023618b6cf919fcee44}
+
+
+Clean up any resources being used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disposing} & true if managed resources should be disposed; otherwise, false.\\
+\hline
+\end{DoxyParams}
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!draw@{draw}}
+\index{draw@{draw}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{draw(int placement, Pen pen)}{draw(int placement, Pen pen)}}]{\setlength{\rightskip}{0pt plus 5cm}void kinect\+Expirement.\+Kinect\+Form.\+draw (
+\begin{DoxyParamCaption}
+\item[{int}]{placement, }
+\item[{Pen}]{pen}
+\end{DoxyParamCaption}
+)}\hypertarget{classkinect_expirement_1_1_kinect_form_a76ca898e9b3e124df1276576fbb22227}{}\label{classkinect_expirement_1_1_kinect_form_a76ca898e9b3e124df1276576fbb22227}
+
+
+Draws black line on the gradient. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em placement} & The pixel postion of the line. \\
+\hline
+{\em pen} & The pen object that will be used to draw the line.  \\
+\hline
+\end{DoxyParams}
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!erase@{erase}}
+\index{erase@{erase}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{erase(int placement)}{erase(int placement)}}]{\setlength{\rightskip}{0pt plus 5cm}void kinect\+Expirement.\+Kinect\+Form.\+erase (
+\begin{DoxyParamCaption}
+\item[{int}]{placement}
+\end{DoxyParamCaption}
+)}\hypertarget{classkinect_expirement_1_1_kinect_form_aa3555a49133e17a9019c174ce96ae4c3}{}\label{classkinect_expirement_1_1_kinect_form_aa3555a49133e17a9019c174ce96ae4c3}
+
+
+Erases the black line one the gradient. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em placement} & The pixel position of the black line. \\
+\hline
+\end{DoxyParams}
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!placement@{placement}}
+\index{placement@{placement}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{placement(double velocity)}{placement(double velocity)}}]{\setlength{\rightskip}{0pt plus 5cm}int kinect\+Expirement.\+Kinect\+Form.\+placement (
+\begin{DoxyParamCaption}
+\item[{double}]{velocity}
+\end{DoxyParamCaption}
+)}\hypertarget{classkinect_expirement_1_1_kinect_form_aca91adeeaacdde85a2cb3369626744cf}{}\label{classkinect_expirement_1_1_kinect_form_aca91adeeaacdde85a2cb3369626744cf}
+
+
+Calculates the position of the marker on the gradient. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em velocity} & The velocity of the elbow movement. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The pixel position of the line. 
+\end{DoxyReturn}
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!set\+Button\+Enabled2@{set\+Button\+Enabled2}}
+\index{set\+Button\+Enabled2@{set\+Button\+Enabled2}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{set\+Button\+Enabled2(bool value)}{setButtonEnabled2(bool value)}}]{\setlength{\rightskip}{0pt plus 5cm}void kinect\+Expirement.\+Kinect\+Form.\+set\+Button\+Enabled2 (
+\begin{DoxyParamCaption}
+\item[{bool}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{classkinect_expirement_1_1_kinect_form_a791ef370e5ae37fb90c71341cd4928ba}{}\label{classkinect_expirement_1_1_kinect_form_a791ef370e5ae37fb90c71341cd4928ba}
+
+
+Sets the status of the {\ttfamily btn\+Stop} button. 
+
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!set\+Label1@{set\+Label1}}
+\index{set\+Label1@{set\+Label1}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{set\+Label1(\+String input)}{setLabel1(String input)}}]{\setlength{\rightskip}{0pt plus 5cm}void kinect\+Expirement.\+Kinect\+Form.\+set\+Label1 (
+\begin{DoxyParamCaption}
+\item[{String}]{input}
+\end{DoxyParamCaption}
+)}\hypertarget{classkinect_expirement_1_1_kinect_form_abfd5c8462b00f745fa77c19fa61d2eed}{}\label{classkinect_expirement_1_1_kinect_form_abfd5c8462b00f745fa77c19fa61d2eed}
+
+
+Sets the text of the {\ttfamily set\+Label1} label. 
+
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!set\+Label\+File@{set\+Label\+File}}
+\index{set\+Label\+File@{set\+Label\+File}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{set\+Label\+File(string input)}{setLabelFile(string input)}}]{\setlength{\rightskip}{0pt plus 5cm}void kinect\+Expirement.\+Kinect\+Form.\+set\+Label\+File (
+\begin{DoxyParamCaption}
+\item[{string}]{input}
+\end{DoxyParamCaption}
+)}\hypertarget{classkinect_expirement_1_1_kinect_form_a13a559fc738ff51f58d79991b7de6146}{}\label{classkinect_expirement_1_1_kinect_form_a13a559fc738ff51f58d79991b7de6146}
+
+
+Sets the text of the {\ttfamily lbl\+File\+Name} label. 
+
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!start\+Timer@{start\+Timer}}
+\index{start\+Timer@{start\+Timer}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{start\+Timer()}{startTimer()}}]{\setlength{\rightskip}{0pt plus 5cm}void kinect\+Expirement.\+Kinect\+Form.\+start\+Timer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classkinect_expirement_1_1_kinect_form_ac513e5db69e81ee263a5e6ad4d7029d0}{}\label{classkinect_expirement_1_1_kinect_form_ac513e5db69e81ee263a5e6ad4d7029d0}
+
+
+Starts the timer for the arduino. 
+
+
+
+\subsection{Member Data Documentation}
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!angle\+\_\+butterworth@{angle\+\_\+butterworth}}
+\index{angle\+\_\+butterworth@{angle\+\_\+butterworth}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{angle\+\_\+butterworth}{angle_butterworth}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Butterworth} kinect\+Expirement.\+Kinect\+Form.\+angle\+\_\+butterworth = new {\bf Butterworth}(Butterworth.\+A\+N\+G\+LE)}\hypertarget{classkinect_expirement_1_1_kinect_form_abec90e6db4a70d6cccc38f90f800e3ab}{}\label{classkinect_expirement_1_1_kinect_form_abec90e6db4a70d6cccc38f90f800e3ab}
+
+
+\hyperlink{classkinect_expirement_1_1_butterworth}{Butterworth} filter for filtering angle values. 
+
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!kinect\+\_\+offset@{kinect\+\_\+offset}}
+\index{kinect\+\_\+offset@{kinect\+\_\+offset}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{kinect\+\_\+offset}{kinect_offset}}]{\setlength{\rightskip}{0pt plus 5cm}float kinect\+Expirement.\+Kinect\+Form.\+kinect\+\_\+offset = 0}\hypertarget{classkinect_expirement_1_1_kinect_form_a97a0dd9256e1093328fafccaca672398}{}\label{classkinect_expirement_1_1_kinect_form_a97a0dd9256e1093328fafccaca672398}
+
+
+Floating point value for the offset to take of of value from the Kinect. 
+
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!velocity\+\_\+butterworth@{velocity\+\_\+butterworth}}
+\index{velocity\+\_\+butterworth@{velocity\+\_\+butterworth}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{velocity\+\_\+butterworth}{velocity_butterworth}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Butterworth} kinect\+Expirement.\+Kinect\+Form.\+velocity\+\_\+butterworth = new {\bf Butterworth}({\bf Butterworth.\+V\+E\+L\+O\+C\+I\+TY})}\hypertarget{classkinect_expirement_1_1_kinect_form_a7f1502bd90febb3137d8e4fdf71d52ec}{}\label{classkinect_expirement_1_1_kinect_form_a7f1502bd90febb3137d8e4fdf71d52ec}
+
+
+\hyperlink{classkinect_expirement_1_1_butterworth}{Butterworth} filter for filtering velocity values. 
+
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!velocity\+\_\+counter@{velocity\+\_\+counter}}
+\index{velocity\+\_\+counter@{velocity\+\_\+counter}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{velocity\+\_\+counter}{velocity_counter}}]{\setlength{\rightskip}{0pt plus 5cm}int kinect\+Expirement.\+Kinect\+Form.\+velocity\+\_\+counter}\hypertarget{classkinect_expirement_1_1_kinect_form_aedd93118198e798ee966ff768038bac1}{}\label{classkinect_expirement_1_1_kinect_form_aedd93118198e798ee966ff768038bac1}
+
+
+Counter of how many velocity values have been calculated 
+
+\index{kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}!velocity\+\_\+goal@{velocity\+\_\+goal}}
+\index{velocity\+\_\+goal@{velocity\+\_\+goal}!kinect\+Expirement\+::\+Kinect\+Form@{kinect\+Expirement\+::\+Kinect\+Form}}
+\subsubsection[{\texorpdfstring{velocity\+\_\+goal}{velocity_goal}}]{\setlength{\rightskip}{0pt plus 5cm}int kinect\+Expirement.\+Kinect\+Form.\+velocity\+\_\+goal}\hypertarget{classkinect_expirement_1_1_kinect_form_a6334825924ef2914544c0c96c0ad0572}{}\label{classkinect_expirement_1_1_kinect_form_a6334825924ef2914544c0c96c0ad0572}
+
+
+The desired velocity of the session. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Form1.\+cs\item 
+Form1.\+Designer.\+cs\end{DoxyCompactItemize}

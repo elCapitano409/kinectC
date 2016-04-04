@@ -29,7 +29,7 @@ namespace kinectExpirement
         private List<List<double>> collection = new List<List<double>>();
         private List<List<double>> unfiltered = new List<List<double>>();
         private List<double> encoder_filtered = new List<double>();
-        private int listDoubleCounter = 0, listListCounter = 0;
+
         private const float pen_width = 4;
 		/// <summary> Floating point value for the offset to take of of value from the Kinect. </summary>
         public float kinect_offset = 0;
@@ -48,8 +48,8 @@ namespace kinectExpirement
             btnStart.Enabled = false;
             grahics = velocityScale.CreateGraphics();
             rdioVelocity1.Checked = true;
-            prev[0] = 0;
-            prev[1] = 0;
+            prev.Add(0);
+            prev.Add(0);    
         }
 		
 		/// <summary> Applies an offset to the value and adds it to the graph. </summary>
@@ -74,7 +74,6 @@ namespace kinectExpirement
         private void btnStart_Click(object sender, EventArgs e)
         {
             KinectSensorClass.RunSensor();
-            KinectSensorClass.lists.Add(new List<double>());
             btnStart.Enabled = false;
             btnStop.Enabled = true;
             btnFileName.Enabled = false;
@@ -92,9 +91,10 @@ namespace kinectExpirement
         private void btnStop_Click(object sender, EventArgs e)
         {
             KinectSensorClass.sensor.Close();
-            KinectSensorClass.input.Write(KinectSensorClass.lists);
-            angle_butterworth.Filter((List<float>)EncoderSensorClass.input_filtered_values, prev);
-            EncoderSensorClass.input.Write(EncoderSensorClass.input_values);
+            KinectSensorClass.kinect_no_filter.Write(KinectSensorClass.lists);
+            KinectSensorClass.input.Write(angle_butterworth.Filter(KinectSensorClass.lists, prev));
+            EncoderSensorClass.input.Write(angle_butterworth.Filter(EncoderSensorClass.input_filtered_values, prev));
+            EncoderSensorClass.input_no_filter.Write(EncoderSensorClass.input_values);
             KinectSensorClass.first = true;
             btnStart.Enabled = true;
             btnStop.Enabled = false;
