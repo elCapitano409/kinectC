@@ -19,6 +19,9 @@ namespace kinectExpirement
         private Pen pen_black = new Pen(Color.Black, pen_width);
         private Color red = ColorTranslator.FromHtml("#ED1C24");
         private Color yellow = ColorTranslator.FromHtml("#FFF200");
+        /// <summary> Determines if the values read in should be written to a file. </summary>
+        public bool write = false;
+        private bool open = false;
         private Color green = ColorTranslator.FromHtml("#20B14C");
 		/// <summary> Butterworth filter for filtering angle values. </summary>
         public Butterworth angle_butterworth = new Butterworth(Butterworth.ANGLE);
@@ -73,17 +76,20 @@ namespace kinectExpirement
         /// <summary> An event handler that checks if the <c>btnStart</c> button had been clicked. Starts recording from the kinect sensor. </summary>
         private void btnStart_Click(object sender, EventArgs e)
         {
-            KinectSensorClass.RunSensor();
-            btnStart.Enabled = false;
-            btnStop.Enabled = true;
-            btnFileName.Enabled = false;
+            if (open)
+            {
+                btnStart.Enabled = false;
+                btnStop.Enabled = true;
+                btnFileName.Enabled = false;
+                write = true;
 
-            if (rdioVelocity1.Checked)
-                velocity_goal = 5;
-            else if (rdioVelocity2.Checked)
-                velocity_goal = 10;
-            else
-                velocity_goal = 15;
+                if (rdioVelocity1.Checked)
+                    velocity_goal = 5;
+                else if (rdioVelocity2.Checked)
+                    velocity_goal = 10;
+                else
+                    velocity_goal = 15;
+            }
 
         }
 
@@ -92,14 +98,15 @@ namespace kinectExpirement
         {
             KinectSensorClass.sensor.Close();
             KinectSensorClass.kinect_no_filter.Write(KinectSensorClass.lists);
-            KinectSensorClass.input.Write(angle_butterworth.Filter(KinectSensorClass.lists, prev));
-            EncoderSensorClass.input.Write(angle_butterworth.Filter(EncoderSensorClass.input_filtered_values, prev));
+            //KinectSensorClass.input.Write(angle_butterworth.Filter(KinectSensorClass.lists, prev));
+            //EncoderSensorClass.input.Write(angle_butterworth.Filter(EncoderSensorClass.input_filtered_values, prev));
             EncoderSensorClass.input_no_filter.Write(EncoderSensorClass.input_values);
             KinectSensorClass.first = true;
             btnStart.Enabled = true;
             btnStop.Enabled = false;
             lblStatus.Text = "Sensor is off";
             timer1.Stop();
+            write = false;
         }
 
         /// <summary> An event handler that checks if <c>btnFileName</c> has been clicked. Sets the file name to the user input. </summary>
@@ -281,6 +288,13 @@ namespace kinectExpirement
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnOpen_Click(object sender, EventArgs e)
+        {
+            btnOpen.Enabled = false;
+            KinectSensorClass.RunSensor();
+            open = true;
         }
 
         

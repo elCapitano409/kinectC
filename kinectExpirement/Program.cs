@@ -132,7 +132,8 @@ namespace kinectExpirement
                                 velocityCounter++;
                                 velocityAngle.Add(angle);
                             }
-                            lists.Add(angle);
+                            if(form.write)
+                                lists.Add(angle);
 
                         }
                         else
@@ -192,7 +193,7 @@ namespace kinectExpirement
         private static int list_counter = 0;
         private static bool first = true;
 		/// <summary>The list of lists of doubles that will hold all the unfiltered values read in by the encoder. </summary>
-        public static List<List<double>> input_values = new List<List<double>>();
+        public static List<double> input_values = new List<double>();
 		/// <summary> The list of doubles that will hold all of the filtered values read in by the encoder. </summary>
         public static List<double> input_filtered_values = new List<double>();
 		/// <summary> An instance of the <c>ArduinoControl</c> class that represents the Arduino that is reading in values from the encoder. </summary>
@@ -206,29 +207,12 @@ namespace kinectExpirement
 		/// <param name = "input"> The floating point value that will be added to the list. </param>
         public static void add(float input)
         {
-            if (first)
-            {
-                input_values.Add(new List<double>());
-                first = false;
-            }
-            temp_value = input;
             float value = input - offset;
+            temp_value = value;
             kinect_offset = value;
-            
-            if (counter <= 127)
-            {
-                input_values[list_counter].Add(value);
-                counter++;
-            }
-            else
-            {
-                counter = 0;
-                list_counter++;
-                input_values.Add(new List<double>());
-                input_values[list_counter].Add(value);
-            }
             KinectSensorClass.form.setArduinoLabel(value + "");
-            input_filtered_values.Add(value);
+            if(KinectSensorClass.form.write)
+                input_values.Add(value);
         }
 		
 		/// <summary> Sets the offset at the current value that the encoder is at, causing it to zero. </summary>
