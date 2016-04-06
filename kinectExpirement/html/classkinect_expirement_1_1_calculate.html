@@ -8,14 +8,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-  $(window).load(resizeHeight);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -74,21 +66,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('classkinect_expirement_1_1_calculate.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -103,6 +80,11 @@ $(document).ready(function(){initNavTree('classkinect_expirement_1_1_calculate.h
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacekinect_expirement.html">kinectExpirement</a></li><li class="navelem"><a class="el" href="classkinect_expirement_1_1_calculate.html">Calculate</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
@@ -127,9 +109,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5e407f5e00cb311cea31f7172fa4a5d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the dot product of two vectors.  <a href="#a5e407f5e00cb311cea31f7172fa4a5d0">More...</a><br /></td></tr>
 <tr class="separator:a5e407f5e00cb311cea31f7172fa4a5d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02fbfb617abfb0e06c8e92cb25f9f9e8"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkinect_expirement_1_1_calculate.html#a02fbfb617abfb0e06c8e92cb25f9f9e8">ToDegree</a> (double value)</td></tr>
+<tr class="memdesc:a02fbfb617abfb0e06c8e92cb25f9f9e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a value from radians to degrees.  <a href="#a02fbfb617abfb0e06c8e92cb25f9f9e8">More...</a><br /></td></tr>
 <tr class="separator:a02fbfb617abfb0e06c8e92cb25f9f9e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91876175c733dc14e51ac1eb5c255142"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91876175c733dc14e51ac1eb5c255142"></a>
-static double&#160;</td><td class="memItemRight" valign="bottom"><b>FindVelocity</b> (double inital_angle, double final_angle)</td></tr>
+<tr class="memitem:a91876175c733dc14e51ac1eb5c255142"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkinect_expirement_1_1_calculate.html#a91876175c733dc14e51ac1eb5c255142">FindVelocity</a> (double inital_angle, double final_angle)</td></tr>
+<tr class="memdesc:a91876175c733dc14e51ac1eb5c255142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the velocity of angle movement, assuming that the frequency is 30Hz.  <a href="#a91876175c733dc14e51ac1eb5c255142">More...</a><br /></td></tr>
 <tr class="separator:a91876175c733dc14e51ac1eb5c255142"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -212,9 +195,58 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><b>FindVelocity
 </div><div class="memdoc">
 
 <p>Calculates the dot product of two vectors. </p>
-<p>&lt;params name="vector1"&gt; The first three dimensional vector. &lt;/params&gt; &lt;params name="vector2"&gt; The second three dimensional vector &lt;/params&gt; </p><dl class="section return"><dt>Returns</dt><dd>The dot product of the two vectors. </dd></dl>
-<p>summary&gt;Converts a value from radians to degrees.</p>
-<p>params name = "value"&gt;The value in radians&lt;/params&gt; returns&gt;The value in degrees</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vector1</td><td>The first three dimensional vector. </td></tr>
+    <tr><td class="paramname">vector2</td><td>The second three dimensional vector </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The dot product of the two vectors. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a91876175c733dc14e51ac1eb5c255142"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double kinectExpirement.Calculate.FindVelocity </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>inital_angle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>final_angle</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates the velocity of angle movement, assuming that the frequency is 30Hz. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inital_angle</td><td>The intial angle of the elbow. </td></tr>
+    <tr><td class="paramname">final_angle</td><td>The final angle of the elbow. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The instantanous velcity of the elbow. </dd></dl>
 
 </div>
 </div>
@@ -239,8 +271,15 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><b>FindVelocity
   </tr>
 </table>
 </div><div class="memdoc">
-<p>summary&gt;Calculates the velocity of angle movement, assuming that the frequency is 30Hz.</p>
-<p>params name = "inital_angle"&gt;The intial angle of the elbow.&lt;/params&gt; params name = "final_angle"&gt;The final angle of the elbow.&lt;/params&gt; returns&gt;The instantanous velcity of the elbow</p>
+
+<p>Converts a value from radians to degrees. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The value in radians </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value in degrees </dd></dl>
 
 </div>
 </div>
@@ -269,27 +308,23 @@ static double&#160;</td><td class="memItemRight" valign="bottom"><b>FindVelocity
 <p>Calculates the length of the vector. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vector</td><td>The vector that the magitudes will be taken from. &lt;/params&gt; <dl class="section return"><dt>Returns</dt><dd>The length of the vector. </dd></dl>
-</td></tr>
+    <tr><td class="paramname">vector</td><td>The vector that the magitudes will be taken from. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the vector. </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Program.cs</li>
+<li>C:/Users/inzuk/Documents/kinectc/kinectExpirement/Program.cs</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="namespacekinect_expirement.html">kinectExpirement</a></li><li class="navelem"><a class="el" href="classkinect_expirement_1_1_calculate.html">Calculate</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
 </body>
 </html>

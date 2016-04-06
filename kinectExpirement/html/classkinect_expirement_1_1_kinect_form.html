@@ -8,14 +8,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-  $(window).load(resizeHeight);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -74,21 +66,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('classkinect_expirement_1_1_kinect_form.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -103,6 +80,11 @@ $(document).ready(function(){initNavTree('classkinect_expirement_1_1_kinect_form
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacekinect_expirement.html">kinectExpirement</a></li><li class="navelem"><a class="el" href="classkinect_expirement_1_1_kinect_form.html">KinectForm</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -164,11 +146,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:abec90e6db4a70d6cccc38f90f800e3ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkinect_expirement_1_1_butterworth.html">Butterworth</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkinect_expirement_1_1_kinect_form.html#abec90e6db4a70d6cccc38f90f800e3ab">angle_butterworth</a> = new <a class="el" href="classkinect_expirement_1_1_butterworth.html">Butterworth</a>(Butterworth.ANGLE)</td></tr>
-<tr class="memdesc:abec90e6db4a70d6cccc38f90f800e3ab"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classkinect_expirement_1_1_butterworth.html" title="A butterworth filter for the values taken from the Kinect and encoder.">Butterworth</a> filter for filtering angle values.  <a href="#abec90e6db4a70d6cccc38f90f800e3ab">More...</a><br /></td></tr>
+<tr class="memitem:abec90e6db4a70d6cccc38f90f800e3ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkinect_expirement_1_1_butterworth.html">Butterworth</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkinect_expirement_1_1_kinect_form.html#abec90e6db4a70d6cccc38f90f800e3ab">angle_butterworth</a> = new <a class="el" href="classkinect_expirement_1_1_butterworth.html">Butterworth</a>(<a class="el" href="classkinect_expirement_1_1_butterworth.html#ac991123445c654cb0da7d7841e313b2c">Butterworth.ANGLE</a>)</td></tr>
+<tr class="memdesc:abec90e6db4a70d6cccc38f90f800e3ab"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classkinect_expirement_1_1_butterworth.html" title="A butterworth filter for the values taken from the Kinect and encoder. ">Butterworth</a> filter for filtering angle values.  <a href="#abec90e6db4a70d6cccc38f90f800e3ab">More...</a><br /></td></tr>
 <tr class="separator:abec90e6db4a70d6cccc38f90f800e3ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f1502bd90febb3137d8e4fdf71d52ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkinect_expirement_1_1_butterworth.html">Butterworth</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkinect_expirement_1_1_kinect_form.html#a7f1502bd90febb3137d8e4fdf71d52ec">velocity_butterworth</a> = new <a class="el" href="classkinect_expirement_1_1_butterworth.html">Butterworth</a>(<a class="el" href="classkinect_expirement_1_1_butterworth.html#afc717929ffc8d554b7e0263e2b06806a">Butterworth.VELOCITY</a>)</td></tr>
-<tr class="memdesc:a7f1502bd90febb3137d8e4fdf71d52ec"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classkinect_expirement_1_1_butterworth.html" title="A butterworth filter for the values taken from the Kinect and encoder.">Butterworth</a> filter for filtering velocity values.  <a href="#a7f1502bd90febb3137d8e4fdf71d52ec">More...</a><br /></td></tr>
+<tr class="memdesc:a7f1502bd90febb3137d8e4fdf71d52ec"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classkinect_expirement_1_1_butterworth.html" title="A butterworth filter for the values taken from the Kinect and encoder. ">Butterworth</a> filter for filtering velocity values.  <a href="#a7f1502bd90febb3137d8e4fdf71d52ec">More...</a><br /></td></tr>
 <tr class="separator:a7f1502bd90febb3137d8e4fdf71d52ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97a0dd9256e1093328fafccaca672398"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkinect_expirement_1_1_kinect_form.html#a97a0dd9256e1093328fafccaca672398">kinect_offset</a> = 0</td></tr>
 <tr class="memdesc:a97a0dd9256e1093328fafccaca672398"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floating point value for the offset to take of of value from the Kinect.  <a href="#a97a0dd9256e1093328fafccaca672398">More...</a><br /></td></tr>
@@ -448,12 +430,12 @@ Protected Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classkinect_expirement_1_1_butterworth.html">Butterworth</a> kinectExpirement.KinectForm.angle_butterworth = new <a class="el" href="classkinect_expirement_1_1_butterworth.html">Butterworth</a>(Butterworth.ANGLE)</td>
+          <td class="memname"><a class="el" href="classkinect_expirement_1_1_butterworth.html">Butterworth</a> kinectExpirement.KinectForm.angle_butterworth = new <a class="el" href="classkinect_expirement_1_1_butterworth.html">Butterworth</a>(<a class="el" href="classkinect_expirement_1_1_butterworth.html#ac991123445c654cb0da7d7841e313b2c">Butterworth.ANGLE</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classkinect_expirement_1_1_butterworth.html" title="A butterworth filter for the values taken from the Kinect and encoder.">Butterworth</a> filter for filtering angle values. </p>
+<p><a class="el" href="classkinect_expirement_1_1_butterworth.html" title="A butterworth filter for the values taken from the Kinect and encoder. ">Butterworth</a> filter for filtering angle values. </p>
 
 </div>
 </div>
@@ -481,7 +463,7 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classkinect_expirement_1_1_butterworth.html" title="A butterworth filter for the values taken from the Kinect and encoder.">Butterworth</a> filter for filtering velocity values. </p>
+<p><a class="el" href="classkinect_expirement_1_1_butterworth.html" title="A butterworth filter for the values taken from the Kinect and encoder. ">Butterworth</a> filter for filtering velocity values. </p>
 
 </div>
 </div>
@@ -514,19 +496,15 @@ Protected Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Form1.cs</li>
-<li>Form1.Designer.cs</li>
+<li>C:/Users/inzuk/Documents/kinectc/kinectExpirement/Form1.cs</li>
+<li>C:/Users/inzuk/Documents/kinectc/kinectExpirement/Form1.Designer.cs</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="namespacekinect_expirement.html">kinectExpirement</a></li><li class="navelem"><a class="el" href="classkinect_expirement_1_1_kinect_form.html">KinectForm</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
 </body>
 </html>

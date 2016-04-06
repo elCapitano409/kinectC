@@ -2,29 +2,27 @@
 \label{classkinect_expirement_1_1_butterworth}\index{kinect\+Expirement.\+Butterworth@{kinect\+Expirement.\+Butterworth}}
 
 
-A butterworth filter for the values taken from the Kinect and encoder. 
+A butterworth filter for the values taken from the Kinect and encoder.  
 
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classkinect_expirement_1_1_butterworth_a37322f18a1f8f59271df8aac36e79f26}{Butterworth} (bool input)
-\item 
-List$<$ double $>$ {\bfseries Filter} (List$<$ double $>$ x, List$<$ double $>$ prev)\hypertarget{classkinect_expirement_1_1_butterworth_a0e51ad9aa7218b63b901cfd4e71ea75b}{}\label{classkinect_expirement_1_1_butterworth_a0e51ad9aa7218b63b901cfd4e71ea75b}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Constructor for the butterworth class \end{DoxyCompactList}\item 
+List$<$ double $>$ \hyperlink{classkinect_expirement_1_1_butterworth_a0e51ad9aa7218b63b901cfd4e71ea75b}{Filter} (List$<$ double $>$ x, List$<$ double $>$ prev)
+\begin{DoxyCompactList}\small\item\em Filters the list of values. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 const bool \hyperlink{classkinect_expirement_1_1_butterworth_afc717929ffc8d554b7e0263e2b06806a}{V\+E\+L\+O\+C\+I\+TY} = true
-\begin{DoxyCompactList}\small\item\em Constant boolean for the constructor to set the list to values for filtering velcity.\end{DoxyCompactList}\item 
-const bool {\bfseries A\+N\+G\+LE} = false\hypertarget{classkinect_expirement_1_1_butterworth_ac991123445c654cb0da7d7841e313b2c}{}\label{classkinect_expirement_1_1_butterworth_ac991123445c654cb0da7d7841e313b2c}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Constant boolean for the constructor to set the list to values for filtering velcity. \end{DoxyCompactList}\item 
+const bool \hyperlink{classkinect_expirement_1_1_butterworth_ac991123445c654cb0da7d7841e313b2c}{A\+N\+G\+LE} = false
+\begin{DoxyCompactList}\small\item\em Constant boolean for the constructor to set the list to values for filtering velcity. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-A butterworth filter for the values taken from the Kinect and encoder.
+A butterworth filter for the values taken from the Kinect and encoder. 
 
 
 
@@ -36,20 +34,54 @@ A butterworth filter for the values taken from the Kinect and encoder.
 \item[{bool}]{input}
 \end{DoxyParamCaption}
 )}\hypertarget{classkinect_expirement_1_1_butterworth_a37322f18a1f8f59271df8aac36e79f26}{}\label{classkinect_expirement_1_1_butterworth_a37322f18a1f8f59271df8aac36e79f26}
-summary$>$Filters the list of values.
 
-params name = \char`\"{}x\char`\"{}$>$The list of values to be filtered.$<$/params$>$ params name = \char`\"{}prev\char`\"{}$>$The list of previous values before {\ttfamily x} was being recorded.$<$/params$>$ returns$>$A list of filtered values.
+
+Constructor for the butterworth class 
+
+
+
+\subsection{Member Function Documentation}
+\index{kinect\+Expirement\+::\+Butterworth@{kinect\+Expirement\+::\+Butterworth}!Filter@{Filter}}
+\index{Filter@{Filter}!kinect\+Expirement\+::\+Butterworth@{kinect\+Expirement\+::\+Butterworth}}
+\subsubsection[{\texorpdfstring{Filter(\+List$<$ double $>$ x, List$<$ double $>$ prev)}{Filter(List< double > x, List< double > prev)}}]{\setlength{\rightskip}{0pt plus 5cm}List$<$double$>$ kinect\+Expirement.\+Butterworth.\+Filter (
+\begin{DoxyParamCaption}
+\item[{List$<$ double $>$}]{x, }
+\item[{List$<$ double $>$}]{prev}
+\end{DoxyParamCaption}
+)}\hypertarget{classkinect_expirement_1_1_butterworth_a0e51ad9aa7218b63b901cfd4e71ea75b}{}\label{classkinect_expirement_1_1_butterworth_a0e51ad9aa7218b63b901cfd4e71ea75b}
+
+
+Filters the list of values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The list of values to be filtered. \\
+\hline
+{\em prev} & The list of previous values before {\ttfamily x} was being recorded. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A list of filtered values. 
+\end{DoxyReturn}
+
 
 \subsection{Member Data Documentation}
+\index{kinect\+Expirement\+::\+Butterworth@{kinect\+Expirement\+::\+Butterworth}!A\+N\+G\+LE@{A\+N\+G\+LE}}
+\index{A\+N\+G\+LE@{A\+N\+G\+LE}!kinect\+Expirement\+::\+Butterworth@{kinect\+Expirement\+::\+Butterworth}}
+\subsubsection[{\texorpdfstring{A\+N\+G\+LE}{ANGLE}}]{\setlength{\rightskip}{0pt plus 5cm}const bool kinect\+Expirement.\+Butterworth.\+A\+N\+G\+LE = false}\hypertarget{classkinect_expirement_1_1_butterworth_ac991123445c654cb0da7d7841e313b2c}{}\label{classkinect_expirement_1_1_butterworth_ac991123445c654cb0da7d7841e313b2c}
+
+
+Constant boolean for the constructor to set the list to values for filtering velcity. 
+
 \index{kinect\+Expirement\+::\+Butterworth@{kinect\+Expirement\+::\+Butterworth}!V\+E\+L\+O\+C\+I\+TY@{V\+E\+L\+O\+C\+I\+TY}}
 \index{V\+E\+L\+O\+C\+I\+TY@{V\+E\+L\+O\+C\+I\+TY}!kinect\+Expirement\+::\+Butterworth@{kinect\+Expirement\+::\+Butterworth}}
 \subsubsection[{\texorpdfstring{V\+E\+L\+O\+C\+I\+TY}{VELOCITY}}]{\setlength{\rightskip}{0pt plus 5cm}const bool kinect\+Expirement.\+Butterworth.\+V\+E\+L\+O\+C\+I\+TY = true}\hypertarget{classkinect_expirement_1_1_butterworth_afc717929ffc8d554b7e0263e2b06806a}{}\label{classkinect_expirement_1_1_butterworth_afc717929ffc8d554b7e0263e2b06806a}
 
 
-Constant boolean for the constructor to set the list to values for filtering velcity.
+Constant boolean for the constructor to set the list to values for filtering velcity. 
 
-summary$>$Constant boolean for the constructor to set the list to values for filtering velcity.
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Program.\+cs\end{DoxyCompactItemize}
+C\+:/\+Users/inzuk/\+Documents/kinectc/kinect\+Expirement/Program.\+cs\end{DoxyCompactItemize}

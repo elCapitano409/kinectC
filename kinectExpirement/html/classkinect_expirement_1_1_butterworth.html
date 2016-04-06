@@ -8,14 +8,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-  $(window).load(resizeHeight);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -74,21 +66,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('classkinect_expirement_1_1_butterworth.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -103,6 +80,11 @@ $(document).ready(function(){initNavTree('classkinect_expirement_1_1_butterworth
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacekinect_expirement.html">kinectExpirement</a></li><li class="navelem"><a class="el" href="classkinect_expirement_1_1_butterworth.html">Butterworth</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -113,28 +95,29 @@ $(document).ready(function(){initNavTree('classkinect_expirement_1_1_butterworth
 </div><!--header-->
 <div class="contents">
 
-<p>A butterworth filter for the values taken from the Kinect and encoder. 
+<p>A butterworth filter for the values taken from the Kinect and encoder.  
  <a href="classkinect_expirement_1_1_butterworth.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a37322f18a1f8f59271df8aac36e79f26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkinect_expirement_1_1_butterworth.html#a37322f18a1f8f59271df8aac36e79f26">Butterworth</a> (bool input)</td></tr>
+<tr class="memdesc:a37322f18a1f8f59271df8aac36e79f26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the butterworth class  <a href="#a37322f18a1f8f59271df8aac36e79f26">More...</a><br /></td></tr>
 <tr class="separator:a37322f18a1f8f59271df8aac36e79f26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e51ad9aa7218b63b901cfd4e71ea75b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e51ad9aa7218b63b901cfd4e71ea75b"></a>
-List&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Filter</b> (List&lt; double &gt; x, List&lt; double &gt; prev)</td></tr>
+<tr class="memitem:a0e51ad9aa7218b63b901cfd4e71ea75b"><td class="memItemLeft" align="right" valign="top">List&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkinect_expirement_1_1_butterworth.html#a0e51ad9aa7218b63b901cfd4e71ea75b">Filter</a> (List&lt; double &gt; x, List&lt; double &gt; prev)</td></tr>
+<tr class="memdesc:a0e51ad9aa7218b63b901cfd4e71ea75b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filters the list of values.  <a href="#a0e51ad9aa7218b63b901cfd4e71ea75b">More...</a><br /></td></tr>
 <tr class="separator:a0e51ad9aa7218b63b901cfd4e71ea75b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:afc717929ffc8d554b7e0263e2b06806a"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkinect_expirement_1_1_butterworth.html#afc717929ffc8d554b7e0263e2b06806a">VELOCITY</a> = true</td></tr>
-<tr class="memdesc:afc717929ffc8d554b7e0263e2b06806a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant boolean for the constructor to set the list to values for filtering velcity. <a href="#afc717929ffc8d554b7e0263e2b06806a">More...</a><br /></td></tr>
+<tr class="memdesc:afc717929ffc8d554b7e0263e2b06806a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant boolean for the constructor to set the list to values for filtering velcity.  <a href="#afc717929ffc8d554b7e0263e2b06806a">More...</a><br /></td></tr>
 <tr class="separator:afc717929ffc8d554b7e0263e2b06806a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac991123445c654cb0da7d7841e313b2c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac991123445c654cb0da7d7841e313b2c"></a>
-const bool&#160;</td><td class="memItemRight" valign="bottom"><b>ANGLE</b> = false</td></tr>
+<tr class="memitem:ac991123445c654cb0da7d7841e313b2c"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkinect_expirement_1_1_butterworth.html#ac991123445c654cb0da7d7841e313b2c">ANGLE</a> = false</td></tr>
+<tr class="memdesc:ac991123445c654cb0da7d7841e313b2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant boolean for the constructor to set the list to values for filtering velcity.  <a href="#ac991123445c654cb0da7d7841e313b2c">More...</a><br /></td></tr>
 <tr class="separator:ac991123445c654cb0da7d7841e313b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A butterworth filter for the values taken from the Kinect and encoder.</p>
+<div class="textblock"><p>A butterworth filter for the values taken from the Kinect and encoder. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a37322f18a1f8f59271df8aac36e79f26"></a>
 <div class="memitem">
@@ -149,12 +132,63 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>ANGLE</b> = fal
         </tr>
       </table>
 </div><div class="memdoc">
-<p>summary&gt;Filters the list of values.</p>
-<p>params name = "x"&gt;The list of values to be filtered.&lt;/params&gt; params name = "prev"&gt;The list of previous values before <code>x</code> was being recorded.&lt;/params&gt; returns&gt;A list of filtered values.</p>
+
+<p>Constructor for the butterworth class </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a0e51ad9aa7218b63b901cfd4e71ea75b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;double&gt; kinectExpirement.Butterworth.Filter </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>prev</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Filters the list of values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The list of values to be filtered. </td></tr>
+    <tr><td class="paramname">prev</td><td>The list of previous values before <code>x</code> was being recorded. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of filtered values. </dd></dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ac991123445c654cb0da7d7841e313b2c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool kinectExpirement.Butterworth.ANGLE = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constant boolean for the constructor to set the list to values for filtering velcity. </p>
+
+</div>
+</div>
 <a class="anchor" id="afc717929ffc8d554b7e0263e2b06806a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -165,24 +199,19 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>ANGLE</b> = fal
       </table>
 </div><div class="memdoc">
 
-<p>Constant boolean for the constructor to set the list to values for filtering velcity.</p>
-<p>summary&gt;Constant boolean for the constructor to set the list to values for filtering velcity.</p>
+<p>Constant boolean for the constructor to set the list to values for filtering velcity. </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Program.cs</li>
+<li>C:/Users/inzuk/Documents/kinectc/kinectExpirement/Program.cs</li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="namespacekinect_expirement.html">kinectExpirement</a></li><li class="navelem"><a class="el" href="classkinect_expirement_1_1_butterworth.html">Butterworth</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
 </body>
 </html>

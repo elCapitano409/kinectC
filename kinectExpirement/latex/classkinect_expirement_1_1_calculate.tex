@@ -15,10 +15,9 @@ static double \hyperlink{classkinect_expirement_1_1_calculate_a9c9d55d2e89605013
 static double \hyperlink{classkinect_expirement_1_1_calculate_a5e407f5e00cb311cea31f7172fa4a5d0}{Dot\+Product} (\hyperlink{classkinect_expirement_1_1_point_holder}{Point\+Holder} vector1, \hyperlink{classkinect_expirement_1_1_point_holder}{Point\+Holder} vector2)
 \begin{DoxyCompactList}\small\item\em Calculates the dot product of two vectors. \end{DoxyCompactList}\item 
 static double \hyperlink{classkinect_expirement_1_1_calculate_a02fbfb617abfb0e06c8e92cb25f9f9e8}{To\+Degree} (double value)
-\item 
-static double {\bfseries Find\+Velocity} (double inital\+\_\+angle, double final\+\_\+angle)\hypertarget{classkinect_expirement_1_1_calculate_a91876175c733dc14e51ac1eb5c255142}{}\label{classkinect_expirement_1_1_calculate_a91876175c733dc14e51ac1eb5c255142}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Converts a value from radians to degrees. \end{DoxyCompactList}\item 
+static double \hyperlink{classkinect_expirement_1_1_calculate_a91876175c733dc14e51ac1eb5c255142}{Find\+Velocity} (double inital\+\_\+angle, double final\+\_\+angle)
+\begin{DoxyCompactList}\small\item\em Calculates the velocity of angle movement, assuming that the frequency is 30\+Hz. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -61,21 +60,58 @@ The vector that was generated.
 
 Calculates the dot product of two vectors. 
 
-$<$params name=\char`\"{}vector1\char`\"{}$>$ The first three dimensional vector. $<$/params$>$ $<$params name=\char`\"{}vector2\char`\"{}$>$ The second three dimensional vector $<$/params$>$ \begin{DoxyReturn}{Returns}
+
+\begin{DoxyParams}{Parameters}
+{\em vector1} & The first three dimensional vector. \\
+\hline
+{\em vector2} & The second three dimensional vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
 The dot product of the two vectors. 
 \end{DoxyReturn}
-summary$>$Converts a value from radians to degrees.
+\index{kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}!Find\+Velocity@{Find\+Velocity}}
+\index{Find\+Velocity@{Find\+Velocity}!kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}}
+\subsubsection[{\texorpdfstring{Find\+Velocity(double inital\+\_\+angle, double final\+\_\+angle)}{FindVelocity(double inital_angle, double final_angle)}}]{\setlength{\rightskip}{0pt plus 5cm}static double kinect\+Expirement.\+Calculate.\+Find\+Velocity (
+\begin{DoxyParamCaption}
+\item[{double}]{inital\+\_\+angle, }
+\item[{double}]{final\+\_\+angle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classkinect_expirement_1_1_calculate_a91876175c733dc14e51ac1eb5c255142}{}\label{classkinect_expirement_1_1_calculate_a91876175c733dc14e51ac1eb5c255142}
 
-params name = \char`\"{}value\char`\"{}$>$The value in radians$<$/params$>$ returns$>$The value in degrees\index{kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}!To\+Degree@{To\+Degree}}
+
+Calculates the velocity of angle movement, assuming that the frequency is 30\+Hz. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inital\+\_\+angle} & The intial angle of the elbow. \\
+\hline
+{\em final\+\_\+angle} & The final angle of the elbow. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The instantanous velcity of the elbow. 
+\end{DoxyReturn}
+\index{kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}!To\+Degree@{To\+Degree}}
 \index{To\+Degree@{To\+Degree}!kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}}
 \subsubsection[{\texorpdfstring{To\+Degree(double value)}{ToDegree(double value)}}]{\setlength{\rightskip}{0pt plus 5cm}static double kinect\+Expirement.\+Calculate.\+To\+Degree (
 \begin{DoxyParamCaption}
 \item[{double}]{value}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classkinect_expirement_1_1_calculate_a02fbfb617abfb0e06c8e92cb25f9f9e8}{}\label{classkinect_expirement_1_1_calculate_a02fbfb617abfb0e06c8e92cb25f9f9e8}
-summary$>$Calculates the velocity of angle movement, assuming that the frequency is 30\+Hz.
 
-params name = \char`\"{}inital\+\_\+angle\char`\"{}$>$The intial angle of the elbow.$<$/params$>$ params name = \char`\"{}final\+\_\+angle\char`\"{}$>$The final angle of the elbow.$<$/params$>$ returns$>$The instantanous velcity of the elbow\index{kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}!Vector\+Length@{Vector\+Length}}
+
+Converts a value from radians to degrees. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value in radians \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value in degrees 
+\end{DoxyReturn}
+\index{kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}!Vector\+Length@{Vector\+Length}}
 \index{Vector\+Length@{Vector\+Length}!kinect\+Expirement\+::\+Calculate@{kinect\+Expirement\+::\+Calculate}}
 \subsubsection[{\texorpdfstring{Vector\+Length(\+Point\+Holder vector)}{VectorLength(PointHolder vector)}}]{\setlength{\rightskip}{0pt plus 5cm}static double kinect\+Expirement.\+Calculate.\+Vector\+Length (
 \begin{DoxyParamCaption}
@@ -88,14 +124,14 @@ Calculates the length of the vector.
 
 
 \begin{DoxyParams}{Parameters}
-{\em vector} & The vector that the magitudes will be taken from. $<$/params$>$ \begin{DoxyReturn}{Returns}
-The length of the vector. 
-\end{DoxyReturn}
-\\
+{\em vector} & The vector that the magitudes will be taken from. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The length of the vector. 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Program.\+cs\end{DoxyCompactItemize}
+C\+:/\+Users/inzuk/\+Documents/kinectc/kinect\+Expirement/Program.\+cs\end{DoxyCompactItemize}

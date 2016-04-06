@@ -113,7 +113,7 @@ namespace kinectExpirement
                             double length_vector2 = Calculate.VectorLength(vector2);
                             angle = Calculate.ToDegree(Math.Acos(dot_product / (length_vector1 * length_vector2)));
 
-                            //form.addChart(angle);
+                            form.addChart(angle);
                             form.addPosition(angle);
                             
 
@@ -378,7 +378,7 @@ namespace kinectExpirement
             int sample_length = x.Count;
             List<double> y = new List<double>(sample_length + order);
             List<double> final_values = new List<double>(sample_length);
-            for (int c = 0; c < sample_length + order; c++)
+            for (int c = 0; c < sample_length; c++)
             {
                 if (c < order)
                 {
@@ -439,7 +439,7 @@ namespace kinectExpirement
         }
     }
 
-	///<summary>Controls all the file processing.</summary>
+	/// <summary> Controls all the file processing. </summary>
     public class FileProcessing
     {
         private String path;
