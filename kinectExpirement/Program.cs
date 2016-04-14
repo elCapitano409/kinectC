@@ -433,7 +433,7 @@ namespace kinectExpirement
 		/// <param name = "type">The type of values being written to the file. </param>
         public FileProcessing(String name, String type)
         {
-            path = @"C:\\Users\Kyle\Results\" + name + "-" + type + ".txt";
+            path = @"C:\\Users\Kyle\Documents\MATLAB\Results\" + name + "-" + type + ".txt";
         }
 
         /// <summary> Writes all the values to a text file. </summary>
