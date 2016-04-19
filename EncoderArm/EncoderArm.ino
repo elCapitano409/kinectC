@@ -6,13 +6,13 @@ const int input_2 = 2;
 
 unsigned long currTime, prevTime, loopTime;
 const float sensitivity =0.17578125;
-const int frequency = 120; //in Hz
+const int frequency = 60; //in Hz
 float encVal;
 boolean boolPrinting = false;
 Encoder encoder(input_1, input_2);
 
 void setup() {
-  Serial.begin(9600); //opens serial
+  Serial.begin(38400); //opens serial
   boolPrinting = true;
   loopTime = calculateLoop(frequency);
 }

@@ -15,6 +15,11 @@ namespace kinectExpirement
 	/// <summary> Inheriated from Form class, GUI for incoder and Kinect handling. </summary>
     public partial class KinectForm : Form
     {
+        /// <summary> The time stamp that the sensors start recording. </summary>
+        public string timeStart;
+        /// <summary> The time stamp that the sensors stop recording. </summary>
+        public string timeEnd;
+        public double startStamp, endStamp, duration;
         private Graphics grahics;
         private Pen pen_black = new Pen(Color.Black, pen_width);
         private Color red = ColorTranslator.FromHtml("#ED1C24");
@@ -43,10 +48,15 @@ namespace kinectExpirement
 		public int velocity_counter;
         private double prev_angle;
 
+        public EncoderSensorClass encoder;
+        public KinectSensorClass kinect;
+
 		/// <summary> Constructor for the KinectForm class. </summary>
         public KinectForm()
         {
             InitializeComponent();
+            encoder = new EncoderSensorClass(this);
+            kinect = new KinectSensorClass(this);
             btnStop.Enabled = false;
             btnStart.Enabled = false;
             grahics = velocityScale.CreateGraphics();
@@ -82,6 +92,8 @@ namespace kinectExpirement
                 btnStop.Enabled = true;
                 btnFileName.Enabled = false;
                 write = true;
+                timeStart = DateTime.Now.Hour + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Second + "-" + DateTime.Now.Millisecond;
+                startStamp = (double)DateTime.Now.Minute * 60 + (double)DateTime.Now.Second + ((double)DateTime.Now.Millisecond / 1000);
 
                 if (rdioVelocity1.Checked)
                     velocity_goal = 5;
@@ -96,12 +108,14 @@ namespace kinectExpirement
         /// <summary> An even handler that checks if the <c>btnStop</c> button had been clicked. Stops the Kinect sensor. </summary>
         private void btnStop_Click(object sender, EventArgs e)
         {
-            KinectSensorClass.sensor.Close();
-            KinectSensorClass.kinect_no_filter.Write(KinectSensorClass.lists);
-            //KinectSensorClass.input.Write(angle_butterworth.Filter(KinectSensorClass.lists, prev));
-            //EncoderSensorClass.input.Write(angle_butterworth.Filter(EncoderSensorClass.input_filtered_values, prev));
-            EncoderSensorClass.input_no_filter.Write(EncoderSensorClass.input_values);
-            KinectSensorClass.first = true;
+            kinect.sensor.Close();
+            timeEnd = DateTime.Now.Hour + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Second + "-" + DateTime.Now.Millisecond;
+            endStamp = (double)DateTime.Now.Minute * 60 + (double) DateTime.Now.Second + ((double)DateTime.Now.Millisecond / 1000);
+            kinect.kinect_no_filter.Write(kinect.lists);
+            //kinect.input.Write(angle_butterworth.Filter(kinect.lists, prev));
+            //encoder.input.Write(angle_butterworth.Filter(encoder.input_filtered_values, prev));
+            encoder.input_no_filter.Write(encoder.input_values);
+            kinect.first = true;
             btnStart.Enabled = true;
             btnStop.Enabled = false;
             lblStatus.Text = "Sensor is off";
@@ -112,16 +126,16 @@ namespace kinectExpirement
         /// <summary> An event handler that checks if <c>btnFileName</c> has been clicked. Sets the file name to the user input. </summary>
         private void btnFileName_Click(object sender, EventArgs e)
         {
-            KinectSensorClass.name = txtFile.Text;
+            kinect.name = txtFile.Text;
             btnStart.Enabled = true;
-            lblFileName.Text = "The file name is " + KinectSensorClass.name + ".txt";
+            lblFileName.Text = "The file name is " + kinect.name + ".txt";
         }
 
 		/// <summary> An event handler that checks if <c>btnFile</c> has been clicked. Sets the file name to the date and time. </summary>
         private void btnFile_Click(object sender, EventArgs e)
         {
-            KinectSensorClass.name = DateTime.Now.Month + "_" + DateTime.Now.Day + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute;
-            lblFileName.Text = "The file name is " + KinectSensorClass.name + ".txt";
+            kinect.name = DateTime.Now.Month + "_" + DateTime.Now.Day + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute;
+            lblFileName.Text = "The file name is " + kinect.name + ".txt";
             btnStart.Enabled = true;
             erase(60);
         }
@@ -129,7 +143,7 @@ namespace kinectExpirement
 		/// <summary> An event handler that checks if <c>btnOffset</c> has been clicked. Sets the Kinect sensor offset from the encoder value. </summary>
         private void btnOffset_Click(object sender, EventArgs e)
         {
-            kinect_offset = EncoderSensorClass.kinect_offset;
+            kinect_offset = encoder.kinect_offset;
             lblOffset.Text = "Current Offset: " + kinect_offset;
             draw(60, pen_black);
         }
@@ -241,7 +255,10 @@ namespace kinectExpirement
         {
             try
             {
-                EncoderSensorClass.add(EncoderSensorClass.arduino.readSerial());
+                //if (encoder.arduino.serial.BytesToRead > 0)
+                //{
+                    encoder.add(encoder.arduino.readSerial());
+                //}
             }
             catch
             {
@@ -276,7 +293,7 @@ namespace kinectExpirement
 		/// <summary> Event handler that checks if <c>btnZero</c> has been clicked, zeros the encoder. </summary>
         private void btnZero_Click(object sender, EventArgs e)
         {
-            EncoderSensorClass.zero();
+            encoder.zero();
         }
 
 		/// <summary> Sets the text of the <c>lblArduinoStatus</c> label. </c>
@@ -293,10 +310,9 @@ namespace kinectExpirement
         private void btnOpen_Click(object sender, EventArgs e)
         {
             btnOpen.Enabled = false;
-            KinectSensorClass.RunSensor();
+            kinect.RunSensor();
             open = true;
-        }
-
-        
+            startTimer();
+        }        
     }
 }
