@@ -7,6 +7,7 @@ using Microsoft.Kinect;
 using Microsoft.Kinect.Fusion;
 using System.IO;
 using System.IO.Ports;
+using System.Threading;
 
 namespace kinectExpirement
 {
@@ -22,6 +23,7 @@ namespace kinectExpirement
         public KinectForm form;
         public String name;
         public FileProcessing input, kinect_no_filter;
+        
        
         /// <summary> Opens and runs the methods for using the Kinect Sensor. </summary>
         /// 
@@ -145,12 +147,15 @@ namespace kinectExpirement
         private static string port = "COM3";
         public SerialPort serial = new SerialPort(port);
         private KinectForm form;
+        public bool read_data = false;
+        public bool save_data = false;
+        public bool loop_thread = true;
+        
 
         /// <summary>Opens the serial </summary>
         public ArduinoControl(KinectForm f)
         {
-            serial.BaudRate = 38400;
-            serial.Open();
+            
             form = f;
             form.setArduinoLabel("Arduino is connected");
         }
@@ -452,7 +457,7 @@ namespace kinectExpirement
                         io.WriteLine(a);
                     }
                 }
-                io.WriteLine(form.timeEnd);
+                //io.WriteLine(form.timeEnd);
                 io.WriteLine(form.endStamp - form.startStamp);
             }
         }
@@ -471,7 +476,7 @@ namespace kinectExpirement
                         io.WriteLine(a);
                     }
                 }
-                io.WriteLine(form.timeEnd);
+                //io.WriteLine(form.timeEnd);
                 io.WriteLine(form.endStamp - form.startStamp);
             }
         }
@@ -487,7 +492,7 @@ namespace kinectExpirement
                 {
                     io.WriteLine(index);
                 }
-                io.WriteLine(form.timeEnd);
+                //io.WriteLine(form.timeEnd);
                 io.WriteLine(form.endStamp - form.startStamp);
             }
         }

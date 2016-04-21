@@ -57,8 +57,8 @@ namespace kinectExpirement
             InitializeComponent();
             encoder = new EncoderSensorClass(this);
             kinect = new KinectSensorClass(this);
-            btnStop.Enabled = false;
-            btnStart.Enabled = false;
+            btnStop.Enabled = true;
+            btnStart.Enabled = true;
             grahics = velocityScale.CreateGraphics();
             rdioVelocity1.Checked = true;
             prev.Add(0);
@@ -88,6 +88,7 @@ namespace kinectExpirement
         {
             if (open)
             {
+                encoder.arduino.save_data = true;
                 btnStart.Enabled = false;
                 btnStop.Enabled = true;
                 btnFileName.Enabled = false;
@@ -108,6 +109,9 @@ namespace kinectExpirement
         /// <summary> An even handler that checks if the <c>btnStop</c> button had been clicked. Stops the Kinect sensor. </summary>
         private void btnStop_Click(object sender, EventArgs e)
         {
+            encoder.arduino.save_data = false;
+            encoder.arduino.read_data = false;
+            encoder.arduino.loop_thread = false;
             kinect.sensor.Close();
             timeEnd = DateTime.Now.Hour + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Second + "-" + DateTime.Now.Millisecond;
             endStamp = (double)DateTime.Now.Minute * 60 + (double) DateTime.Now.Second + ((double)DateTime.Now.Millisecond / 1000);
@@ -257,7 +261,7 @@ namespace kinectExpirement
             {
                 //if (encoder.arduino.serial.BytesToRead > 0)
                 //{
-                    encoder.add(encoder.arduino.readSerial());
+                    //encoder.add(encoder.arduino.readSerial());
                 //}
             }
             catch
@@ -309,6 +313,7 @@ namespace kinectExpirement
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
+            encoder.arduino.read_data = true;
             btnOpen.Enabled = false;
             kinect.RunSensor();
             open = true;

@@ -337,7 +337,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox velocityScale;
-        private System.Windows.Forms.Label lblArduinoStatus;
+        public System.Windows.Forms.Label lblArduinoStatus;
         private System.Windows.Forms.Button btnZero;
         private System.Windows.Forms.Button btnOffset;
         private System.Windows.Forms.Label lblOffset;
