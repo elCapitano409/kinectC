@@ -61,7 +61,7 @@ namespace kinectExpirement
                                 try
                                 {
                                     value = Convert.ToSingle(input);
-                                    string temp = value.ToString();
+                                    string temp = value.ToString("0.00");
                                     Console.WriteLine(temp);
                                     //form.lblArduinoStatus.Text = temp;
                                     //form.setArduinoLabel(input);
@@ -74,7 +74,7 @@ namespace kinectExpirement
                                 }
                                 if (arduino.save_data)
                                 {
-                                    Console.WriteLine("Saving Data");
+                                    //Console.WriteLine("Saving Data");
                                     form.encoder.input_values.Add(value);
                                 }
                             }

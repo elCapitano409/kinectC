@@ -1,43 +1,62 @@
 #include <Encoder.h>
 
 //digital input pins
-const int input_1 = 3;
-const int input_2 = 2;
+const int input_1 = 2;
+const int input_2 = 3;
 
-unsigned long currTime, prevTime, loopTime;
-const float sensitivity =0.17578125;
-const float frequency = 116.0; //in Hz
-float encVal;
+const int frequency = 120; //in Hz
+float encVal, loopTime, currTime, prevTime;
+float milliseconds = 0, microseconds = 0, seconds = 0;
 boolean boolPrinting = false;
-
-int counter = 0;
+const float fEncoderSensitivity=0.17578125;
 Encoder encoder(input_1, input_2);
 
+int counter = 0;
+float start, finish;
+
+
 void setup() {
-  prevTime = 0;
-  Serial.begin(19200); //opens serial
+  Serial.begin(19200);
   boolPrinting = true;
-  loopTime = (unsigned long)calculateLoop(frequency);
-  //Serial.println(loopTime);
+  loopTime = calculateLoop((float)frequency);
+  prevTime = getTime();
+  start = getTime();
 }
 
 void loop() {
-  currTime = millis();
-  //Serial.println(currTime - prevTime);
-  if(currTime - prevTime >= (unsigned long) 9){
-    encVal = encoder.read();
+  currTime = getTime();
+  if(currTime - prevTime >= loopTime){
+    encVal = encoder.read()*fEncoderSensitivity;
     if(boolPrinting){
-      Serial.println(encVal * sensitivity,DEC);
+      Serial.println(encVal,DEC);
+      /*counter++;
+      if(counter >= 120){
+        finish = getTime() - start;
+        
+        Serial.println(finish);
+        Serial.println(start);
+        Serial.print("FREQUENCY: ");
+        Serial.println((finish / 1000)/counter);
+        start = getTime();
+        counter = 0;
+      }*/
     }
     prevTime = currTime;
   }
+  
+}
+float calculateLoop(float frequency){
+  float value = (1/frequency)*1000;
+ // Serial.print("LOOP TIME: ");
+  //Serial.println(value);
+  return value;
 }
 
-//caculates period
-float calculateLoop(float frequency){
-  float value = (1.0/frequency)*1000.0;
-  //Serial.println(value);
-  return float(value);
+float getTime (){
+  milliseconds = millis();
+  microseconds = micros();
+  return milliseconds + (microseconds/1000);
 }
+
 
 

@@ -22,7 +22,7 @@ namespace kinectExpirement
         public int addCounter = 0, listCounter = 0, velocityCounter = 0;
         public KinectForm form;
         public String name;
-        public FileProcessing input, kinect_no_filter;
+        public FileProcessing input_upsampled, input_no_filter;
         
        
         /// <summary> Opens and runs the methods for using the Kinect Sensor. </summary>
@@ -58,9 +58,9 @@ namespace kinectExpirement
             PointHolder wrist = new PointHolder();
             PointHolder elbow = new PointHolder();
             PointHolder shoulder = new PointHolder();
-            input = new FileProcessing(name, "KINECT_FILTERED", form);
-            kinect_no_filter = new FileProcessing(name, "KINECT_UNFILTERED",form);
-            form.encoder.input = new FileProcessing(name, "ENCODER_FILTERED",form);
+            input_upsampled = new FileProcessing(name, "KINECT_UPSAMPLED", form);
+            input_no_filter = new FileProcessing(name, "KINECT_UNFILTERED",form);
+            form.encoder.input_upsampled = new FileProcessing(name, "ENCODER_UPSAMPLED",form);
             form.encoder.input_no_filter = new FileProcessing(name, "ENCODER_UNFILTERED", form);
             double tempVelocity;
             using (var frame = reference.BodyFrameReference.AcquireFrame())
@@ -197,7 +197,7 @@ namespace kinectExpirement
         /// <summary> An instance of the <c>ArduinoControl</c> class that represents the Arduino that is reading in values from the encoder. </summary>
         public ArduinoControl arduino;
         /// <summary> An instance of the <c>FileProcessing</c> class to write all the filtered encoder values to a text file. </summary>
-        public  FileProcessing input;
+        public  FileProcessing input_upsampled;
         /// <summary> An instance of the <c>FileProcessing</c> class to write all the unfiltered encoder values to a text file. </summary> 
         public  FileProcessing input_no_filter;
         private KinectForm form;

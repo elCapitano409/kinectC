@@ -50,6 +50,7 @@ namespace kinectExpirement
 
         public EncoderSensorClass encoder;
         public KinectSensorClass kinect;
+        public Upsampler interp;
 
 		/// <summary> Constructor for the KinectForm class. </summary>
         public KinectForm()
@@ -57,6 +58,7 @@ namespace kinectExpirement
             InitializeComponent();
             encoder = new EncoderSensorClass(this);
             kinect = new KinectSensorClass(this);
+            interp = new Upsampler();
             btnStop.Enabled = true;
             btnStart.Enabled = true;
             grahics = velocityScale.CreateGraphics();
@@ -115,10 +117,16 @@ namespace kinectExpirement
             kinect.sensor.Close();
             timeEnd = DateTime.Now.Hour + "-" + DateTime.Now.Minute + "-" + DateTime.Now.Second + "-" + DateTime.Now.Millisecond;
             endStamp = (double)DateTime.Now.Minute * 60 + (double) DateTime.Now.Second + ((double)DateTime.Now.Millisecond / 1000);
-            kinect.kinect_no_filter.Write(kinect.lists);
+            kinect.input_no_filter.Write(kinect.lists);
             //kinect.input.Write(angle_butterworth.Filter(kinect.lists, prev));
             //encoder.input.Write(angle_butterworth.Filter(encoder.input_filtered_values, prev));
             encoder.input_no_filter.Write(encoder.input_values);
+            duration = endStamp - startStamp;
+            int temp_duration = (int)duration * 1000;
+            List<double> upsampled_kinect = interp.UpSample(ref kinect.lists, 150, temp_duration);
+            List<double> upsampled_encoder = interp.UpSample(ref encoder.input_values, 150, temp_duration);
+            kinect.input_upsampled.Write(upsampled_kinect);
+            encoder.input_upsampled.Write(upsampled_encoder);
             kinect.first = true;
             btnStart.Enabled = true;
             btnStop.Enabled = false;
