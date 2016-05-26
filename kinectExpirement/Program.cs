@@ -17,7 +17,7 @@ namespace kinectExpirement
         private static KinectForm form;
         private static ArduinoControl arduino;
         /// <summary>
-        /// The main entry point for the application.
+        /// The main method of the program.
         /// </summary>
         [STAThread]
         public static void Main()
@@ -27,11 +27,12 @@ namespace kinectExpirement
             form = new KinectForm();
             Thread arduinoThread = new Thread(ReadEncoder);
             arduinoThread.Start();
-                        
             Application.Run(form);
             
         }
-
+		/// <summary>
+		/// Loops in a thread to read in encoder values from the serial. 
+		/// </summary>
         public static void ReadEncoder()
         {
             arduino = form.encoder.arduino;
@@ -49,7 +50,7 @@ namespace kinectExpirement
                             arduino.serial.BaudRate = 19200;
                             arduino.serial.Open();
                         }
-                        catch(Exception e )
+                        catch(Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }

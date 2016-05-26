@@ -8,11 +8,17 @@ namespace kinectExpirement
 {
     public class Upsampler
     {
+		///<summary> Default constructor for the <c>Upsampler</c> class. </summary>
         public Upsampler()
         {
 
         }
 
+		///<summary> Down samples the an array of values to a certain frequency. </summary>
+		///<param name = "samples"> The list of data to be modified. </param>
+		///<param name = "desired_frequency"> The frequency the list will be changed to. </param>
+		///<param name = "duration"> The duratiion that the data was collected. </param>
+		///<returns> A list of doubles, down sampled to the desired frequency. </returns>
         public List<double> DownSample(ref List<double> samples, int desired_frequency, int duration)
         {
             double temp = (desired_frequency * duration) / 1000;
@@ -34,6 +40,11 @@ namespace kinectExpirement
             return samples_ds;
         }
 
+		///<summary> Up samples the an array of values to a certain frequency. </summary>
+		///<param name = "samples"> The list of data to be modified. </param>
+		///<param name = "desired_frequency"> The frequency the list will be changed to. </param>
+		///<param name = "duration"> The duratiion that the data was collected. </param>
+		///<returns> A list of doubles, up sampled to the desired frequency. </returns>
         public List<double> UpSample(ref List<double> samples, int desired_frequency, int duration)
         {
             double temp = (desired_frequency * duration) / 1000;

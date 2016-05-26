@@ -24,15 +24,14 @@ namespace kinectExpirement
         public String name;
         public FileProcessing input_upsampled, input_no_filter;
         
-       
-        /// <summary> Opens and runs the methods for using the Kinect Sensor. </summary>
-        /// 
-
+		///<summary> Constructor for the <c> KinectSensorClass </c>. </summary>
+		///<param name = "f"> Instance of the form that controls the program. </param>
         public KinectSensorClass(KinectForm f)
         {
             form = f;
         }
 
+		///<summary> Gets the different frames read in by the Kinect sensor. </summary>
         public void RunSensor()
         {
             MultiSourceFrameReader reader;
@@ -152,10 +151,10 @@ namespace kinectExpirement
         public bool loop_thread = true;
         
 
-        /// <summary>Opens the serial </summary>
+        /// <summary> Constructor for the <c>ArduinoControl</c> class. </summary>
+		/// <param name = "f"> Instance of form that controls the program. </param>
         public ArduinoControl(KinectForm f)
         {
-            
             form = f;
             form.setArduinoLabel("Arduino is connected");
         }
