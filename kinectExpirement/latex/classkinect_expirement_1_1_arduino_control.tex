@@ -8,10 +8,25 @@ Contains functions for reading in values from the Arduino.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classkinect_expirement_1_1_arduino_control_a958454e66f96b46352d143acc5890cfe}{Arduino\+Control} ()
-\begin{DoxyCompactList}\small\item\em Opens the serial \end{DoxyCompactList}\item 
+\hyperlink{classkinect_expirement_1_1_arduino_control_a8f7bceb5dfffc55120c77e4baee9074f}{Arduino\+Control} (\hyperlink{classkinect_expirement_1_1_kinect_form}{Kinect\+Form} f)
+\begin{DoxyCompactList}\small\item\em Constructor for the {\ttfamily \hyperlink{classkinect_expirement_1_1_arduino_control}{Arduino\+Control}} class. \end{DoxyCompactList}\item 
 float \hyperlink{classkinect_expirement_1_1_arduino_control_a49f81b66981e080da2324c09671a0335}{read\+Serial} ()
 \begin{DoxyCompactList}\small\item\em Reads in a float from the serial that was sent by the Arduino. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Serial\+Port {\bfseries serial} = new Serial\+Port(port)\hypertarget{classkinect_expirement_1_1_arduino_control_a1fa99577b96ec09eebdeab24073a5820}{}\label{classkinect_expirement_1_1_arduino_control_a1fa99577b96ec09eebdeab24073a5820}
+
+\item 
+bool {\bfseries read\+\_\+data} = false\hypertarget{classkinect_expirement_1_1_arduino_control_a4a0ff6cc451866988c4cd3c687e4c357}{}\label{classkinect_expirement_1_1_arduino_control_a4a0ff6cc451866988c4cd3c687e4c357}
+
+\item 
+bool {\bfseries save\+\_\+data} = false\hypertarget{classkinect_expirement_1_1_arduino_control_aae97a61b7ce51ca52bf90fd2557fbc0b}{}\label{classkinect_expirement_1_1_arduino_control_aae97a61b7ce51ca52bf90fd2557fbc0b}
+
+\item 
+bool {\bfseries loop\+\_\+thread} = true\hypertarget{classkinect_expirement_1_1_arduino_control_ac216690736aa860ef533d86faec624f2}{}\label{classkinect_expirement_1_1_arduino_control_ac216690736aa860ef533d86faec624f2}
+
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -22,15 +37,20 @@ Contains functions for reading in values from the Arduino.
 \subsection{Constructor \& Destructor Documentation}
 \index{kinect\+Expirement\+::\+Arduino\+Control@{kinect\+Expirement\+::\+Arduino\+Control}!Arduino\+Control@{Arduino\+Control}}
 \index{Arduino\+Control@{Arduino\+Control}!kinect\+Expirement\+::\+Arduino\+Control@{kinect\+Expirement\+::\+Arduino\+Control}}
-\subsubsection[{\texorpdfstring{Arduino\+Control()}{ArduinoControl()}}]{\setlength{\rightskip}{0pt plus 5cm}kinect\+Expirement.\+Arduino\+Control.\+Arduino\+Control (
+\subsubsection[{\texorpdfstring{Arduino\+Control(\+Kinect\+Form f)}{ArduinoControl(KinectForm f)}}]{\setlength{\rightskip}{0pt plus 5cm}kinect\+Expirement.\+Arduino\+Control.\+Arduino\+Control (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf Kinect\+Form}}]{f}
 \end{DoxyParamCaption}
-)}\hypertarget{classkinect_expirement_1_1_arduino_control_a958454e66f96b46352d143acc5890cfe}{}\label{classkinect_expirement_1_1_arduino_control_a958454e66f96b46352d143acc5890cfe}
+)}\hypertarget{classkinect_expirement_1_1_arduino_control_a8f7bceb5dfffc55120c77e4baee9074f}{}\label{classkinect_expirement_1_1_arduino_control_a8f7bceb5dfffc55120c77e4baee9074f}
 
 
-Opens the serial 
+Constructor for the {\ttfamily \hyperlink{classkinect_expirement_1_1_arduino_control}{Arduino\+Control}} class. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Instance of form that controls the program. \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
@@ -52,4 +72,4 @@ A float value for the output of the Arduino.
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/\+Kyle/\+Documents/kinectc/kinect\+Expirement/Program.\+cs\end{DoxyCompactItemize}
+Kinect\+Sensor\+Class.\+cs\end{DoxyCompactItemize}

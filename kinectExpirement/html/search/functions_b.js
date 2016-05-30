@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vectorlength',['VectorLength',['../classkinect_expirement_1_1_calculate.html#a9c9d55d2e89605013fd5280deb572468',1,'kinectExpirement::Calculate']]]
+  ['upsampler',['Upsampler',['../classkinect_expirement_1_1_upsampler.html#a34afdc7c65522bb74f4db79528364516',1,'kinectExpirement::Upsampler']]]
 ];

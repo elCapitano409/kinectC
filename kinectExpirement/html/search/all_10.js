@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['z',['z',['../classkinect_expirement_1_1_point_holder.html#aa89b5a93efd8f6f6eb033ea7160c5d97',1,'kinectExpirement::PointHolder']]],
-  ['zero',['zero',['../classkinect_expirement_1_1_encoder_sensor_class.html#a37c1e134098db6ce4a196a91ff4b735e',1,'kinectExpirement::EncoderSensorClass']]]
+  ['y',['y',['../classkinect_expirement_1_1_point_holder.html#a8e1920f1bd56b015aeae9f19a6f0c5e6',1,'kinectExpirement::PointHolder']]]
 ];

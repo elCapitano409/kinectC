@@ -6,5 +6,5 @@ var searchData=
   ['angle_5fbutterworth',['angle_butterworth',['../classkinect_expirement_1_1_kinect_form.html#abec90e6db4a70d6cccc38f90f800e3ab',1,'kinectExpirement::KinectForm']]],
   ['arduino',['arduino',['../classkinect_expirement_1_1_encoder_sensor_class.html#a5581b60b2dc6c9311ae5318772aa92f1',1,'kinectExpirement::EncoderSensorClass']]],
   ['arduinocontrol',['ArduinoControl',['../classkinect_expirement_1_1_arduino_control.html',1,'kinectExpirement']]],
-  ['arduinocontrol',['ArduinoControl',['../classkinect_expirement_1_1_arduino_control.html#a958454e66f96b46352d143acc5890cfe',1,'kinectExpirement::ArduinoControl']]]
+  ['arduinocontrol',['ArduinoControl',['../classkinect_expirement_1_1_arduino_control.html#a8f7bceb5dfffc55120c77e4baee9074f',1,'kinectExpirement::ArduinoControl']]]
 ];

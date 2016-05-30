@@ -5,39 +5,42 @@
 Holds all the functions for reading in and storeing values from the Kinect, also constrols the state of the sensor.  
 
 
-\subsection*{Static Public Member Functions}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \hyperlink{classkinect_expirement_1_1_kinect_sensor_class_aa8b994e7fba2d8a238f95bb6830ca4f3}{Run\+Sensor} ()
-\begin{DoxyCompactList}\small\item\em Opens and runs the methods for using the Kinect Sensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Static Public Attributes}
+\hyperlink{classkinect_expirement_1_1_kinect_sensor_class_afff859ca767af86cfde5b1b8ab1275f1}{Kinect\+Sensor\+Class} (\hyperlink{classkinect_expirement_1_1_kinect_form}{Kinect\+Form} f)
+\begin{DoxyCompactList}\small\item\em summary$>$ Gets the different frames read in by the Kinect sensor. \end{DoxyCompactList}\item 
+void {\bfseries Run\+Sensor} ()\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_a2f22d9db1e17341d96282c3331826573}{}\label{classkinect_expirement_1_1_kinect_sensor_class_a2f22d9db1e17341d96282c3331826573}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static Kinect\+Sensor {\bfseries sensor}\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_adc9d831584e42495c1ade995e2b7296b}{}\label{classkinect_expirement_1_1_kinect_sensor_class_adc9d831584e42495c1ade995e2b7296b}
+Kinect\+Sensor {\bfseries sensor}\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_adc9d831584e42495c1ade995e2b7296b}{}\label{classkinect_expirement_1_1_kinect_sensor_class_adc9d831584e42495c1ade995e2b7296b}
 
 \item 
-static I\+List$<$ Body $>$ {\bfseries bodies}\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_afa0208c2f32b2863875380181f23a968}{}\label{classkinect_expirement_1_1_kinect_sensor_class_afa0208c2f32b2863875380181f23a968}
+I\+List$<$ Body $>$ {\bfseries bodies}\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_afa0208c2f32b2863875380181f23a968}{}\label{classkinect_expirement_1_1_kinect_sensor_class_afa0208c2f32b2863875380181f23a968}
 
 \item 
-static bool {\bfseries first} = true\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_a0849964fe5f5f578aa0acd1309f9c485}{}\label{classkinect_expirement_1_1_kinect_sensor_class_a0849964fe5f5f578aa0acd1309f9c485}
+bool {\bfseries first} = true\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_a0849964fe5f5f578aa0acd1309f9c485}{}\label{classkinect_expirement_1_1_kinect_sensor_class_a0849964fe5f5f578aa0acd1309f9c485}
 
 \item 
-static List$<$ double $>$ {\bfseries lists} = new List$<$double$>$()\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_a7ae7082005aeaaf8ac981d39fecfa466}{}\label{classkinect_expirement_1_1_kinect_sensor_class_a7ae7082005aeaaf8ac981d39fecfa466}
+List$<$ double $>$ {\bfseries lists} = new List$<$double$>$()\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_a7ae7082005aeaaf8ac981d39fecfa466}{}\label{classkinect_expirement_1_1_kinect_sensor_class_a7ae7082005aeaaf8ac981d39fecfa466}
 
 \item 
-static List$<$ double $>$ {\bfseries velocity\+Angle} = new List$<$double$>$()\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_a42a0ce3cb624cf8224a8c86353e2b453}{}\label{classkinect_expirement_1_1_kinect_sensor_class_a42a0ce3cb624cf8224a8c86353e2b453}
+List$<$ double $>$ {\bfseries velocity\+Angle} = new List$<$double$>$()\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_a42a0ce3cb624cf8224a8c86353e2b453}{}\label{classkinect_expirement_1_1_kinect_sensor_class_a42a0ce3cb624cf8224a8c86353e2b453}
 
 \item 
-static int {\bfseries add\+Counter} = 0\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_a83d086426821c4d842d3f82465b57ae0}{}\label{classkinect_expirement_1_1_kinect_sensor_class_a83d086426821c4d842d3f82465b57ae0}
+int {\bfseries add\+Counter} = 0\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_a83d086426821c4d842d3f82465b57ae0}{}\label{classkinect_expirement_1_1_kinect_sensor_class_a83d086426821c4d842d3f82465b57ae0}
 
 \item 
-static \hyperlink{classkinect_expirement_1_1_kinect_form}{Kinect\+Form} {\bfseries form}\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_a0fc223d227f5f3f11b851738fae84be2}{}\label{classkinect_expirement_1_1_kinect_sensor_class_a0fc223d227f5f3f11b851738fae84be2}
+\hyperlink{classkinect_expirement_1_1_kinect_form}{Kinect\+Form} {\bfseries form}\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_a0fc223d227f5f3f11b851738fae84be2}{}\label{classkinect_expirement_1_1_kinect_sensor_class_a0fc223d227f5f3f11b851738fae84be2}
 
 \item 
-static String {\bfseries name}\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_a920f2c46b543d2b82c9698baf8b3c91f}{}\label{classkinect_expirement_1_1_kinect_sensor_class_a920f2c46b543d2b82c9698baf8b3c91f}
+String {\bfseries name}\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_a920f2c46b543d2b82c9698baf8b3c91f}{}\label{classkinect_expirement_1_1_kinect_sensor_class_a920f2c46b543d2b82c9698baf8b3c91f}
 
 \item 
-static \hyperlink{classkinect_expirement_1_1_file_processing}{File\+Processing} {\bfseries input}\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_a05569b27d1abcbf09a4b84cd16ee5b3b}{}\label{classkinect_expirement_1_1_kinect_sensor_class_a05569b27d1abcbf09a4b84cd16ee5b3b}
+\hyperlink{classkinect_expirement_1_1_file_processing}{File\+Processing} {\bfseries input\+\_\+upsampled}\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_adac96427815a76b5703cda20158adb34}{}\label{classkinect_expirement_1_1_kinect_sensor_class_adac96427815a76b5703cda20158adb34}
 
 \end{DoxyCompactItemize}
 
@@ -47,20 +50,20 @@ Holds all the functions for reading in and storeing values from the Kinect, also
 
 
 
-\subsection{Member Function Documentation}
-\index{kinect\+Expirement\+::\+Kinect\+Sensor\+Class@{kinect\+Expirement\+::\+Kinect\+Sensor\+Class}!Run\+Sensor@{Run\+Sensor}}
-\index{Run\+Sensor@{Run\+Sensor}!kinect\+Expirement\+::\+Kinect\+Sensor\+Class@{kinect\+Expirement\+::\+Kinect\+Sensor\+Class}}
-\subsubsection[{\texorpdfstring{Run\+Sensor()}{RunSensor()}}]{\setlength{\rightskip}{0pt plus 5cm}static void kinect\+Expirement.\+Kinect\+Sensor\+Class.\+Run\+Sensor (
+\subsection{Constructor \& Destructor Documentation}
+\index{kinect\+Expirement\+::\+Kinect\+Sensor\+Class@{kinect\+Expirement\+::\+Kinect\+Sensor\+Class}!Kinect\+Sensor\+Class@{Kinect\+Sensor\+Class}}
+\index{Kinect\+Sensor\+Class@{Kinect\+Sensor\+Class}!kinect\+Expirement\+::\+Kinect\+Sensor\+Class@{kinect\+Expirement\+::\+Kinect\+Sensor\+Class}}
+\subsubsection[{\texorpdfstring{Kinect\+Sensor\+Class(\+Kinect\+Form f)}{KinectSensorClass(KinectForm f)}}]{\setlength{\rightskip}{0pt plus 5cm}kinect\+Expirement.\+Kinect\+Sensor\+Class.\+Kinect\+Sensor\+Class (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf Kinect\+Form}}]{f}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_aa8b994e7fba2d8a238f95bb6830ca4f3}{}\label{classkinect_expirement_1_1_kinect_sensor_class_aa8b994e7fba2d8a238f95bb6830ca4f3}
+)}\hypertarget{classkinect_expirement_1_1_kinect_sensor_class_afff859ca767af86cfde5b1b8ab1275f1}{}\label{classkinect_expirement_1_1_kinect_sensor_class_afff859ca767af86cfde5b1b8ab1275f1}
 
 
-Opens and runs the methods for using the Kinect Sensor. 
+summary$>$ Gets the different frames read in by the Kinect sensor. 
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/\+Kyle/\+Documents/kinectc/kinect\+Expirement/Program.\+cs\end{DoxyCompactItemize}
+Kinect\+Sensor\+Class.\+cs\end{DoxyCompactItemize}

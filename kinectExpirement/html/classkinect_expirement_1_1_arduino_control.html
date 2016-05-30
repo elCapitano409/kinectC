@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Kinect Expirement: kinectExpirement.ArduinoControl Class Reference</title>
+<title>kinectExpirement: kinectExpirement.ArduinoControl Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Kinect Expirement
+   <div id="projectname">kinectExpirement
    </div>
   </td>
  </tr>
@@ -88,6 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classkinect_expirement_1_1_arduino_control-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">kinectExpirement.ArduinoControl Class Reference</div>  </div>
@@ -99,30 +100,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a958454e66f96b46352d143acc5890cfe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkinect_expirement_1_1_arduino_control.html#a958454e66f96b46352d143acc5890cfe">ArduinoControl</a> ()</td></tr>
-<tr class="memdesc:a958454e66f96b46352d143acc5890cfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the serial  <a href="#a958454e66f96b46352d143acc5890cfe">More...</a><br /></td></tr>
-<tr class="separator:a958454e66f96b46352d143acc5890cfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f7bceb5dfffc55120c77e4baee9074f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkinect_expirement_1_1_arduino_control.html#a8f7bceb5dfffc55120c77e4baee9074f">ArduinoControl</a> (<a class="el" href="classkinect_expirement_1_1_kinect_form.html">KinectForm</a> f)</td></tr>
+<tr class="memdesc:a8f7bceb5dfffc55120c77e4baee9074f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <code><a class="el" href="classkinect_expirement_1_1_arduino_control.html" title="Contains functions for reading in values from the Arduino. ">ArduinoControl</a></code> class.  <a href="#a8f7bceb5dfffc55120c77e4baee9074f">More...</a><br /></td></tr>
+<tr class="separator:a8f7bceb5dfffc55120c77e4baee9074f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49f81b66981e080da2324c09671a0335"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkinect_expirement_1_1_arduino_control.html#a49f81b66981e080da2324c09671a0335">readSerial</a> ()</td></tr>
 <tr class="memdesc:a49f81b66981e080da2324c09671a0335"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads in a float from the serial that was sent by the Arduino.  <a href="#a49f81b66981e080da2324c09671a0335">More...</a><br /></td></tr>
 <tr class="separator:a49f81b66981e080da2324c09671a0335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a1fa99577b96ec09eebdeab24073a5820"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fa99577b96ec09eebdeab24073a5820"></a>
+SerialPort&#160;</td><td class="memItemRight" valign="bottom"><b>serial</b> = new SerialPort(port)</td></tr>
+<tr class="separator:a1fa99577b96ec09eebdeab24073a5820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a0ff6cc451866988c4cd3c687e4c357"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a0ff6cc451866988c4cd3c687e4c357"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>read_data</b> = false</td></tr>
+<tr class="separator:a4a0ff6cc451866988c4cd3c687e4c357"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae97a61b7ce51ca52bf90fd2557fbc0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae97a61b7ce51ca52bf90fd2557fbc0b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>save_data</b> = false</td></tr>
+<tr class="separator:aae97a61b7ce51ca52bf90fd2557fbc0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac216690736aa860ef533d86faec624f2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac216690736aa860ef533d86faec624f2"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>loop_thread</b> = true</td></tr>
+<tr class="separator:ac216690736aa860ef533d86faec624f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains functions for reading in values from the Arduino. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a958454e66f96b46352d143acc5890cfe"></a>
+<a class="anchor" id="a8f7bceb5dfffc55120c77e4baee9074f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">kinectExpirement.ArduinoControl.ArduinoControl </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classkinect_expirement_1_1_kinect_form.html">KinectForm</a>&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Opens the serial </p>
+<p>Constructor for the <code><a class="el" href="classkinect_expirement_1_1_arduino_control.html" title="Contains functions for reading in values from the Arduino. ">ArduinoControl</a></code> class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>Instance of form that controls the program. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -146,7 +169,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Kyle/Documents/kinectc/kinectExpirement/Program.cs</li>
+<li>KinectSensorClass.cs</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
